@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Item = db.define('item', {
+const Bread = db.define('bread', {
   name: {
     type: Sequelize.STRING
   },
@@ -9,10 +9,13 @@ const Item = db.define('item', {
     type: Sequelize.INTEGER,
     validate: {
       max: 30,
-      min: 1
+      min: 0
     }
   },
   imageUrl: {
+    type: Sequelize.STRING
+  },
+  description: {
     type: Sequelize.STRING
   },
   price: {
@@ -22,4 +25,4 @@ const Item = db.define('item', {
     }
   }
 })
-module.exports = Item
+module.exports = Bread

@@ -1,19 +1,19 @@
 const {green, red} = require('chalk')
-const {db, User, Item} = require('./server/db')
+const {db, User, Bread, Order} = require('./server/db')
 console.log('the db is ', db)
 const seed = async () => {
   try {
     await db.sync({force: true})
 
     // seed your database here!
-    const sourdough = await Item.create({
+    const sourdough = await Bread.create({
       name: 'Sourdough',
       quantity: 3,
       imageUrl:
         'https://www.acouplecooks.com/wp-content/uploads/2018/10/Homemade-Sourdough-Bread-004.jpg',
       price: 8
     })
-    const french = await Item.create({
+    const french = await Bread.create({
       name: 'French',
       quantity: 4,
       imageUrl:
