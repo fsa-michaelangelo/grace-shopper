@@ -4,7 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Homepage} from './components'
 import {me} from './store'
-//import {Cart, single-bread, Checkout, AllBreads} from './components
+//import {Cart, single-bread, Checkout, AllBreads, OrderHistory} from './components
 
 /**
  * COMPONENT
@@ -15,7 +15,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = false
+    const {isLoggedIn} = this.props
 
     //REMEMBER TO ADD all components to ./components exports
     return (
@@ -31,6 +31,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/order-history" component={OrderHistory} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
