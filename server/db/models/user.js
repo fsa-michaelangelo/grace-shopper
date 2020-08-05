@@ -20,15 +20,18 @@ const User = db.define('user', {
     }
   },
   address: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: 'None listed'
   },
   phone: {
     type: Sequelize.STRING,
-    validate: {
-      isNumeric: true,
-      min: 10,
-      max: 10
-    }
+    allowNull: true,
+    defaultValue: 'None listed'
+    // validate: {
+    //   isNumeric: true,
+    //   min: 10,
+    //   max: 10
+    // }
   },
   salt: {
     type: Sequelize.STRING,
