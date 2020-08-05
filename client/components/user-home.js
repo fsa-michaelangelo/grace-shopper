@@ -9,7 +9,6 @@ import OrderHistory from './order-history'
  */
 export const UserHome = props => {
   const {user} = props
-  //console.log(user)
 
   return (
     <>
