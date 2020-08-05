@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+//import {cart} from './cart'
+//import
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -21,6 +23,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+          <img className="icon" src="./cart.jpg" />
+          {/* <Link to="/cart">
+                <img className="icon" src='./cart.jpg' />
+          </Link> */}
         </div>
       )}
     </nav>
