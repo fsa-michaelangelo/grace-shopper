@@ -15,7 +15,7 @@ export const UserHome = props => {
     <>
       <h3>Welcome, {user.email}</h3>
       <div id="account-details">
-        <h4>Account Details</h4>
+        <h3>Account Details</h3>
         <div>Email: {user.email}</div>
         <div>Address: {user.address}</div>
         <div>Phone Number: {user.phone}</div>
