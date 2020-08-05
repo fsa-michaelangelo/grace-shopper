@@ -9,4 +9,19 @@ const Order = db.define('order', {
     values: ['active', 'complete']
   }
 })
+
+Order.beforeCreate = userId => {
+  const activeOrders = this.findAll({
+    where: {
+      userId: {
+        status: 'active'
+      }
+    }
+  })
+
+  activeOrders.status = 'complete'
+}
+
+///update bread inventory
+
 module.exports = Order

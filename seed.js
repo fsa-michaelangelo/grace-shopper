@@ -1,5 +1,6 @@
 const {green, red} = require('chalk')
 const {db, User, Bread, Order} = require('./server/db')
+const OrderDetails = require('./server/db/models/orderDetails')
 
 const seed = async () => {
   try {
@@ -20,6 +21,46 @@ const seed = async () => {
         'https://www.melskitchencafe.com/wp-content/uploads/french-bread2-480x360.jpg',
       price: 6
     })
+
+    const user1 = await User.create({
+      email: 'email@email.com',
+      password: 'pass@WORD'
+    })
+
+    const user2 = await User.create({
+      email: 'email2@gmail.com',
+      password: 'heyyyoooo12345'
+    })
+
+    const order1 = await Order.create({
+      userId: user1.id,
+      status: 'complete'
+    })
+
+    const order2 = await Order.create({
+      userId: user1.id
+    })
+
+    const orderDets1 = await OrderDetails.create({
+      orderId: order1.id,
+      breadId: sourdough.id,
+      price: 3,
+      quantity: 2
+    })
+
+    const orderDets12 = await OrderDetails.create({
+      orderId: order1.id,
+      breadId: french.id,
+      price: 2,
+      quantity: 1
+    })
+
+    // const orderDets12 = await OrderDetails.create({
+    //   orderId: order1.id,
+    //   breadId : [sourdough.id, french.id],
+    //   price: 3,
+    //   quantity: 1
+    // })
   } catch (err) {
     console.log(red(err))
   }
