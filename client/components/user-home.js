@@ -22,8 +22,8 @@ export const UserHome = props => {
         <button type="button">Edit</button>
       </div>
       <div className="order-history">
-        <h2>Order History</h2>
-        <OrderHistory />
+        <h3>Order History</h3>
+        <OrderHistory user={user} />
       </div>
     </>
   )
