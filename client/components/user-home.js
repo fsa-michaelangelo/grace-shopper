@@ -20,6 +20,10 @@ export const UserHome = props => {
         <div>Phone Number: {user.phone}</div>
         <button type="button">Edit</button>
       </div>
+      <div className="current-order">
+        {/*if there is a current cart, render it. otherwise...*/}
+        <h5>Nothing in your cart at this time</h5>
+      </div>
       <div className="order-history">
         <h3>Order History</h3>
         <OrderHistory user={user} />

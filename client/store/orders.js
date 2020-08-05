@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const GET_ORDERS = 'GET_ORDERS'
+const GET_DETAILS = 'GET_DETAILS'
 
 const getOrders = orders => {
   return {
@@ -9,10 +10,17 @@ const getOrders = orders => {
   }
 }
 
-export const fetchOrders = user => {
+const getDetails = order => {
+  return {
+    type: GET_DETAILS,
+    order
+  }
+}
+
+export const fetchOrders = () => {
   return async function(dispatch) {
     try {
-      const {data} = await axios.get(`/api/orders/${user.id}`)
+      const {data} = await axios.get(`/api/orders/`)
       dispatch(getOrders(data))
     } catch (err) {
       console.error(err)

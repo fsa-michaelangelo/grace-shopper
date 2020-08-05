@@ -5,8 +5,7 @@ import {fetchOrders} from '../store/orders'
 
 export class OrderHistory extends React.Component {
   componentDidMount() {
-    const user = this.props.user
-    this.props.getOrders(user)
+    this.props.getOrders()
   }
 
   render() {
@@ -14,13 +13,17 @@ export class OrderHistory extends React.Component {
 
     return (
       <>
-        {orders.map(order => {
-          return (
-            <div className="past-order" key={order.id}>
-              <p>Date: {order.createdAt}</p>
-            </div>
-          )
-        })}
+        {orders.length ? (
+          orders.map(order => {
+            return (
+              <div className="past-order" key={order.id}>
+                <p>Date: {order.createdAt}</p>
+              </div>
+            )
+          })
+        ) : (
+          <h5>No past orders to display</h5>
+        )}
       </>
     )
   }
@@ -28,14 +31,13 @@ export class OrderHistory extends React.Component {
 
 const mapState = state => {
   return {
-    user: state.user,
     orders: state.orders
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getOrders: user => dispatch(fetchOrders(user))
+    getOrders: () => dispatch(fetchOrders())
   }
 }
 
