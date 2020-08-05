@@ -14,14 +14,20 @@ export class SingleBread extends React.Component {
 
   render() {
     const bread = this.props.bread
-    console.log(bread)
     return (
       <div>
         <h1>{bread.name}</h1>
         <img src={bread.imageUrl} />
         <h6>{bread.description}</h6>
         <h5>Price: ${bread.price}</h5>
-        {bread.quantity > 0 ? <h5>Add to cart</h5> : <h5>Sold out!</h5>}
+        {bread.quantity > 0 ? (
+          <div>
+            <input type="number" name="qty" placeholder="Qty" />
+            <h5>Add to cart</h5>
+          </div>
+        ) : (
+          <h5>Sold out!</h5>
+        )}
       </div>
     )
   }
