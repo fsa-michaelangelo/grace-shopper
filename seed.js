@@ -1,6 +1,6 @@
 const {green, red} = require('chalk')
 const {db, User, Bread, Order} = require('./server/db')
-console.log('the db is ', db)
+
 const seed = async () => {
   try {
     await db.sync({force: true})
