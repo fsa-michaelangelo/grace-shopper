@@ -1,11 +1,11 @@
 import {connect} from 'react-redux'
 import React from 'react'
-import fetchCart from '../store/cart'
+import {fetchCart} from '../store/cart'
 
 class Cart extends React.Component {
   ///possible use of useDispatch hook instead?
   componentDidMount() {
-    this.props.fetchCart(this.props.cart)
+    this.props.fetchCart()
   }
 
   render() {
@@ -16,13 +16,13 @@ class Cart extends React.Component {
         {cart.length ? (
           cart.map(item => {
             return (
-              <div>
+              <div key={item.id}>
                 <div>
-                  <div>{item.bread.name}</div>
-                  <img src={item.bread.imageUrl} />
-                  <p>{item.bread.description}</p>
+                  <div>{item.name}</div>
+                  <img src={item.imageUrl} />
+                  <p>{item.description}</p>
                 </div>
-                <div>Amount: {item.quantity}</div>
+                <div>Amount: {item.orderDetails.quantity}</div>
               </div>
             )
           })
@@ -36,13 +36,13 @@ class Cart extends React.Component {
 
 const mapState = state => {
   return {
-    cart: state.cartReducer
+    cart: state.cart
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: cart => dispatch(fetchCart(cart))
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 

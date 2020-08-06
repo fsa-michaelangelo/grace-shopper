@@ -4,25 +4,17 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log('Session', req.user)
-
     if (req.user) {
-      const orders = await Order.findOne({
+      console.log('Session', req.user)
+      const {bread} = await Order.findOne({
         where: {
           userId: req.user.id,
           status: 'active'
-        }
-      })
-
-      console.log(orders)
-      const cart = await OrderDetails.findOne({
-        where: {
-          orderId: orders.id
         },
-        include: Bread
+        include: [Bread]
       })
 
-      res.json(cart)
+      res.json(bread)
     } else if (!req.session.cart) {
       req.session.cart = []
 

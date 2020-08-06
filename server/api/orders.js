@@ -1,36 +1,30 @@
 const router = require('express').Router()
-const {Order, OrderDetails} = require('../db/models')
+const {Order} = require('../db/models')
+const {Bread} = require('../db/models')
+//const {OrderDetails} = require('../db/models')
+module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await Order.findAll()
-    console.log('Session', req.session.store)
+    const userId = req.user.id
+    const orders = await Order.findAll({
+      where: {userId}
+    })
     res.json(orders)
   } catch (err) {
     next(err)
   }
 })
 
-router.get('/', async (req, res, next) => {
+router.get('/:orderId', async (req, res, next) => {
   try {
-    const orders = await Order.findAll({
-      where: {
-        userId: req.session.userId
-      },
+    const id = req.params.orderId
+    const order = await Order.findOne({
+      where: {id},
       include: [Bread]
     })
-
-    console.log('sessh', req.session.passport)
-    // if(req.session.cart){
-    //   console.log("Session", req.session)
-    // }else{
-
-    // }
-
-    res.json(orders)
+    res.json(order)
   } catch (err) {
     next(err)
   }
 })
-
-module.exports = router

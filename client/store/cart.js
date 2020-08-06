@@ -75,7 +75,7 @@ export const deleteItemsInCart = () => {
   }
 }
 
-export default (state = localState, action) => {
+export default function(state = localState, action) {
   switch (action.type) {
     case GET_CART:
       return action.cart

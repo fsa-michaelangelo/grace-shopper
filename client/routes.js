@@ -2,9 +2,22 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Homepage, Cart} from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  OrderHistory,
+  SingleOrderDetails,
+  Homepage,
+  Breads,
+  SingleBread,
+  Cart
+} from './components'
+
 import {me} from './store'
-//import {Cart, single-bread, Checkout, AllBreads, OrderHistory} from './components
+//import UserHome from './components/user-home';
+
+//import {Cart, single-bread, Checkout, AllBreads} from './components
 
 /**
  * COMPONENT
@@ -20,19 +33,20 @@ class Routes extends Component {
     //REMEMBER TO ADD all components to ./components exports
     return (
       <Switch>
+        {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Homepage} />
-        {/* <Route exact path="/breads" component={AllBreads}/>
-        <Route exact path="/breads/:id component={single-bread}"/>
-        <Route exact path="/cart" component={Cart} />
-        <Route exact path="/cart/checkout" component={Checkout} */}
+        {/*<Route exact path="/cart/checkout" component={Checkout} */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/breads" component={Breads} />
+        <Route exact path="/breads/:id" component={SingleBread} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            {/* <Route path="/order-history" component={OrderHistory} /> */}
+            <Route exact path="/orders" component={OrderHistory} />
+            <Route path="/orders/:orderId" component={SingleOrderDetails} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
