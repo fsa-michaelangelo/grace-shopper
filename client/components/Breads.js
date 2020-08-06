@@ -32,7 +32,6 @@ export class Breads extends Component {
 
   render() {
     const breads = this.props.breads || []
-    console.log('BREADS: ', breads)
 
     return (
       <>
