@@ -14,12 +14,12 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
-    const item = await Bread.findOne({
+    const bread = await Bread.findOne({
       where: {
         id: id
       }
     })
-    res.json(item)
+    res.json(bread)
   } catch (err) {
     next(err)
   }
