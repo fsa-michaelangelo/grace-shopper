@@ -13,7 +13,7 @@ export const breadSetter = breads => {
 //thunk
 export const breadGetter = () => async dispatch => {
   try {
-    const res = await axios.get('/api/breads/')
+    const res = await axios.get('/api/breads')
     dispatch(breadSetter(res.data))
   } catch (err) {
     next(err)
@@ -21,15 +21,12 @@ export const breadGetter = () => async dispatch => {
 }
 //reducer
 
-const initState = {
-  breads: []
-}
-export default function bread(state = initState, action) {
+const initState = []
+
+export default function(state = initState, action) {
   switch (action.type) {
     case GET_BREADS:
-      return {
-        breads: action.breads
-      }
+      return action.breads
     default:
       return state
   }
