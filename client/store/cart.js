@@ -75,7 +75,7 @@ export const deleteItemsInCart = () => {
   }
 }
 
-const cartReducer = (state = localState, action) => {
+export default (state = localState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
@@ -89,5 +89,3 @@ const cartReducer = (state = localState, action) => {
       return state
   }
 }
-
-export default cartReducer
