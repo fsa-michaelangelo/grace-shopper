@@ -2,16 +2,33 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
+import OrderHistory from './order-history'
+
 /**
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {user} = props
 
   return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
+    <>
+      <h3>Welcome, {user.email}</h3>
+      <div id="account-details">
+        <h3>Account Details</h3>
+        <div>Email: {user.email}</div>
+        <div>Address: {user.address}</div>
+        <div>Phone Number: {user.phone}</div>
+        <button type="button">Edit</button>
+      </div>
+      <div className="current-order">
+        {/*if there is a current cart, render it. otherwise...*/}
+        <h5>Nothing in your cart at this time</h5>
+      </div>
+      <div className="order-history">
+        <h3>Order History</h3>
+        <OrderHistory user={user} />
+      </div>
+    </>
   )
 }
 
@@ -20,7 +37,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    user: state.user
   }
 }
 
