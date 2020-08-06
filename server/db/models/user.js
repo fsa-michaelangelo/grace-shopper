@@ -6,7 +6,10 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   },
   password: {
     type: Sequelize.STRING,
@@ -15,6 +18,20 @@ const User = db.define('user', {
     get() {
       return () => this.getDataValue('password')
     }
+  },
+  address: {
+    type: Sequelize.STRING,
+    defaultValue: 'None listed'
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    defaultValue: 'None listed'
+    // validate: {
+    //   isNumeric: true,
+    //   min: 10,
+    //   max: 10
+    // }
   },
   salt: {
     type: Sequelize.STRING,

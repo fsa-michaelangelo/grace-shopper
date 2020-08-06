@@ -1,40 +1,50 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import BreadIcon from './breadIcon'
 import {breadSetter, breadGetter} from '../store/bread'
 
 export class Breads extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {}
+  // }
+
+  componentDidMount() {
+    this.props.fetchBreads()
   }
-  componentDidMount() {}
-  handleSubmit(event) {
-    event.preventDefault()
-    try {
-      this.props.addCampus(this.state)
-    } catch (err) {
-      next(err)
-    }
-  }
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+
+  //for future search functionality
+
+  // handleSubmit(event) {
+  //   event.preventDefault()
+  //   try {
+  //     this.props.addCampus(this.state)
+  //   } catch (err) {
+  //     next(err)
+  //   }
+  // }
+
+  // handleChange(event) {
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   })
+  // }
+
   render() {
-    const breads = this.props.breads
+    const breads = this.props.breads || []
+    console.log('BREADS: ', breads)
+
     return (
-      <div>
+      <>
         <h1>Breads Page</h1>
         <h3>Filter Search:</h3>
         <form onSubmit={this.handleSubmit} id="search">
           <input type="text" name="name" onChange={this.handleChange} />
         </form>
         <div className="items">
-          {breads.map((bread, index) => (
-            <breadIcon key={index} bread={bread} />
-          ))}
+          {breads.map(bread => <BreadIcon key={bread.id} bread={bread} />)}
         </div>
-      </div>
+      </>
     )
   }
 }
