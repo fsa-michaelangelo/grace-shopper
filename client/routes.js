@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
+
 import {
   Login,
   Signup,
@@ -9,7 +10,8 @@ import {
   OrderHistory,
   SingleOrderDetails,
   Homepage,
-  Breads
+  Breads,
+  SingleBread
 } from './components'
 
 import {me} from './store'
@@ -31,6 +33,7 @@ class Routes extends Component {
     //REMEMBER TO ADD all components to ./components exports
     return (
       <Switch>
+        {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Homepage} />
         {/* <Route exact path="/breads" component={AllBreads}/>
         <Route exact path="/breads/:id component={single-bread}"/>
@@ -39,6 +42,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/breads" component={Breads} />
+        <Route path="/bread/:id" component={SingleBread} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
