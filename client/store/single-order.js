@@ -1,28 +1,30 @@
 import axios from 'axios'
 
-const GET_DETAILS = 'GET_DETAILS'
+const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS'
 
-const getDetails = order => {
+const getOrderDetails = order => {
   return {
-    type: GET_DETAILS,
+    type: GET_ORDER_DETAILS,
     order
   }
 }
 
-export const fetchDetails = id => {
+export const fetchOrderDetails = id => {
   return async function(dispatch) {
     try {
       const {data} = await axios.get(`/api/orders/${id}`)
-      dispatch(getDetails(data))
+      dispatch(getOrderDetails(data))
     } catch (err) {
       console.error(err)
     }
   }
 }
 
+const initialState = {}
+
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_DETAILS:
+    case GET_ORDER_DETAILS:
       return action.order
     default:
       return state
