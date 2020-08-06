@@ -62,7 +62,7 @@ const seed = async () => {
     //   quantity: 1
     // })
   } catch (err) {
-    console.log(red(err))
+    console.log(err)
   }
 }
 
