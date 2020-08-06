@@ -1,4 +1,3 @@
-const {green, red} = require('chalk')
 const {db, User, Bread, Order} = require('./server/db')
 const OrderDetails = require('./server/db/models/orderDetails')
 
