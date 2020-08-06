@@ -5,7 +5,6 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      console.log('Session', req.user)
       const {bread} = await Order.findOne({
         where: {
           userId: req.user.id,
@@ -15,10 +14,14 @@ router.get('/', async (req, res, next) => {
       })
 
       res.json(bread)
-    } else if (!req.session.cart) {
-      req.session.cart = []
+    } else {
+      if (!req.session.cart) {
+        req.session.cart = []
+      }
 
       const guestCart = req.session.cart
+
+      res.json(guestCart)
     }
   } catch (err) {
     next(err)
@@ -28,10 +31,27 @@ router.get('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     if (req.user) {
-      await Order.findOrCreate
-    } else if (!req.session.cart) {
-      req.session.cart = []
+      const order = await Order.findOrCreate({
+        where: {
+          userId: req.user.id
+        }
+      })
 
+      console.log('Order', order)
+      const cart = await OrderDetails.create({
+        orderId: order.id,
+        breadId: req.body.id,
+        quantity: req.body.quantity
+      })
+
+      res.status(204).end()
+    } else {
+      if (!req.session.cart) {
+        req.session.cart = []
+      }
+
+      console.log(req.body)
+      req.session.cart = req.body
       const guestCart = req.session.cart
 
       res.json(guestCart)

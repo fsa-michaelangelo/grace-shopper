@@ -4,8 +4,8 @@ import {fetchCart} from '../store/cart'
 
 class Cart extends React.Component {
   ///possible use of useDispatch hook instead?
-  componentDidMount() {
-    this.props.fetchCart()
+  async componentDidMount() {
+    await this.props.fetchCart()
   }
 
   render() {
