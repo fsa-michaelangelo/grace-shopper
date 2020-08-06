@@ -42,7 +42,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/breads" component={Breads} />
-        <Route path="/bread/:id" component={SingleBread} />
+        <Route path="/breads/:id" component={SingleBread} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

@@ -34,7 +34,7 @@ export class SingleBread extends React.Component {
 }
 
 const mapState = state => {
-  return {bread: state.singleBreadReducer}
+  return {bread: state.singleBread}
 }
 
 const mapDispatch = dispatch => {
