@@ -15,9 +15,6 @@ import {
 } from './components'
 
 import {me} from './store'
-//import UserHome from './components/user-home';
-
-//import {Cart, single-bread, Checkout, AllBreads} from './components
 
 /**
  * COMPONENT
@@ -35,7 +32,8 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Homepage} />
-        {/*<Route exact path="/cart/checkout" component={Checkout} */}
+        {/*<Route exact path="/cart" component={Cart} />
+        <Route exact path="/cart/checkout" component={Checkout} */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/cart" component={Cart} />
@@ -44,7 +42,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route exact path="/home" component={UserHome} />
             <Route exact path="/orders" component={OrderHistory} />
             <Route path="/orders/:orderId" component={SingleOrderDetails} />
           </Switch>
