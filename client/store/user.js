@@ -17,19 +17,29 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const changeUser = () => ({type: CHANGE_USER})
 
 /**
  * THUNK CREATORS
  */
 export const me = () => async dispatch => {
   try {
+    console.log('in the me thunk')
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
   }
 }
-
+export const update = id => async dispatch => {
+  try {
+    const user = await axios.put(`/auth/:${id}`)
+    res.json(user)
+    //update users
+  } catch (err) {
+    console.log(err)
+  }
+}
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {

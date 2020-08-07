@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
+import {Link} from 'react-router-dom'
 import OrderHistory from './order-history'
 
 /**
@@ -13,6 +13,7 @@ export const UserHome = props => {
   return (
     <>
       <h3>Welcome, {user.email}</h3>
+      <Link to="/edit">Edit Account</Link>
       <div id="account-details">
         <h3>Account Details</h3>
         <div>Email: {user.email}</div>

@@ -11,10 +11,12 @@ import {
   SingleOrderDetails,
   Homepage,
   Breads,
-  SingleBread
+  SingleBread,
+  Account
 } from './components'
 
 import {me} from './store'
+
 //import UserHome from './components/user-home';
 
 //import {Cart, single-bread, Checkout, AllBreads} from './components
@@ -28,6 +30,7 @@ class Routes extends Component {
   }
 
   render() {
+    console.log('route props ', this.props)
     const {isLoggedIn} = this.props
 
     //REMEMBER TO ADD all components to ./components exports
@@ -42,6 +45,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/breads" component={Breads} />
+        <Route exact path="/edit" render={props => <Account {...props} />} />
         <Route path="/breads/:id" component={SingleBread} />
         {isLoggedIn && (
           <Switch>
