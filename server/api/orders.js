@@ -13,7 +13,7 @@ const usersOnly = (req, res, next) => {
   next()
 }
 
-router.get('/', async (req, res, next) => {
+router.get('/', usersOnly, async (req, res, next) => {
   try {
     const userId = req.user.id
     const orders = await Order.findAll({
