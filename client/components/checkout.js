@@ -1,17 +1,27 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
+import {Redirect} from 'react-router-dom'
 
 export class Checkout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      address: '',
-      phone: '',
-      checked: false
+      shipName: '',
+      shipAddress: '',
+      shipPhone: '',
+      email: '',
+      checked: false,
+      billName: '',
+      billAddress: '',
+      billPhone: '',
+      cc: '',
+      exp: '',
+      cvv: '',
+      orderPlaced: false
     }
     this.handleCheck = this.handleCheck.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -31,101 +41,149 @@ export class Checkout extends React.Component {
     }
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+    this.setState({orderPlaced: true})
+  }
+
   render() {
     const cart = this.props.cart
+    if (this.state.orderPlaced === true) {
+      alert('Your order is processing! Go check out some more bread!')
+      return <Redirect to="/breads" />
+    }
+
     return (
       <>
-        <div>
-          <h1>Checkout</h1>
-          <h3>Shipping Information</h3>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={this.state.name}
-            onChange={evt => {
-              this.setState({name: evt.target.value})
-            }}
-          />
-          <input
-            type="text"
-            name="address"
-            placeholder="Address"
-            value={this.state.address}
-            onChange={evt => {
-              this.setState({address: evt.target.value})
-            }}
-          />
-          <input
-            type="number"
-            name="phone"
-            placeholder="Phone"
-            value={this.state.phone}
-            onChange={evt => {
-              this.setState({phone: evt.target.value})
-            }}
-          />
-          <input type="text" name="email" placeholder="Email" />
-        </div>
-        <div>
-          <h3>Billing Information</h3>
-          <label>
-            Same as Shipping
+        <form id="checkout-form" onSubmit={event => this.handleSubmit(event)}>
+          <div>
+            <h1>Checkout</h1>
+            <h3>Shipping Information</h3>
             <input
-              name="sameAsShipping"
-              type="checkbox"
-              checked={this.state.checked}
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={this.state.shipName}
               onChange={evt => {
-                this.handleCheck(event)
+                this.setState({shipName: evt.target.value})
               }}
             />
-          </label>
-          {this.state.checked === true ? (
-            <>
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={this.state.shipAddress}
+              onChange={evt => {
+                this.setState({shipAddress: evt.target.value})
+              }}
+            />
+            <input
+              type="number"
+              name="phone"
+              placeholder="Phone"
+              value={this.state.shipPhone}
+              onChange={evt => {
+                this.setState({shipPhone: evt.target.value})
+              }}
+            />
+            <input type="text" name="email" placeholder="Email" />
+          </div>
+          <div>
+            <h3>Billing Information</h3>
+            <label>
+              Same as Shipping
               <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={this.state.name}
+                name="sameAsShipping"
+                type="checkbox"
+                checked={this.state.checked}
                 onChange={evt => {
-                  this.setState({name: evt.target.value})
+                  this.handleCheck(event)
                 }}
               />
-              <input
-                type="text"
-                name="address"
-                placeholder="Address"
-                value={this.state.address}
-                onChange={evt => {
-                  this.setState({address: evt.target.value})
-                }}
-              />
-              <input
-                type="number"
-                name="phone"
-                placeholder="Phone"
-                value={this.state.phone}
-                onChange={evt => {
-                  this.setState({phone: evt.target.value})
-                }}
-              />
-              <input type="number" name="cc" placeholder="Credit Card Number" />
-              <input type="number" name="exp" placeholder="Exp" />
-              <input type="number" name="cvv" placeholder="CVV" />
-              <button type="submit">Place Order</button>
-            </>
-          ) : (
-            <>
-              <input type="text" name="name" placeholder="Name" />
-              <input type="text" name="address" placeholder="Address" />
-              <input type="number" name="phone" placeholder="Phone" />
-              <input type="number" name="cc" placeholder="Credit Card Number" />
-              <input type="number" name="exp" placeholder="Exp" />
-              <input type="number" name="cvv" placeholder="CVV" />
-              <button type="submit">Place Order</button>
-            </>
-          )}
-        </div>
+            </label>
+            {this.state.checked === true ? (
+              <>
+                <input
+                  type="number"
+                  name="cc"
+                  placeholder="Credit Card Number"
+                  onChange={evt => {
+                    this.setState({cc: evt.target.value})
+                  }}
+                />
+                <input
+                  type="number"
+                  name="exp"
+                  placeholder="Exp"
+                  onChange={evt => {
+                    this.setState({exp: evt.target.value})
+                  }}
+                />
+                <input
+                  type="number"
+                  name="cvv"
+                  placeholder="CVV"
+                  onChange={evt => {
+                    this.setState({cvv: evt.target.value})
+                  }}
+                />
+                <button type="submit">Place Order</button>
+              </>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  onChange={evt => {
+                    this.setState({billName: evt.target.value})
+                  }}
+                />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  onChange={evt => {
+                    this.setState({billAddress: evt.target.value})
+                  }}
+                />
+                <input
+                  type="number"
+                  name="phone"
+                  placeholder="Phone"
+                  onChange={evt => {
+                    this.setState({billPhone: evt.target.value})
+                  }}
+                />
+                <input
+                  type="number"
+                  name="cc"
+                  placeholder="Credit Card Number"
+                  onChange={evt => {
+                    this.setState({cc: evt.target.value})
+                  }}
+                />
+                <input
+                  type="number"
+                  name="exp"
+                  placeholder="Exp"
+                  onChange={evt => {
+                    this.setState({exp: evt.target.value})
+                  }}
+                />
+                <input
+                  type="number"
+                  name="cvv"
+                  placeholder="CVV"
+                  onChange={evt => {
+                    this.setState({cvv: evt.target.value})
+                  }}
+                />
+                <button type="submit">Place Order</button>
+              </>
+            )}
+          </div>
+        </form>
         <>
           <h3>My Cart</h3>
           <>
