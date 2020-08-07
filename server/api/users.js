@@ -2,11 +2,19 @@ const router = require('express').Router()
 const {User, Order, Bread} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+const adminsOnly = (req, res, next) => {
+  if (!req.user.isAdmin) {
+    const err = new Error(`You aren't authorized to access this data.`)
+    err.status = 401
+    next(err)
+  }
+  next()
+}
+
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
+      // even though users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
       attributes: ['id', 'email', 'address', 'phone']
     })
