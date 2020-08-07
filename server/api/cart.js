@@ -5,7 +5,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const {bread} = await Order.findOne({
+      const order = await Order.findOne({
         where: {
           userId: req.user.id,
           status: 'active'
@@ -13,14 +13,35 @@ router.get('/', async (req, res, next) => {
         include: [Bread]
       })
 
-      res.json(bread)
+      console.log('ORDER', order.bread.orderDetails)
+      const cart = await OrderDetails.findAll({
+        where: {
+          orderId: order.id
+        }
+      })
+
+      console.log('CART', cart)
+
+      const bread = await Promise.all(
+        cart.map(async item => {
+          item.bread = await Bread.findByPk(item.breadId)
+        })
+      )
+
+      console.log('BREAD', bread)
+      res.json(order.bread)
     } else {
       if (!req.session.cart) {
         req.session.cart = []
       }
 
       const guestCart = req.session.cart
-
+      //   await Promise.all(
+      //     guestCart.map(async item => {
+      //       item.bread = await Bread.findByPk(item.breadId);
+      //     })
+      //   );
+      console.log(guestCart)
       res.json(guestCart)
     }
   } catch (err) {
@@ -41,7 +62,8 @@ router.put('/', async (req, res, next) => {
       const cart = await OrderDetails.create({
         orderId: order.id,
         breadId: req.body.id,
-        quantity: req.body.quantity
+        quantity: req.body.quantity,
+        price: req.body.price
       })
 
       res.status(204).end()
@@ -50,10 +72,13 @@ router.put('/', async (req, res, next) => {
         req.session.cart = []
       }
 
-      console.log(req.body)
-      req.session.cart = req.body
-      const guestCart = req.session.cart
+      console.log('GUREST sessioncart', req.body)
+      //   const body = {}
+      //   body.bread = req.body.bread
 
+      req.session.cart = [...req.session.cart, req.body] ////DESTRUCTURE quantity
+      const guestCart = req.session.cart
+      console.log('GUEST CART', guestCart)
       res.json(guestCart)
     }
   } catch (err) {

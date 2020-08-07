@@ -1,8 +1,6 @@
 import Redux from 'redux'
 import Axios from 'axios'
 
-const localState = []
-
 /////ACTION TYPES////
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
@@ -36,6 +34,7 @@ export const fetchCart = () => {
   return async function(dispatch) {
     try {
       const {data} = await Axios.get('/api/cart/')
+      console.log('DATA', data)
       dispatch(getCart(data))
     } catch (err) {
       console.log(err)
@@ -46,8 +45,7 @@ export const fetchCart = () => {
 export const addItemToCart = (bread, quantity, price) => {
   return async function(dispatch) {
     try {
-      const body = {bread, quantity}
-      const {data} = await Axios.put('/api/cart/', body)
+      const {data} = await Axios.put('/api/cart/', {bread, quantity, price})
       dispatch(setCart(bread, quantity, price))
     } catch (err) {
       console.log(err)
@@ -59,7 +57,7 @@ export const removeCartItem = bread => {
   return async function(dispatch) {
     try {
       const {data} = await Axios.delete('/api/cart/', bread)
-      dispatch(removeItemInCart(data))
+      dispatch(removeItemInCart(bread))
     } catch (err) {
       console.log(err)
     }
@@ -77,12 +75,17 @@ export const deleteItemsInCart = () => {
   }
 }
 
+const localState = []
+
 export default function(state = localState, action) {
   switch (action.type) {
     case GET_CART:
       return action.cart
     case ADD_TO_CART:
-      console.log('ADDED ITEM', action)
+      //state.filter(item => {item.bread.id === action.bread.id)
+      //if(state includes bread){
+      //   return  [{bread: action.bread, quantity: action.quantity, price: action.price}]
+      // }
       return [
         ...state,
         {bread: action.bread, quantity: action.quantity, price: action.price}
