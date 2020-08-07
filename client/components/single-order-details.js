@@ -13,12 +13,12 @@ class SingleOrderDetails extends React.Component {
 
   render() {
     const order = this.props.order
-    // console.log('order: ', this.props.order)
+    //console.log('order: ', this.props.order)
     return (
       <div>
         <div>Details here!</div>
         <div>Price: {order}</div>
-        <Link to="/orders">
+        <Link to="/home">
           <button>Back to my account</button>
         </Link>
       </div>
@@ -28,7 +28,7 @@ class SingleOrderDetails extends React.Component {
 
 const mapState = state => {
   return {
-    order: state.order
+    order: state.singleOrder
   }
 }
 
