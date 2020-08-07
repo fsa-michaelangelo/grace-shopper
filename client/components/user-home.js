@@ -13,7 +13,7 @@ export const UserHome = props => {
   return (
     <>
       <h3>Welcome, {user.email}</h3>
-      <Link to="/edit">Edit Account</Link>
+      <Link to={{pathname: '/edit', user: user}}>Edit Account</Link>
       <div id="account-details">
         <h3>Account Details</h3>
         <div>Email: {user.email}</div>

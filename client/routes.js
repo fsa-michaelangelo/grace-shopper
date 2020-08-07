@@ -32,6 +32,7 @@ class Routes extends Component {
   render() {
     console.log('route props ', this.props)
     const {isLoggedIn} = this.props
+    const user = this.props.user
 
     //REMEMBER TO ADD all components to ./components exports
     return (
@@ -45,7 +46,11 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/breads" component={Breads} />
-        <Route exact path="/edit" render={props => <Account {...props} />} />
+        <Route
+          exact
+          path="/edit"
+          render={props => <Account {...props} user={user} />}
+        />
         <Route path="/breads/:id" component={SingleBread} />
         {isLoggedIn && (
           <Switch>
@@ -69,7 +74,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 

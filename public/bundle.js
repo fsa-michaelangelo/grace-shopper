@@ -290,20 +290,18 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getUser();
-      console.log('the user is ', this.props);
+      console.log('the props are ', this.props);
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(evt) {
       evt.preventDefault();
-      console.log('submit state ', this.state); // axios.put(`/auth/:${}`, state)
+      var res = axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/auth/".concat(this.props.user.id), this.state);
     }
   }, {
     key: "handleChange",
     value: function handleChange(event) {
       this.setState(_defineProperty({}, event.target.name, event.target.value)); // this.props.getUser()
-
-      console.log('writing state ', this.state);
     }
   }, {
     key: "render",
@@ -314,6 +312,7 @@ function (_Component) {
         htmlFor: "email"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "email",
+        placeholder: "new email",
         type: "text",
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -999,7 +998,10 @@ __webpack_require__.r(__webpack_exports__);
 var UserHome = function UserHome(props) {
   var user = props.user;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-    to: "/edit"
+    to: {
+      pathname: '/edit',
+      user: user
+    }
   }, "Edit Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "account-details"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Account Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Email: ", user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Address: ", user.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Phone Number: ", user.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1104,6 +1106,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1152,7 +1156,8 @@ function (_Component) {
     key: "render",
     value: function render() {
       console.log('route props ', this.props);
-      var isLoggedIn = this.props.isLoggedIn; //REMEMBER TO ADD all components to ./components exports
+      var isLoggedIn = this.props.isLoggedIn;
+      var user = this.props.user; //REMEMBER TO ADD all components to ./components exports
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
@@ -1174,7 +1179,9 @@ function (_Component) {
         exact: true,
         path: "/edit",
         render: function render(props) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_4__["Account"], props);
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_4__["Account"], _extends({}, props, {
+            user: user
+          }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/breads/:id",
@@ -1206,7 +1213,8 @@ var mapState = function mapState(state) {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   };
 };
 

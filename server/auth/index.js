@@ -35,13 +35,15 @@ router.post('/signup', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   const id = req.params.id
+  console.log('req in /id put is ', req.body)
+  console.log('api id is ', id)
   try {
     //take id, findbypk id, .name = req.name etc, item.save()
     User.findByPk(id)
       .then(user => user.update(req.body))
       .then(user => res.json(user))
   } catch (err) {
-    res.send('Profile Not Found!')
+    res.send('Please Enter Valid Account Settings')
   }
 })
 
@@ -52,6 +54,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
+  console.log('in me req is ', req.user)
   res.json(req.user)
 })
 

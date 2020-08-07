@@ -14,19 +14,17 @@ export class account extends Component {
   }
   componentDidMount() {
     this.props.getUser()
-    console.log('the user is ', this.props)
+    console.log('the props are ', this.props)
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    console.log('submit state ', this.state)
-    // axios.put(`/auth/:${}`, state)
+    const res = axios.put(`/auth/${this.props.user.id}`, this.state)
   }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
     // this.props.getUser()
-    console.log('writing state ', this.state)
   }
   render() {
     return (
@@ -39,7 +37,12 @@ export class account extends Component {
                 <label htmlFor="email">
                   <small>Email</small>
                 </label>
-                <input name="email" type="text" onChange={this.handleChange} />
+                <input
+                  name="email"
+                  placeholder="new email"
+                  type="text"
+                  onChange={this.handleChange}
+                />
               </div>
               <div>
                 <label htmlFor="password">
