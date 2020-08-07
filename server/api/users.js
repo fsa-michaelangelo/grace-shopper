@@ -3,9 +3,9 @@ const {User} = require('../db/models')
 //const {Order} = require('../db/models')
 module.exports = router
 
-export const adminsOnly = (req, res, next) => {
+const adminsOnly = (req, res, next) => {
   if (!req.user.isAdmin) {
-    const err = new Error(`You aren't authorized to access this.`)
+    const err = new Error(`You aren't authorized to access this data.`)
     err.status = 401
     next(err)
   }
