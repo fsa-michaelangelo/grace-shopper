@@ -11,7 +11,8 @@ import {
   SingleOrderDetails,
   Homepage,
   Breads,
-  SingleBread
+  SingleBread,
+  Checkout
 } from './components'
 
 import {me} from './store'
@@ -37,8 +38,8 @@ class Routes extends Component {
         <Route exact path="/" component={Homepage} />
         {/* <Route exact path="/breads" component={AllBreads}/>
         <Route exact path="/breads/:id component={single-bread}"/>
-        <Route exact path="/cart" component={Cart} />
-        <Route exact path="/cart/checkout" component={Checkout} */}
+        <Route exact path="/cart" component={Cart} */}
+        <Route exact path="/cart/checkout" component={Checkout} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/breads" component={Breads} />
