@@ -29,9 +29,9 @@ class Cart extends React.Component {
             return (
               <div key={index}>
                 <div>
-                  <div>{item.bread.name}</div>
-                  <img src={item.bread.imageUrl} />
-                  <p>{item.bread.description}</p>
+                  <div>{item.name}</div>
+                  <img src={item.imageUrl} />
+                  <p>{item.description}</p>
                 </div>
                 <div onChange={this.handleChange}>
                   <input

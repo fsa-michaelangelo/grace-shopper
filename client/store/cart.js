@@ -13,11 +13,8 @@ export const getCart = cart => ({
   cart
 })
 
-export const setCart = (bread, quantity, price) => ({
-  type: ADD_TO_CART,
-  bread,
-  quantity,
-  price
+export const setCart = () => ({
+  type: ADD_TO_CART
 })
 
 export const removeItemInCart = bread => ({
@@ -45,8 +42,9 @@ export const fetchCart = () => {
 export const addItemToCart = (bread, quantity, price) => {
   return async function(dispatch) {
     try {
-      const {data} = await Axios.put('/api/cart/', {bread, quantity, price})
-      dispatch(setCart(bread, quantity, price))
+      const res = await Axios.put('/api/cart/', {bread, quantity, price})
+      const {data} = await Axios.get('/api/cart/')
+      dispatch(getCart(data))
     } catch (err) {
       console.log(err)
     }

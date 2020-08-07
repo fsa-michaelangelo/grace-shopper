@@ -13,16 +13,16 @@ router.get('/', async (req, res, next) => {
         include: [Bread]
       })
 
-      console.log('ORDER', order.breads)
-      const cart = await OrderDetails.findAll({
-        where: {
-          orderId: order.id
-        }
-      })
+      //   console.log('ORDER', order.bread)
+      //   const cart = await OrderDetails.findAll({
+      //     where: {
+      //       orderId: order.id
+      //     }
+      //   })
 
       //   console.log('CART', cart)
 
-      console.log('BREAD', cart)
+      //console.log('BREAD', cart)
       res.json(order.bread)
     } else {
       if (!req.session.cart) {
@@ -41,22 +41,36 @@ router.get('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const [order] = await Order.findOrCreate({
-        ///check boolean
+      const [order, boolean] = await Order.findOrCreate({
         where: {
           userId: req.user.id
         }
       })
 
-      const {bread, orderDetails} = await OrderDetails.create({
-        orderId: order.id,
-        breadId: req.body.bread.id,
-        quantity: req.body.quantity,
-        price: req.body.price
-      })
+      if (boolean) {
+        console.log('FALSES')
+        const {bread, orderDetails} = await OrderDetails.create({
+          orderId: order.id,
+          breadId: req.body.bread.id,
+          quantity: req.body.quantity,
+          price: req.body.price
+        })
 
-      console.log(bread, orderDetails)
-      res.sendStatus(200)
+        res.status(200).json()
+      } else {
+        const [cart] = await OrderDetails.findAll({
+          where: {
+            orderId: order.id
+          }
+        })
+
+        const updatedCart = await cart.update({
+          quantity: req.body.quantity
+        })
+
+        console.log('UPDATED', updatedCart)
+        res.status(200).end()
+      }
     } else {
       if (!req.session.cart) {
         req.session.cart = []
