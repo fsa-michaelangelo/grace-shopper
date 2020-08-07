@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleBread} from '../store/single-bread'
+import {addItemToCart} from '../store/cart'
 
 export class SingleBread extends React.Component {
   componentDidMount() {
@@ -23,7 +24,13 @@ export class SingleBread extends React.Component {
         {bread.quantity > 0 ? (
           <div>
             <input type="number" name="qty" placeholder="Qty" />
-            <h5>Add to cart</h5>
+            <button
+              onClick={() => {
+                this.props.addItemToCart(bread, event.target.value, bread.price)
+              }}
+            >
+              Add to cart
+            </button>
           </div>
         ) : (
           <h5>Sold out!</h5>
@@ -39,7 +46,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getSingleBread: id => dispatch(fetchSingleBread(id))
+    getSingleBread: id => dispatch(fetchSingleBread(id)),
+    addItemToCart: (bread, quantity, price) =>
+      dispatch(addItemToCart(bread, quantity, price))
   }
 }
 

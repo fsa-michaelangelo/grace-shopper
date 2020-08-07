@@ -16,6 +16,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/">Home</Link>
           <Link to="/home">My Account</Link>
           <Link to="/breads">Breads</Link>
+          <Link to="/cart">
+            <img className="icon" src="./cart.jpg" />
+          </Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -26,10 +29,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/">Home</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <img className="icon" src="./cart.jpg" />
-          {/* <Link to="/cart">
-                <img className="icon" src='./cart.jpg' />
-          </Link> */}
+          <Link to="/cart">
+            <img className="icon" src="./cart.jpg" />
+          </Link>
         </div>
       )}
     </nav>
