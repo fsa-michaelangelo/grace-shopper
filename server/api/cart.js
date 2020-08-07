@@ -13,22 +13,16 @@ router.get('/', async (req, res, next) => {
         include: [Bread]
       })
 
-      console.log('ORDER', order.bread.orderDetails)
+      console.log('ORDER', order.breads)
       const cart = await OrderDetails.findAll({
         where: {
           orderId: order.id
         }
       })
 
-      console.log('CART', cart)
+      //   console.log('CART', cart)
 
-      const bread = await Promise.all(
-        cart.map(async item => {
-          item.bread = await Bread.findByPk(item.breadId)
-        })
-      )
-
-      console.log('BREAD', bread)
+      console.log('BREAD', cart)
       res.json(order.bread)
     } else {
       if (!req.session.cart) {
@@ -36,12 +30,7 @@ router.get('/', async (req, res, next) => {
       }
 
       const guestCart = req.session.cart
-      //   await Promise.all(
-      //     guestCart.map(async item => {
-      //       item.bread = await Bread.findByPk(item.breadId);
-      //     })
-      //   );
-      console.log(guestCart)
+
       res.json(guestCart)
     }
   } catch (err) {
@@ -52,33 +41,30 @@ router.get('/', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const order = await Order.findOrCreate({
+      const [order] = await Order.findOrCreate({
+        ///check boolean
         where: {
           userId: req.user.id
         }
       })
 
-      console.log('Order', order)
-      const cart = await OrderDetails.create({
+      const {bread, orderDetails} = await OrderDetails.create({
         orderId: order.id,
-        breadId: req.body.id,
+        breadId: req.body.bread.id,
         quantity: req.body.quantity,
         price: req.body.price
       })
 
-      res.status(204).end()
+      console.log(bread, orderDetails)
+      res.sendStatus(200)
     } else {
       if (!req.session.cart) {
         req.session.cart = []
       }
 
-      console.log('GUREST sessioncart', req.body)
-      //   const body = {}
-      //   body.bread = req.body.bread
-
-      req.session.cart = [...req.session.cart, req.body] ////DESTRUCTURE quantity
+      req.session.cart = [...req.session.cart, req.body]
       const guestCart = req.session.cart
-      console.log('GUEST CART', guestCart)
+
       res.json(guestCart)
     }
   } catch (err) {
@@ -91,7 +77,14 @@ router.delete('/', async (req, res, next) => {
     if (req.user) {
       if (req.params.id) {
         console.log(req.params.id)
+        //change status
+        //change quantity
       }
+    } else {
+      delete req.session.cart
+      res
+        .status(200)
+        .json({message: 'Cart successfully emptied', totalCartItems: 0})
     }
   } catch (err) {
     next(err)
