@@ -999,7 +999,7 @@ __webpack_require__.r(__webpack_exports__);
 var UserHome = function UserHome(props) {
   var user = props.user;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-    to: '/edit'
+    to: "/edit"
   }, "Edit Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "account-details"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Account Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Email: ", user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Address: ", user.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Phone Number: ", user.phone), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
