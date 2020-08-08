@@ -10,7 +10,17 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-
+router.get('/category/:name', async (req, res, next) => {
+  const name = req.params.name
+  try {
+    const breadGroup = await Bread.findAll({
+      where: {
+        name: name
+      }
+    })
+    res.json(breadGroup)
+  } catch (err) {}
+})
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id

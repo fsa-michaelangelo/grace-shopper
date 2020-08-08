@@ -19,6 +19,14 @@ export const breadGetter = () => async dispatch => {
     next(err)
   }
 }
+export const breadGroup = name => async dispatch => {
+  try {
+    const group = await axios.get(`/api/breads/category/${name}`)
+    dispatch(breadSetter(res.data))
+  } catch (err) {
+    next(err)
+  }
+}
 //reducer
 
 const initState = []

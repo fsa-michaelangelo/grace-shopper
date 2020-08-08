@@ -12,7 +12,8 @@ import {
   Homepage,
   Breads,
   SingleBread,
-  Account
+  Account,
+  Category
 } from './components'
 
 import {me} from './store'
@@ -46,6 +47,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/breads" component={Breads} />
+        <Route path="/category/:name" component={Category} />
         <Route
           exact
           path="/edit"
