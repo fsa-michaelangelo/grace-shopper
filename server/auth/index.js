@@ -35,8 +35,6 @@ router.post('/signup', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   const id = req.params.id
-  console.log('req in /id put is ', req.body)
-  console.log('api id is ', id)
   try {
     //take id, findbypk id, .name = req.name etc, item.save()
     User.findByPk(id)
@@ -52,10 +50,17 @@ router.post('/logout', (req, res) => {
   req.session.destroy()
   res.redirect('/')
 })
-
+//trials
 router.get('/me', (req, res) => {
-  console.log('in me req is ', req.user)
+  console.log('in api req ', req.body)
   res.json(req.user)
+})
+
+router.get('/set/:id', async (req, res) => {
+  console.log('in set api')
+  const id = req.params.id
+  const updatedUser = await User.findByPk(id)
+  res.json(updatedUser)
 })
 
 router.use('/google', require('./google'))

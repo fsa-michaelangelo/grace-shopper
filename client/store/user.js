@@ -8,20 +8,15 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
 /**
- * INITIAL STATE
- */
-const defaultUser = {}
-
-/**
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-const changeUser = () => ({type: CHANGE_USER})
 
 /**
  * THUNK CREATORS
  */
+//trial 1
 export const me = () => async dispatch => {
   try {
     console.log('in the me thunk')
@@ -29,6 +24,17 @@ export const me = () => async dispatch => {
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
+  }
+}
+//trial 2
+export const set = id => async dispatch => {
+  try {
+    console.log()
+    const updatedUser = await axios.get(`/auth/set/${id}`)
+    console.log('in set from uhome thunk')
+    dispatch(getUser(updatedUser))
+  } catch (err) {
+    console.log(err)
   }
 }
 export const update = id => async dispatch => {
@@ -66,6 +72,10 @@ export const logout = () => async dispatch => {
   }
 }
 
+/**
+ * INITIAL STATE
+ */
+const defaultUser = {}
 /**
  * REDUCER
  */

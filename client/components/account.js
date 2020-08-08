@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {me} from '../store/user'
+import {me, set} from '../store/user'
 import axios from 'axios'
 export class account extends Component {
   constructor(props) {
@@ -14,11 +14,11 @@ export class account extends Component {
   }
   componentDidMount() {
     this.props.getUser()
-    console.log('the props are ', this.props)
   }
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     evt.preventDefault()
-    const res = axios.put(`/auth/${this.props.user.id}`, this.state)
+    await axios.put(`/auth/${this.props.user.id}`, this.state)
+    this.props.setUser(this.props.user.id)
   }
   handleChange(event) {
     this.setState({
@@ -73,7 +73,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: () => dispatch(me())
+    getUser: () => dispatch(me()),
+    setUser: () => dispatch(set(id))
   }
 }
 
