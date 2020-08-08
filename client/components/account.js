@@ -17,8 +17,12 @@ export class account extends Component {
   }
   async handleSubmit(evt) {
     evt.preventDefault()
-    await axios.put(`/auth/${this.props.user.id}`, this.state)
-    this.props.setUser(this.props.user.id)
+    const updatedUser = await axios.put(
+      `/auth/${this.props.user.id}`,
+      this.state
+    )
+    console.log('in account back user ', updatedUser)
+    this.props.setUser(updatedUser)
   }
   handleChange(event) {
     this.setState({
@@ -74,7 +78,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(me()),
-    setUser: () => dispatch(set(id))
+    setUser: () => dispatch(set(user))
   }
 }
 

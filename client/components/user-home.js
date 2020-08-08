@@ -39,9 +39,9 @@ export class UserHome extends Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
-    this.props.updateUser(this.props.user.id)
-  }
+  // componentDidMount() {
+  //   this.props.updateUser(this.props.user.id)
+  // }
   render() {
     const {user} = this.props
     return (
@@ -78,7 +78,8 @@ const mapState = state => {
 }
 const dispatchToProps = dispatch => {
   return {
-    updateUser: () => dispatch(set(id))
+    // updateUser: () => dispatch(set(id))
+    filler: 'filler'
   }
 }
 

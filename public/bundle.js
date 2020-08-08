@@ -301,6 +301,7 @@ function (_Component) {
       var _handleSubmit = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(evt) {
+        var updatedUser;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -310,9 +311,11 @@ function (_Component) {
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/auth/".concat(this.props.user.id), this.state);
 
               case 3:
-                this.props.setUser(this.props.user.id);
+                updatedUser = _context.sent;
+                console.log('in account back user ', updatedUser);
+                this.props.setUser(updatedUser);
 
-              case 4:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -370,7 +373,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["me"])());
     },
     setUser: function setUser() {
-      return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["set"])(id));
+      return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["set"])(user));
     }
   };
 };
@@ -1080,14 +1083,12 @@ function (_Component) {
     _classCallCheck(this, UserHome);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UserHome).call(this, props));
-  }
+  } // componentDidMount() {
+  //   this.props.updateUser(this.props.user.id)
+  // }
+
 
   _createClass(UserHome, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.updateUser(this.props.user.id);
-    }
-  }, {
     key: "render",
     value: function render() {
       var user = this.props.user;
@@ -1124,9 +1125,8 @@ var mapState = function mapState(state) {
 
 var dispatchToProps = function dispatchToProps(dispatch) {
   return {
-    updateUser: function updateUser() {
-      return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_5__["set"])(id));
-    }
+    // updateUser: () => dispatch(set(id))
+    filler: 'filler'
   };
 };
 
@@ -1864,7 +1864,7 @@ var me = function me() {
   );
 }; //trial 2
 
-var set = function set(id) {
+var set = function set(user) {
   return (
     /*#__PURE__*/
     function () {
@@ -1876,29 +1876,21 @@ var set = function set(id) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                console.log();
-                _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/auth/set/".concat(id));
+                try {
+                  updatedUser = user;
+                  console.log('updated user in set ', updatedUser); // const updatedUser = await axios.get(`/auth/set/${id}`)
 
-              case 4:
-                updatedUser = _context2.sent;
-                console.log('in set from uhome thunk');
-                dispatch(getUser(updatedUser));
-                _context2.next = 12;
-                break;
+                  dispatch(getUser(updatedUser));
+                } catch (err) {
+                  console.log(err);
+                }
 
-              case 9:
-                _context2.prev = 9;
-                _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
-
-              case 12:
+              case 1:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 9]]);
+        }, _callee2);
       }));
 
       return function (_x2) {
@@ -2046,14 +2038,17 @@ var logout = function logout() {
  * INITIAL STATE
  */
 
-var defaultUser = {};
-/**
- * REDUCER
- */
+var defaultUser = {
+  user: []
+  /**
+   * REDUCER
+   */
 
+};
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultUser;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log('user in reducer ', action.user);
 
   switch (action.type) {
     case GET_USER:
@@ -45577,7 +45572,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

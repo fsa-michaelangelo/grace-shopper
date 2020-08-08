@@ -27,11 +27,11 @@ export const me = () => async dispatch => {
   }
 }
 //trial 2
-export const set = id => async dispatch => {
+export const set = user => async dispatch => {
   try {
-    console.log()
-    const updatedUser = await axios.get(`/auth/set/${id}`)
-    console.log('in set from uhome thunk')
+    const updatedUser = user
+    console.log('updated user in set ', updatedUser)
+    // const updatedUser = await axios.get(`/auth/set/${id}`)
     dispatch(getUser(updatedUser))
   } catch (err) {
     console.log(err)
@@ -75,11 +75,14 @@ export const logout = () => async dispatch => {
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {
+  user: []
+}
 /**
  * REDUCER
  */
 export default function(state = defaultUser, action) {
+  console.log('user in reducer ', action.user)
   switch (action.type) {
     case GET_USER:
       return action.user
