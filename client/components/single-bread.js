@@ -15,8 +15,8 @@ export class SingleBread extends React.Component {
   render() {
     const bread = this.props.bread
     return (
-      <div>
-        <h1>{bread.name}</h1>
+      <div className="single-page-bread">
+        <h1 className="header">{bread.name}</h1>
         <img src={bread.imageUrl} />
         <h6>{bread.description}</h6>
         <h5>Price: ${bread.price}</h5>

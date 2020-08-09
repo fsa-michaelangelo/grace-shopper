@@ -11,48 +11,77 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: rgb(247, 237, 223);
+  color: $textColor;
 }
 
 nav {
   @include flexCenter(row);
   justify-content: space-between;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-.homepage-header {
-  @include flexCenter(column);
+  a {
+    display: inline-block;
+    margin: 1em;
+    color: $navLink;
+  }
 }
 
 .header {
   @include flexCenter(row);
 }
 
-h1 {
-  color: rgb(63, 6, 6);
-}
-
-.search form {
-  align-self: flex-end;
+.homepage-header {
+  @include flexCenter(column);
 }
 
 .homepage-breads-container {
   @include flexCenter(row);
   margin: 25px;
+  img {
+    margin: 10px;
+    width: 30vw;
+    height: 40vh;
+  }
 }
 
-.homepage-breads {
+.single-page-bread {
+  @include flexCenter(column);
+  img {
+    width: 50%;
+    height: 60vh;
+  }
+}
+
+h1 {
+  color: $textColor;
+}
+
+.search {
+  @include flexCenter(row);
+  justify-content: flex-end;
   margin: 10px;
-  width: 30vw;
-  height: 40vh;
+  form {
+    align-self: flex-end;
+  }
+}
+
+.search label {
+  display: inline;
+}
+
+.all-breads {
+  @include flexCenter(row);
+  flex-wrap: wrap;
+  div {
+    margin: 10px;
+  }
+  img {
+    width: 30vw;
+    height: 40vh;
+  }
 }
 
 a {
   text-decoration: none;
-  color: rgb(134, 34, 34);
+  color: $textColor;
 }
 
 label {

@@ -10,12 +10,9 @@ export class Homepage extends React.Component {
           <Link to="/breads">Crumb on in...</Link>
         </div>
         <div className="homepage-breads-container">
-          <img
-            src="./Homemade-Sourdough-Bread-004.jpg"
-            className="homepage-breads"
-          />
-          <img src="./french-bread2.jpg" className="homepage-breads" />
-          <img src="./oat-bread-sliced.jpg" className="homepage-breads" />
+          <img src="./Homemade-Sourdough-Bread-004.jpg" />
+          <img src="./french-bread2.jpg" />
+          <img src="./oat-bread-sliced.jpg" />
         </div>
       </>
       ///FOR BOOTSRAP IMPLEMENTATION
