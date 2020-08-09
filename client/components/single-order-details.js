@@ -17,7 +17,9 @@ class SingleOrderDetails extends React.Component {
 
     return (
       <>
-        <h3>Order {order.id} Details</h3>
+        <h3>Order #{order.id} Details</h3>
+        <div>Purchase date: {order.createdAt}</div>
+        <h4>Purchased Items:</h4>
         <table>
           <tbody>
             <tr>
@@ -36,9 +38,11 @@ class SingleOrderDetails extends React.Component {
             })}
           </tbody>
         </table>
-        <Link to="/home">
-          <button>Back to my account</button>
-        </Link>
+        <div>
+          <Link to="/home">
+            <button>Back to my account</button>
+          </Link>
+        </div>
       </>
     )
   }

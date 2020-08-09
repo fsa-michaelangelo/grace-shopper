@@ -4,15 +4,20 @@ import {Link} from 'react-router-dom'
 export class Homepage extends React.Component {
   render() {
     return (
-      <div>
-        <h1> H O M E P A G E </h1>
-        <Link to="/breads">Crumb on in...</Link>
-        <div>
-          <img src="./Homemade-Sourdough-Bread-004.jpg" />
-          <img src="./french-bread2.jpg" />
-          <img src="./oat-bread-sliced.jpg" />
+      <>
+        <div className="homepage-header">
+          <h1 id="title"> U P P E R - C R U S T </h1>
+          <Link to="/breads">Crumb on in...</Link>
         </div>
-      </div>
+        <div className="homepage-breads-container">
+          <img
+            src="./Homemade-Sourdough-Bread-004.jpg"
+            className="homepage-breads"
+          />
+          <img src="./french-bread2.jpg" className="homepage-breads" />
+          <img src="./oat-bread-sliced.jpg" className="homepage-breads" />
+        </div>
+      </>
       ///FOR BOOTSRAP IMPLEMENTATION
       //     <div id="demo" className="carousel slide" data-ride="carousel">
 
