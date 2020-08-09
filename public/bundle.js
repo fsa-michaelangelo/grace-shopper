@@ -99,12 +99,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_routes__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2___default.a, null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -1276,10 +1277,10 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /*!**************************!*\
   !*** ./client/routes.js ***!
   \**************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/zachbryce/senior/grace-shopper/client/routes.js: Identifier 'UserHome' has already been declared (21:7)\n\n\u001b[0m \u001b[90m 19 | \u001b[39m\u001b[36mimport\u001b[39m {me} from \u001b[32m'./store'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 20 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 | \u001b[39m\u001b[36mimport\u001b[39m \u001b[33mUserHome\u001b[39m from \u001b[32m'./components/user-home'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m\u001b[36mimport\u001b[39m {\u001b[33mSingleBread\u001b[39m} from \u001b[32m'./components'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 24 | \u001b[39m\u001b[0m\n    at Object.raise (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:6325:17)\n    at ScopeHandler.checkRedeclarationInScope (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:3759:12)\n    at ScopeHandler.declareName (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:3725:12)\n    at Object.checkLVal (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:8021:22)\n    at Object.parseImportSpecifierLocal (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11187:10)\n    at Object.maybeParseDefaultImportSpecifier (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11193:12)\n    at Object.parseImport (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11164:31)\n    at Object.parseStatementContent (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:9927:27)\n    at Object.parseStatement (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:9829:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:10405:25)\n    at Object.parseBlockBody (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:10392:10)\n    at Object.parseTopLevel (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:9758:10)\n    at Object.parse (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11270:17)\n    at parse (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11306:38)\n    at parser (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at /Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transform.js:34:34\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
+
 
 /***/ }),
 
