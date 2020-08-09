@@ -12,21 +12,26 @@ export const UserHome = props => {
 
   return (
     <>
-      <h3>Welcome, {user.email}</h3>
-      <div id="account-details">
-        <h3>Account Details</h3>
-        <div>Email: {user.email}</div>
-        <div>Address: {user.address}</div>
-        <div>Phone Number: {user.phone}</div>
-        <button type="button">Edit</button>
+      <div className="header">
+        <h3>Welcome, {user.email}</h3>
       </div>
-      <div className="current-order">
-        {/*if there is a current cart, render it. otherwise...*/}
-        <h5>Nothing in your cart at this time</h5>
-      </div>
-      <div className="order-history">
-        <h3>Order History</h3>
-        <OrderHistory user={user} />
+      <div id="user-home">
+        <div id="account-details">
+          <h3>Account Details</h3>
+          <h4>Email</h4>
+          <div>{user.email}</div>
+          <h4>Address</h4>
+          <div>{user.address}</div>
+          <h4>Phone</h4>
+          <div>{user.phone}</div>
+          <button type="button">Edit account info</button>
+          {/*if there is a current cart, render it. otherwise...*/}
+          <h5>Nothing in your cart at this time</h5>
+        </div>
+        <div className="order-history">
+          <h3>Order History</h3>
+          <OrderHistory user={user} />
+        </div>
       </div>
     </>
   )
