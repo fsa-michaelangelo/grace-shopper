@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {Order} = require('../db/models')
 const {Bread} = require('../db/models')
-//const {OrderDetails} = require('../db/models')
+const {OrderDetails} = require('../db/models')
 module.exports = router
 
 const usersOnly = (req, res, next) => {
@@ -32,6 +32,8 @@ router.get('/:orderId', usersOnly, async (req, res, next) => {
       where: {id},
       include: [Bread]
     })
+    //const details = await OrderDetails.findAll({where: { orderId: id}} );
+
     res.json(order)
   } catch (err) {
     next(err)

@@ -10,7 +10,8 @@ export class OrderHistory extends React.Component {
   }
 
   render() {
-    const orders = this.props.orders
+    let orders = this.props.orders
+    orders = orders.filter(order => order.status === 'complete')
 
     return (
       <>

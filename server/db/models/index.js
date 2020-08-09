@@ -28,5 +28,6 @@ Order.belongsToMany(Bread, {
 module.exports = {
   User,
   Bread,
-  Order
+  Order,
+  OrderDetails
 }
