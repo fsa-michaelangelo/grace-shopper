@@ -1053,10 +1053,10 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var order = this.props.order; // console.log('order: ', this.props.order)
+      var order = this.props.order; //console.log('order: ', this.props.order)
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Details here!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Price: ", order), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/orders"
+        to: "/home"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Back to my account")));
     }
   }]);
@@ -1066,7 +1066,7 @@ function (_React$Component) {
 
 var mapState = function mapState(state) {
   return {
-    order: state.order
+    order: state.singleOrder
   };
 };
 
@@ -1277,154 +1277,9 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
   !*** ./client/routes.js ***!
   \**************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
- //import UserHome from './components/user-home';
-//import {Cart, single-bread, Checkout, AllBreads} from './components
-
-/**
- * COMPONENT
- */
-
-var Routes =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Routes, _Component);
-
-  function Routes() {
-    _classCallCheck(this, Routes);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Routes).apply(this, arguments));
-  }
-
-  _createClass(Routes, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.loadInitialData();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      console.log('route props ', this.props);
-      var isLoggedIn = this.props.isLoggedIn;
-      var user = this.props.user; //REMEMBER TO ADD all components to ./components exports
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Homepage"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/login",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Login"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/signup",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Signup"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/breads",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Breads"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/category/:name",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Category"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/edit",
-        render: function render(props) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_4__["Account"], _extends({}, props, {
-            user: user
-          }));
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/breads/:id",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["SingleBread"]
-      }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/home",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/orders",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["OrderHistory"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/orders/:orderId",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["SingleOrderDetails"]
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["Login"]
-      }));
-    }
-  }]);
-
-  return Routes;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-/**
- * CONTAINER
- */
-
-
-var mapState = function mapState(state) {
-  return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
-    user: state.user
-  };
-};
-
-var mapDispatch = function mapDispatch(dispatch) {
-  return {
-    loadInitialData: function loadInitialData() {
-      dispatch(Object(_store__WEBPACK_IMPORTED_MODULE_5__["me"])());
-    }
-  };
-}; // The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
-
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(Routes)));
-/**
- * PROP TYPES
- */
-
-Routes.propTypes = {
-  loadInitialData: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func.isRequired,
-  isLoggedIn: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool.isRequired
-};
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/zachbryce/senior/grace-shopper/client/routes.js: Identifier 'UserHome' has already been declared (21:7)\n\n\u001b[0m \u001b[90m 19 | \u001b[39m\u001b[36mimport\u001b[39m {me} from \u001b[32m'./store'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 20 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 | \u001b[39m\u001b[36mimport\u001b[39m \u001b[33mUserHome\u001b[39m from \u001b[32m'./components/user-home'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m\u001b[36mimport\u001b[39m {\u001b[33mSingleBread\u001b[39m} from \u001b[32m'./components'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 24 | \u001b[39m\u001b[0m\n    at Object.raise (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:6325:17)\n    at ScopeHandler.checkRedeclarationInScope (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:3759:12)\n    at ScopeHandler.declareName (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:3725:12)\n    at Object.checkLVal (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:8021:22)\n    at Object.parseImportSpecifierLocal (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11187:10)\n    at Object.maybeParseDefaultImportSpecifier (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11193:12)\n    at Object.parseImport (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11164:31)\n    at Object.parseStatementContent (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:9927:27)\n    at Object.parseStatement (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:9829:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:10405:25)\n    at Object.parseBlockBody (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:10392:10)\n    at Object.parseTopLevel (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:9758:10)\n    at Object.parse (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11270:17)\n    at parse (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/parser/lib/index.js:11306:38)\n    at parser (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\n    at normalizeFile (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\n    at runSync (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/index.js:44:43)\n    at runAsync (/Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transformation/index.js:35:14)\n    at /Users/zachbryce/senior/grace-shopper/node_modules/@babel/core/lib/transform.js:34:34\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
 
 /***/ }),
 
