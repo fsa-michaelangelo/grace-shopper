@@ -6,7 +6,7 @@ export class Homepage extends React.Component {
     return (
       <>
         <div className="homepage-header">
-          <h1 id="title"> U P P E R - C R U S T </h1>
+          <h1 className="header"> U P P E R - C R U S T </h1>
           <Link to="/breads">Crumb on in...</Link>
         </div>
         <div className="homepage-breads-container">

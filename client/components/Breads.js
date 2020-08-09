@@ -35,11 +35,15 @@ export class Breads extends Component {
 
     return (
       <>
-        <h1>Breads Page</h1>
-        <h3>Filter Search:</h3>
-        <form onSubmit={this.handleSubmit} id="search">
-          <input type="text" name="name" onChange={this.handleChange} />
-        </form>
+        <div className="header">
+          <h1>BREADS</h1>
+          <div className="search">
+            <form onSubmit={this.handleSubmit} id="search">
+              <label>Search:</label>
+              <input type="text" name="name" onChange={this.handleChange} />
+            </form>
+          </div>
+        </div>
         <div className="items">
           {breads.map(bread => <BreadIcon key={bread.id} bread={bread} />)}
         </div>
