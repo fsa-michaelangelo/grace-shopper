@@ -45,6 +45,7 @@ export class account extends Component {
                   name="email"
                   placeholder="new email"
                   type="text"
+                  value=""
                   onChange={this.handleChange}
                 />
               </div>
@@ -53,6 +54,8 @@ export class account extends Component {
                   <small>Password</small>
                 </label>
                 <input
+                  value=""
+                  placeholder="new password"
                   name="password"
                   type="password"
                   onChange={this.handleChange}

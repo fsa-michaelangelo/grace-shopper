@@ -10,8 +10,9 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/category/:name', async (req, res, next) => {
+router.get('/group/:name', async (req, res, next) => {
   const name = req.params.name
+  console.log('in the right api, in the right api, in the right api')
   try {
     const breadGroup = await Bread.findAll({
       where: {
@@ -19,7 +20,10 @@ router.get('/category/:name', async (req, res, next) => {
       }
     })
     res.json(breadGroup)
-  } catch (err) {}
+  } catch (err) {
+    console.log('in the error group')
+    next(err)
+  }
 })
 router.get('/:id', async (req, res, next) => {
   try {

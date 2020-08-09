@@ -8,13 +8,13 @@ export class BreadCategory extends Component {
     super(props)
   }
   componentDidMount() {
-    this.props.fetchGroup()
+    this.props.fetchGroup(this.props.match.params.name)
   }
   render() {
     const name = this.props.match.params.name
-
+    console.log('name is ', name)
     const breads = this.props.breads || []
-    console.log(breads)
+    console.log('the breads ', breads)
 
     return <h1>Hello</h1>
   }
@@ -26,9 +26,9 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToState = dispatch => {
+const mapDispatchToState = dispatch => { 
   return {
-    fetchGroup: () => dispatch(breadGroup())
+    fetchGroup: () => dispatch(breadGroup(name))
   }
 }
 
