@@ -8,9 +8,8 @@ export default function BreadIcon(props) {
       <Link to={`/breads/${bread.id}`}>
         <h2>{bread.name}</h2>
         <img src={bread.imageUrl} />
-        <p>Available Quantity: {bread.quantity}</p>
+        <p>In stock: {bread.quantity}</p>
         <h3>Price: ${bread.price}</h3>
-        <p>{bread.description}</p>
       </Link>
     </div>
   )
