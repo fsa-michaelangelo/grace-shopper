@@ -162,5 +162,11 @@ td {
 }
 
 td {
-  align-self: center;
+  text-align: center;
+}
+
+#single-order-details {
+  @include flexCenter(column);
+  align-items: flex-start;
+  margin-bottom: 15px;
 }
