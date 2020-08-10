@@ -29,29 +29,33 @@ export class SingleBread extends React.Component {
   render() {
     const bread = this.props.bread
     return (
-      <div>
+      <div className="single-page">
         <h1>{bread.name}</h1>
-        <img src={bread.imageUrl} />
-        <h6>{bread.description}</h6>
-        <h5>Price: ${bread.price}</h5>
-        {bread.quantity > 0 ? (
-          <div onChange={this.handleChange}>
-            <input type="number" name="quantity" placeholder="Qty" />
-            <button
-              onClick={() => {
-                this.props.addItemToCart(
-                  bread,
-                  this.state.quantity,
-                  bread.price
-                )
-              }}
-            >
-              Add to cart
-            </button>
+        <div className="single-page-row">
+          <img src={bread.imageUrl} />
+          <div className="single-page-info">
+            <p>{bread.description}</p>
+            <h5>Price: ${bread.price}</h5>
+            {bread.quantity > 0 ? (
+              <div onChange={this.handleChange} className="add-to-cart">
+                <input type="number" name="quantity" placeholder="Qty" />
+                <button
+                  onClick={() => {
+                    this.props.addItemToCart(
+                      bread,
+                      this.state.quantity,
+                      bread.price
+                    )
+                  }}
+                  >
+                  Add to cart
+                </button>
+              </div>
+            ) : (
+              <h5>Sold out!</h5>
+            )}
           </div>
-        ) : (
-          <h5>Sold out!</h5>
-        )}
+        </div>
       </div>
     )
   }

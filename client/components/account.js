@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me, set, update} from '../store/user'
 import axios from 'axios'
-export class account extends Component {
-  constructor(props) {
-    super(props)
+
+
+export class Account extends Component {
+  constructor() {
+    super()
     this.state = {
       email: '',
       password: '',
@@ -12,42 +14,30 @@ export class account extends Component {
       err: false,
       success: false
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+
   componentDidMount() {
     this.props.getUser()
   }
-  async handleSubmit(evt) {
-    evt.preventDefault()
-    if(this.state.password === this.state.confirm){
-      this.setState({err: false})
-      console.log('id should be ', this.props.user.id)
-      // this.setState({
-        //   ...this.state,
-        //   success: true
-        // })
-        await axios.put(
-          `/auth/${this.props.user.id}`,
-          this.state
-          ) 
-        // this.props.setUser()
-        // this.props.render(this.props.user.id)
-        } else {
-          this.setState({err: true})
-      // this.state.err = true
-      // this.state.success = false
 
-    }
+
+ handleSubmit = (evt) => {
+    evt.preventDefault()
+    this.props.updateUser({...this.state, id: this.props.user.id})
+    this.props.history.push('/home')
   }
-  handleChange(event) {
+
+
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
-    // this.props.getUser()
   }
+
+
   render() {
-   
+    const user = this.props.user
     return (
       <div>
         <h2>Edit Account</h2>
@@ -61,7 +51,7 @@ export class account extends Component {
                 <input
                   name="email"
                   type="text"
-                  
+                  defaultValue={user.email}
                   onChange={this.handleChange}
                 />
               </div>
@@ -70,11 +60,34 @@ export class account extends Component {
                   <small>Password</small>
                 </label>
                 <input
-               
+                  
                   name="password"
                   type="password"
+                  defaultValue={user.password}
                   onChange={this.handleChange}
                 />
+              </div>
+                <div>
+                  <label htmlFor="address">
+                    <small>Address</small>
+                  </label>
+                  <input
+                    name="address"
+                    type="text"
+                    defaultValue={user.address}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone">
+                    <small>Phone</small>
+                  </label>
+                  <input
+                    name="phone"
+                    type="text"
+                    defaultValue={user.phone}
+                    onChange={this.handleChange}
+                  />
               </div>
               <div>
                 <label htmlFor='confirm'>
@@ -112,9 +125,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(me()),
-    setUser: (user) => dispatch(set(user)),
-    render: (user) => dispatch(update(user))
+    updateUser: (user) => dispatch(update(user))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(account)
+export default connect(mapStateToProps, mapDispatchToProps)(Account)

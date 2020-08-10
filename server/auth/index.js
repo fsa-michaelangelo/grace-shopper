@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
 
+
 router.post('/login', async (req, res, next) => {
   try {
     const user = await User.findOne({where: {email: req.body.email}})
@@ -33,35 +34,33 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', (req, res, next) => {
   const id = req.params.id
+  
   try {
     //take id, findbypk id, .name = req.name etc, item.save()
     const updatedUser = User.findByPk(id)
       .then(user => user.update(req.body))
-      .then(user => res.json(user))
-    res.json(updatedUser.data)
+      .then(user => {
+        res.json(user)})
+    
   } catch (err) {
     next(err)
   }
 })
+
 
 router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
   res.redirect('/')
 })
+
 //trials
 router.get('/me', (req, res) => {
-  console.log('in api req ', req.body)
+  
   res.json(req.user)
 })
 
-router.get('/set/:id', async (req, res) => {
-  console.log('in set api')
-  const id = req.params.id
-  const updatedUser = await User.findByPk(id)
-  res.json(updatedUser)
-})
 
 router.use('/google', require('./google'))

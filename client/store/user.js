@@ -19,30 +19,19 @@ const removeUser = () => ({type: REMOVE_USER})
 //trial 1
 export const me = () => async dispatch => {
   try {
-    console.log('in the me thunk')
+   
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
   }
 }
-//trial 2
-export const set = user => async dispatch => {
+
+
+export const update = user => async dispatch => {
   try {
-    const updatedUser = user
-    console.log('updated user in set ', updatedUser)
-    // const updatedUser = await axios.get(`/auth/set/${id}`)
-    dispatch(getUser(updatedUser))
-  } catch (err) {
-    console.log(err)
-  }
-}
-export const update = id => async dispatch => {
-  try {
-    console.log('update thunk user ', id)
-    const user = await axios.put(`/auth/${id}`)
-    dispatch(getUser(user))
-    //update users
+    const res = await axios.put(`/auth/${user.id}`, user)
+    dispatch(getUser(res.data))
   } catch (err) {
     console.log(err)
   }
@@ -83,7 +72,7 @@ const defaultUser = {
  * REDUCER
  */
 export default function(state = defaultUser, action) {
-  console.log('user in reducer ', action.user)
+  
   switch (action.type) {
     case GET_USER:
       return action.user
