@@ -10,7 +10,7 @@ class Cart extends React.Component {
 
   render() {
     const cart = this.props.cart
-
+    console.log(this.props)
     return (
       <div>
         {cart.length ? (
