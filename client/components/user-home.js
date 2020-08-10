@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Cart from './cart'
 import OrderHistory from './order-history'
+import {set} from '../store/user'
 
 /**
  * COMPONENT
@@ -18,7 +20,7 @@ export const UserHome = props => {
         <div>Email: {user.email}</div>
         <div>Address: {user.address}</div>
         <div>Phone Number: {user.phone}</div>
-        <button type="button">Edit</button>
+        <Link to='/edit'>Edit Account</Link>
       </div>
       <div className="current-order">
         <h4>Items in your cart</h4>
@@ -32,14 +34,12 @@ export const UserHome = props => {
   )
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     user: state.user
   }
 }
+
 
 export default connect(mapState)(UserHome)
 
