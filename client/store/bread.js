@@ -22,8 +22,8 @@ export const breadGetter = () => async dispatch => {
 export const breadGroup = (name) => async dispatch => {
   console.log('thunk name is ', name)
   try {
-    const group = await axios.get(`/api/breads/group/${name}`)
-    dispatch(breadSetter(group.data))
+    const { data } = await axios.get(`/api/breads/group/${name}`)
+    dispatch(breadSetter(data))
   } catch (err) {
     console.log(err)
   }

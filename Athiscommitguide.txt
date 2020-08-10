@@ -1,4 +1,2 @@
-[X]Zach you are fixing routes so all of the app runs.
-Fix 500 error getting category from db
 Set up category buttons which render bread based on the name
 Figure out updating updated user going back to user home page

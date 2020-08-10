@@ -155,18 +155,14 @@ var Breads =
 function (_Component) {
   _inherits(Breads, _Component);
 
-  function Breads() {
+  function Breads(props) {
     _classCallCheck(this, Breads);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Breads).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Breads).call(this, props));
   }
 
   _createClass(Breads, [{
     key: "componentDidMount",
-    // constructor(props) {
-    //   super(props)
-    //   this.state = {}
-    // }
     value: function componentDidMount() {
       this.props.fetchBreads();
     }
@@ -174,18 +170,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       var breads = this.props.breads || [];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Search by Category:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        to: "/category/french"
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+        to: "/category/French"
       }, "French"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        to: "/category/sourdough"
-      }, "Sourdough"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        id: "search"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        name: "name",
-        onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        to: "/category/Sourdough"
+      }, "Sourdough"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "items"
       }, breads.map(function (bread) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_breadIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -334,15 +323,11 @@ function (_Component) {
         htmlFor: "email"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "email",
-        placeholder: "new email",
         type: "text",
-        value: "",
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        value: "",
-        placeholder: "new password",
         name: "password",
         type: "password",
         onChange: this.handleChange
@@ -366,7 +351,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     getUser: function getUser() {
       return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["me"])());
     },
-    setUser: function setUser() {
+    setUser: function setUser(user) {
       return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["set"])(user));
     }
   };
@@ -533,11 +518,14 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var name = this.props.match.params.name;
-      console.log('name is ', name);
       var breads = this.props.breads || [];
-      console.log('the breads ', breads);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello");
+      console.log('breads ', breads);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, breads.map(function (bread) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_breadIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: bread.id,
+          bread: bread
+        });
+      }));
     }
   }]);
 
@@ -552,7 +540,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToState = function mapDispatchToState(dispatch) {
   return {
-    fetchGroup: function fetchGroup() {
+    fetchGroup: function fetchGroup(name) {
       return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGroup"])(name));
     }
   };
@@ -1137,34 +1125,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-/**
- * COMPONENT
- */
-// export const UserHome = props => {
-//   const {user} = props
-//   return (
-//     <>
-//       <h3>Welcome, {user.email}</h3>
-//       <Link to={{pathname: '/edit', user: user}}>Edit Account</Link>
-//       <div id="account-details">
-//         <h3>Account Details</h3>
-//         <div>Email: {user.email}</div>
-//         <div>Address: {user.address}</div>
-//         <div>Phone Number: {user.phone}</div>
-//         <button type="button">Edit</button>
-//       </div>
-//       <div className="current-order">
-//         {/*if there is a current cart, render it. otherwise...*/}
-//         <h5>Nothing in your cart at this time</h5>
-//       </div>
-//       <div className="order-history">
-//         <h3>Order History</h3>
-//         <OrderHistory user={user} />
-//       </div>
-//     </>
-//   )
-// }
-
 
 var UserHome =
 /*#__PURE__*/
@@ -1540,7 +1500,8 @@ var breadGroup = function breadGroup(name) {
       var _ref2 = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2(dispatch) {
-        var group;
+        var _ref3, data;
+
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -1551,22 +1512,23 @@ var breadGroup = function breadGroup(name) {
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/breads/group/".concat(name));
 
               case 4:
-                group = _context2.sent;
-                dispatch(breadSetter(group.data));
-                _context2.next = 11;
+                _ref3 = _context2.sent;
+                data = _ref3.data;
+                dispatch(breadSetter(data));
+                _context2.next = 12;
                 break;
 
-              case 8:
-                _context2.prev = 8;
+              case 9:
+                _context2.prev = 9;
                 _context2.t0 = _context2["catch"](1);
                 console.log(_context2.t0);
 
-              case 11:
+              case 12:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[1, 8]]);
+        }, _callee2, null, [[1, 9]]);
       }));
 
       return function (_x2) {

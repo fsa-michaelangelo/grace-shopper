@@ -4,28 +4,22 @@ import BreadIcon from './breadIcon'
 import {breadSetter, breadGetter} from '../store/bread'
 import {Link} from 'react-router-dom'
 export class Breads extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {}
-  // }
+  constructor(props) {
+    super(props)
+  }
 
   componentDidMount() {
     this.props.fetchBreads()
   }
-
   render() {
     const breads = this.props.breads || []
 
     return (
       <>
         <h1>Breads Page</h1>
-        <h3>Search by Category:</h3>
-        <Link to="/category/french">French</Link>
+        <Link to="/category/French">French</Link>
         <br />
-        <Link to="/category/sourdough">Sourdough</Link>
-        <form onSubmit={this.handleSubmit} id="search">
-          <input type="text" name="name" onChange={this.handleChange} />
-        </form>
+        <Link to="/category/Sourdough">Sourdough</Link>
         <div className="items">
           {breads.map(bread => <BreadIcon key={bread.id} bread={bread} />)}
         </div>

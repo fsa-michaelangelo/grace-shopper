@@ -12,11 +12,11 @@ router.get('/', async (req, res, next) => {
 })
 router.get('/group/:name', async (req, res, next) => {
   const name = req.params.name
-  console.log('in the right api, in the right api, in the right api')
+  console.log('in the right api, in the right api, in the right api', name)
   try {
     const breadGroup = await Bread.findAll({
       where: {
-        name: name
+        name
       }
     })
     res.json(breadGroup)
