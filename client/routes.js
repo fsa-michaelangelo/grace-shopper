@@ -33,7 +33,6 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Homepage} />
-        {/*<Route exact path="/cart/checkout" component={Checkout} */}
         {/*<Route exact path="/cart" component={Cart} />
         <Route exact path="/cart/checkout" component={Checkout} */}
         <Route exact path="/login" component={Login} />
