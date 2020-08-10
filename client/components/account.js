@@ -1,36 +1,40 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {me, set} from '../store/user'
+import {me, set, update} from '../store/user'
 import axios from 'axios'
-export class account extends Component {
-  constructor(props) {
-    super(props)
+
+
+export class Account extends Component {
+  constructor() {
+    super()
     this.state = {
       email: '',
       password: ''
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+
   componentDidMount() {
     this.props.getUser()
   }
-  async handleSubmit(evt) {
+
+
+ handleSubmit = (evt) => {
     evt.preventDefault()
-    const updatedUser = await axios.put(
-      `/auth/${this.props.user.id}`,
-      this.state
-    )
-    console.log('in account back user ', updatedUser)
-    this.props.setUser(updatedUser)
+    this.props.updateUser({...this.state, id: this.props.user.id})
+    this.props.history.push('/home')
   }
-  handleChange(event) {
+
+
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
-    // this.props.getUser()
   }
+
+
   render() {
+    const user = this.props.user
     return (
       <div>
         <h2>Edit Account</h2>
@@ -43,9 +47,8 @@ export class account extends Component {
                 </label>
                 <input
                   name="email"
-                  placeholder="new email"
                   type="text"
-                  value=""
+                  defaultValue={user.email}
                   onChange={this.handleChange}
                 />
               </div>
@@ -54,12 +57,34 @@ export class account extends Component {
                   <small>Password</small>
                 </label>
                 <input
-                  value=""
-                  placeholder="new password"
+                  
                   name="password"
                   type="password"
+                  defaultValue={user.password}
                   onChange={this.handleChange}
                 />
+              </div>
+                <div>
+                  <label htmlFor="address">
+                    <small>Address</small>
+                  </label>
+                  <input
+                    name="address"
+                    type="text"
+                    defaultValue={user.address}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone">
+                    <small>Phone</small>
+                  </label>
+                  <input
+                    name="phone"
+                    type="text"
+                    defaultValue={user.phone}
+                    onChange={this.handleChange}
+                  />
               </div>
               <div>
                 <button type="submit">Submit</button>
@@ -81,8 +106,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(me()),
-    setUser: () => dispatch(set(user))
+    updateUser: (user) => dispatch(update(user))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(account)
+export default connect(mapStateToProps, mapDispatchToProps)(Account)
