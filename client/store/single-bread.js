@@ -2,7 +2,6 @@ export const SET_SINGLE_BREAD = 'SET_SINGLE_BREAD'
 import axios from 'axios'
 
 export const setSingleBread = bread => {
-  // console.log(bread)
   return {
     type: SET_SINGLE_BREAD,
     bread
