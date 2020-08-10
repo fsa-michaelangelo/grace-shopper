@@ -1,13 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {me, set} from '../store/user'
+import {me, set, update} from '../store/user'
 import axios from 'axios'
 export class account extends Component {
   constructor(props) {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      confirm: '',
+      err: false,
+      success: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -17,10 +20,25 @@ export class account extends Component {
   }
   async handleSubmit(evt) {
     evt.preventDefault()
-     await axios.put(
-      `/auth/${this.props.user.id}`,
-      this.state
-    )
+    if(this.state.password === this.state.confirm){
+      this.setState({err: false})
+      console.log('id should be ', this.props.user.id)
+      // this.setState({
+        //   ...this.state,
+        //   success: true
+        // })
+        await axios.put(
+          `/auth/${this.props.user.id}`,
+          this.state
+          ) 
+        // this.props.setUser()
+        // this.props.render(this.props.user.id)
+        } else {
+          this.setState({err: true})
+      // this.state.err = true
+      // this.state.success = false
+
+    }
   }
   handleChange(event) {
     this.setState({
@@ -29,6 +47,7 @@ export class account extends Component {
     // this.props.getUser()
   }
   render() {
+   
     return (
       <div>
         <h2>Edit Account</h2>
@@ -58,12 +77,28 @@ export class account extends Component {
                 />
               </div>
               <div>
+                <label htmlFor='confirm'>
+                  <small>Confirm Password</small>
+                </label>
+                <input 
+                  name="confirm"
+                  type="password"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div>
                 <button type="submit">Submit</button>
               </div>
             </form>
+            <div>
+              {this.state.err ? <h3>Passwords do not match</h3> : null }
+            </div>
+            <div>
+              {this.state.success ? <h4>Account Updated!</h4> : <h4>Not succeeding</h4>}
+            </div>
           </div>
         </div>
-      </div>
+      </div> 
     )
   }
 }
@@ -77,7 +112,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => dispatch(me()),
-    setUser: (user) => dispatch(set(user))
+    setUser: (user) => dispatch(set(user)),
+    render: (user) => dispatch(update(user))
   }
 }
 

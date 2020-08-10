@@ -263,7 +263,10 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(account).call(this, props));
     _this.state = {
       email: '',
-      password: ''
+      password: '',
+      confirm: '',
+      err: false,
+      success: false
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -286,10 +289,34 @@ function (_Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 evt.preventDefault();
-                _context.next = 3;
+
+                if (!(this.state.password === this.state.confirm)) {
+                  _context.next = 8;
+                  break;
+                }
+
+                this.setState({
+                  err: false
+                });
+                console.log('id should be ', this.props.user.id); // this.setState({
+                //   ...this.state,
+                //   success: true
+                // })
+
+                _context.next = 6;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/auth/".concat(this.props.user.id), this.state);
 
-              case 3:
+              case 6:
+                _context.next = 9;
+                break;
+
+              case 8:
+                this.setState({
+                  err: true
+                }); // this.state.err = true
+                // this.state.success = false
+
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -325,9 +352,15 @@ function (_Component) {
         name: "password",
         type: "password",
         onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "confirm"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Confirm Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "confirm",
+        type: "password",
+        onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
-      }, "Submit"))))));
+      }, "Submit"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.err ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Passwords do not match") : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.success ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Account Updated!") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Not succeeding")))));
     }
   }]);
 
@@ -347,6 +380,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     setUser: function setUser(user) {
       return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["set"])(user));
+    },
+    render: function render(user) {
+      return dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_2__["update"])(user));
     }
   };
 };
@@ -1095,7 +1131,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _order_history__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./order-history */ "./client/components/order-history.js");
 /* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/user */ "./client/store/user.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1120,6 +1162,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var UserHome =
 /*#__PURE__*/
 function (_Component) {
@@ -1129,15 +1172,48 @@ function (_Component) {
     _classCallCheck(this, UserHome);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UserHome).call(this, props));
-  } // componentDidMount() {
-  //   this.props.updateUser(this.props.user.id)
-  // }
-
+  }
 
   _createClass(UserHome, [{
+    key: "componentDidMount",
+    value: function () {
+      var _componentDidMount = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var user2;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('/auth/me');
+
+              case 2:
+                user2 = _context.sent;
+                // this.props.user2 = user2.body
+                this.user2 = user2.data;
+                console.log('user2 ', this.user2);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function componentDidMount() {
+        return _componentDidMount.apply(this, arguments);
+      }
+
+      return componentDidMount;
+    }()
+  }, {
     key: "render",
     value: function render() {
       var user = this.props.user;
+      var user2 = this.user2;
+      console.log('user2 in render ', this.user2);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, ", user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: {
           pathname: '/edit',
@@ -1170,9 +1246,8 @@ var mapState = function mapState(state) {
 };
 
 var dispatchToProps = function dispatchToProps(dispatch) {
-  return {
-    // updateUser: () => dispatch(set(id))
-    filler: 'filler'
+  return {// // updateUser: () => dispatch(set(id))
+    // getUser: () => dispatch()
   };
 };
 
@@ -1924,8 +1999,7 @@ var me = function me() {
       var _ref = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(dispatch) {
-        var _res;
-
+        var res;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -1936,8 +2010,8 @@ var me = function me() {
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/auth/me');
 
               case 4:
-                _res = _context.sent;
-                dispatch(getUser(_res.data || defaultUser));
+                res = _context.sent;
+                dispatch(getUser(res.data || defaultUser));
                 _context.next = 11;
                 break;
 
@@ -2009,27 +2083,28 @@ var update = function update(id) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.prev = 0;
-                _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/auth/:".concat(id));
+                console.log('update thunk user ', id);
+                _context3.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/auth/".concat(id));
 
-              case 3:
+              case 4:
                 user = _context3.sent;
-                res.json(user); //update users
+                dispatch(getUser(user)); //update users
 
-                _context3.next = 10;
+                _context3.next = 11;
                 break;
 
-              case 7:
-                _context3.prev = 7;
+              case 8:
+                _context3.prev = 8;
                 _context3.t0 = _context3["catch"](0);
                 console.log(_context3.t0);
 
-              case 10:
+              case 11:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 7]]);
+        }, _callee3, null, [[0, 8]]);
       }));
 
       return function (_x3) {
@@ -45669,7 +45744,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -40,6 +40,7 @@ router.put('/:id', async (req, res, next) => {
     const updatedUser = User.findByPk(id)
       .then(user => user.update(req.body))
       .then(user => res.json(user))
+    res.json(updatedUser.data)
   } catch (err) {
     next(err)
   }

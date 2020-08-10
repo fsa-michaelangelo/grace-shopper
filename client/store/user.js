@@ -39,8 +39,9 @@ export const set = user => async dispatch => {
 }
 export const update = id => async dispatch => {
   try {
-    const user = await axios.put(`/auth/:${id}`)
-    res.json(user)
+    console.log('update thunk user ', id)
+    const user = await axios.put(`/auth/${id}`)
+    dispatch(getUser(user))
     //update users
   } catch (err) {
     console.log(err)

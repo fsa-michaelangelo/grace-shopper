@@ -1,2 +1,4 @@
 Set up category buttons which render bread based on the name
 Figure out updating updated user going back to user home page
+
+Zach you are getting account page to update without a refresh

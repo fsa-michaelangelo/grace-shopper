@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import OrderHistory from './order-history'
-import {set} from '../store/user'
-
+import {set, me} from '../store/user'
+import axios from 'axios'
 
 import {Component} from 'react'
 
@@ -12,11 +12,22 @@ export class UserHome extends Component {
   constructor(props) {
     super(props)
   }
-  // componentDidMount() {
-  //   this.props.updateUser(this.props.user.id)
-  // }
+
+
+  async componentDidMount() {
+    const user2 = await axios.get('/auth/me')
+    // this.props.user2 = user2.body
+    this.user2 = user2.data
+    console.log('user2 ', this.user2)
+    
+  }
+
+
   render() {
     const {user} = this.props
+    const user2 = this.user2
+    console.log('user2 in render ', this.user2)
+    
     return (
       <div>
         <h3>Welcome, {user.email}</h3>
@@ -51,8 +62,8 @@ const mapState = state => {
 }
 const dispatchToProps = dispatch => {
   return {
-    // updateUser: () => dispatch(set(id))
-    filler: 'filler'
+    // // updateUser: () => dispatch(set(id))
+    // getUser: () => dispatch()
   }
 }
 
