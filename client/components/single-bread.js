@@ -17,7 +17,7 @@ export class SingleBread extends React.Component {
     const bread = this.props.bread
     return (
       <div>
-        <img src="./sourdough.jpg" />
+        <img src="./images/sourdough.jpg" />
         <h1>{bread.name}</h1>
         <img src={bread.imageUrl} />
         <h6>{bread.description}</h6>
