@@ -13,15 +13,33 @@ class SingleOrderDetails extends React.Component {
 
   render() {
     const order = this.props.order
-    //console.log('order: ', this.props.order)
+    const bread = order.bread || []
+
     return (
-      <div>
-        <div>Details here!</div>
-        <div>Price: {order}</div>
+      <>
+        <h3>Order {order.id} Details</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>Bread</th>
+              <th>Price</th>
+              <th>Quantity</th>
+            </tr>
+            {bread.map(bread => {
+              return (
+                <tr key={bread.id}>
+                  <td>{bread.name}</td>
+                  <td>{bread.orderDetails.price}</td>
+                  <td>{bread.orderDetails.quantity}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
         <Link to="/home">
           <button>Back to my account</button>
         </Link>
-      </div>
+      </>
     )
   }
 }
