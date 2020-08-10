@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import Cart from './cart'
 import OrderHistory from './order-history'
 import {set} from '../store/user'
 
@@ -22,8 +23,8 @@ export const UserHome = props => {
         <Link to='/edit'>Edit Account</Link>
       </div>
       <div className="current-order">
-        {/*if there is a current cart, render it. otherwise...*/}
-        <h5>Nothing in your cart at this time</h5>
+        <h4>Items in your cart</h4>
+        <Cart />
       </div>
       <div className="order-history">
         <h3>Order History</h3>

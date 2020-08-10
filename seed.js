@@ -40,6 +40,10 @@ const seed = async () => {
       userId: user1.id
     })
 
+    const orderFor2 = await Order.create({
+      userId: user2.id
+    })
+
     const orderDets1 = await OrderDetails.create({
       orderId: order1.id,
       breadId: sourdough.id,
@@ -54,12 +58,12 @@ const seed = async () => {
       quantity: 1
     })
 
-    // const orderDets12 = await OrderDetails.create({
-    //   orderId: order1.id,
-    //   breadId : [sourdough.id, french.id],
-    //   price: 3,
-    //   quantity: 1
-    // })
+    const orderDets2 = await OrderDetails.create({
+      orderId: orderFor2.id,
+      breadId: french.id,
+      price: 3,
+      quantity: 1
+    })
   } catch (err) {
     console.log(err)
   }
