@@ -7,37 +7,45 @@ import {logout} from '../store'
 //import
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>BOILERMAKER</h1>
+  <>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <>
           {/* The navbar will show these links after you log in */}
-          <Link to="/">Home</Link>
-          <Link to="/breads">Breads</Link>
-          <Link to="/cart">
-            <img className="icon" src="./cart.jpg" />
-          </Link>
-          <Link to="/home">My Account</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
+          <div className="left-nav-container">
+            <Link to="/">Home</Link>
+            <Link to="/breads">Breads</Link>
+          </div>
+          <div className="right-nav-container">
+            <Link to="/cart">
+                      <img className="icon" src='./cart.jpg' />
+                </Link>
+            <Link to="/home">My Account</Link>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+          </div>
+        </>
       ) : (
-        <div>
+        <>
           {/* The navbar will show these links before you log in */}
-          <Link to="/">Home</Link>
-          <Link to="/breads">Breads</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/cart">
-            <img className="icon" src="./cart.jpg" />
-          </Link>
-        </div>
+          <div className="left-nav-container">
+            <Link to="/">Home</Link>
+            <Link to="/breads">Breads</Link>
+          </div>
+          <div className="right-nav-container">
+            <img className="icon" src="cart.jpg" />
+            <Link to="/cart">
+                    <img className="icon" src='./cart.jpg' />
+              </Link>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </div>
+        </>
       )}
     </nav>
     <hr />
-  </div>
+  </>
 )
 
 /**

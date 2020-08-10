@@ -11,12 +11,9 @@ import {
   Homepage,
   Breads,
   SingleBread,
-<<<<<<< HEAD
   Account,
-  Category
-=======
+  Category,
   Cart
->>>>>>> 40d967154f95eca1e0cc5062207bc4e60950ebe6
 } from './components'
 
 import {me} from './store'
@@ -35,7 +32,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
-    
+
 
     //REMEMBER TO ADD all components to ./components exports
     return (
