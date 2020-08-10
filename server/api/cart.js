@@ -123,9 +123,8 @@ router.put('/', async (req, res, next) => {
 
 router.delete('/:breadId', async (req, res, next) => {
   try {
+    const id = req.params.breadId
     if (req.user) {
-      const id = req.params.breadId
-
       const [order] = await Order.findAll({
         where: {
           userId: req.user.id,
@@ -140,9 +139,7 @@ router.delete('/:breadId', async (req, res, next) => {
         }
       })
     } else {
-      const filteredCart = req.session.cart.filter(
-        bread => bread.id !== req.body.bread.id
-      )
+      const filteredCart = req.session.cart.filter(bread => bread.id !== id)
 
       req.session.cart = filteredCart
     }
