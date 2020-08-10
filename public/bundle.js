@@ -771,15 +771,17 @@ var Navbar = function Navbar(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "BOILERMAKER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, isLoggedIn ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/"
   }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-    to: "/home"
-  }, "My Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/breads"
-  }, "Breads"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "Breads"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/home"
+  }, "My Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "#",
     onClick: handleClick
   }, "Logout")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/"
   }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/breads"
+  }, "Breads"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/login"
   }, "Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/signup"
@@ -876,6 +878,9 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var orders = this.props.orders;
+      orders = orders.filter(function (order) {
+        return order.status === 'complete';
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, orders.length ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Order No."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Date"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Details")), orders.map(function (order) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           className: "past-order",
@@ -1057,9 +1062,13 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var order = this.props.order; //console.log('order: ', this.props.order)
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Details here!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Price: ", order), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      var order = this.props.order;
+      var bread = order.bread || [];
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Order ", order.id, " Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Bread"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Quantity")), bread.map(function (bread) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+          key: bread.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.orderDetails.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.orderDetails.quantity));
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/home"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Back to my account")));
     }
@@ -1599,9 +1608,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user */ "./client/store/user.js");
-/* harmony import */ var _single_bread__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./single-bread */ "./client/store/single-bread.js");
-/* harmony import */ var _orders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./orders */ "./client/store/orders.js");
-/* harmony import */ var _bread__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./bread */ "./client/store/bread.js");
+/* harmony import */ var _orders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./orders */ "./client/store/orders.js");
+/* harmony import */ var _bread__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./bread */ "./client/store/bread.js");
+/* harmony import */ var _single_bread__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./single-bread */ "./client/store/single-bread.js");
+/* harmony import */ var _single_order__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./single-order */ "./client/store/single-order.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "me", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["me"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "set", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["set"]; });
@@ -1612,11 +1622,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return _user__WEBPACK_IMPORTED_MODULE_4__["logout"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SET_SINGLE_BREAD", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_5__["SET_SINGLE_BREAD"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SET_SINGLE_BREAD", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_7__["SET_SINGLE_BREAD"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_5__["setSingleBread"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_7__["setSingleBread"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fetchSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_5__["fetchSingleBread"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fetchSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_7__["fetchSingleBread"]; });
+
 
 
 
@@ -1628,9 +1639,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var reducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   user: _user__WEBPACK_IMPORTED_MODULE_4__["default"],
-  orders: _orders__WEBPACK_IMPORTED_MODULE_6__["default"],
-  breads: _bread__WEBPACK_IMPORTED_MODULE_7__["default"],
-  singleBread: _single_bread__WEBPACK_IMPORTED_MODULE_5__["default"]
+  orders: _orders__WEBPACK_IMPORTED_MODULE_5__["default"],
+  breads: _bread__WEBPACK_IMPORTED_MODULE_6__["default"],
+  singleBread: _single_bread__WEBPACK_IMPORTED_MODULE_7__["default"],
+  singleOrder: _single_order__WEBPACK_IMPORTED_MODULE_8__["default"]
 });
 var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2__["default"], Object(redux_logger__WEBPACK_IMPORTED_MODULE_1__["createLogger"])({
   collapsed: true
@@ -1749,7 +1761,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var SET_SINGLE_BREAD = 'SET_SINGLE_BREAD';
 
 var setSingleBread = function setSingleBread(bread) {
-  // console.log(bread)
   return {
     type: SET_SINGLE_BREAD,
     bread: bread
@@ -1833,10 +1844,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';
 
-var getOrderDetails = function getOrderDetails(order) {
+var getOrderDetails = function getOrderDetails(singleOrder) {
   return {
     type: GET_ORDER_DETAILS,
-    order: order
+    singleOrder: singleOrder
   };
 };
 
@@ -1890,7 +1901,7 @@ var initialState = {};
 
   switch (action.type) {
     case GET_ORDER_DETAILS:
-      return action.order;
+      return action.singleOrder;
 
     default:
       return state;
