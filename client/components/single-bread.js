@@ -1,8 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleBread} from '../store/single-bread'
+import {addItemToCart} from '../store/cart'
 
 export class SingleBread extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      quantity: 0
+    }
+  }
+
   componentDidMount() {
     try {
       const id = this.props.match.params.id
@@ -10,6 +18,12 @@ export class SingleBread extends React.Component {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: Number(event.target.value)
+    })
   }
 
   render() {
@@ -23,9 +37,19 @@ export class SingleBread extends React.Component {
             <p>{bread.description}</p>
             <h5>Price: ${bread.price}</h5>
             {bread.quantity > 0 ? (
-              <div className="add-to-cart">
-                <input type="number" name="qty" placeholder="Qty" />
-                <h5>Add to cart</h5>
+              <div onChange={this.handleChange} className="add-to-cart">
+                <input type="number" name="quantity" placeholder="Qty" />
+                <button
+                  onClick={() => {
+                    this.props.addItemToCart(
+                      bread,
+                      this.state.quantity,
+                      bread.price
+                    )
+                  }}
+                  >
+                  Add to cart
+                </button>
               </div>
             ) : (
               <h5>Sold out!</h5>
@@ -43,7 +67,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getSingleBread: id => dispatch(fetchSingleBread(id))
+    getSingleBread: id => dispatch(fetchSingleBread(id)),
+    addItemToCart: (bread, quantity, price) =>
+      dispatch(addItemToCart(bread, quantity, price))
   }
 }
 

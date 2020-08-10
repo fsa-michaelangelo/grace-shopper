@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import BreadIcon from './breadIcon'
 import {breadSetter, breadGetter} from '../store/bread'
-
+import {Link} from 'react-router-dom'
 export class Breads extends Component {
   // constructor(props) {
   //   super(props)
@@ -13,23 +13,6 @@ export class Breads extends Component {
     this.props.fetchBreads()
   }
 
-  //for future search functionality
-
-  // handleSubmit(event) {
-  //   event.preventDefault()
-  //   try {
-  //     this.props.addCampus(this.state)
-  //   } catch (err) {
-  //     next(err)
-  //   }
-  // }
-
-  // handleChange(event) {
-  //   this.setState({
-  //     [event.target.name]: event.target.value
-  //   })
-  // }
-
   render() {
     const breads = this.props.breads || []
 
@@ -39,9 +22,11 @@ export class Breads extends Component {
           <h1>Breads</h1>
         </div>
         <div className="search">
-          <form onSubmit={this.handleSubmit}>
-            <label>Filter Search: </label>
-            <input type="text" name="name" onChange={this.handleChange} />
+          <h3>Search by Category:</h3>
+          <Link to="/category/French">French</Link>
+          <br />
+          <Link to="/category/Sourdough">Sourdough</Link>
+          <form id="search" onSubmit={this.handleSubmit}>
           </form>
         </div>
         <div className="all-breads">

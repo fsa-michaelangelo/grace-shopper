@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-
+import {Link} from 'react-router-dom'
+import Cart from './cart'
 import OrderHistory from './order-history'
+import {set} from '../store/user'
 
 /**
  * COMPONENT
@@ -26,9 +28,11 @@ export const UserHome = props => {
             <h4>Phone</h4>
             <div>{user.phone}</div>
           </div>
-          <button type="button">Edit info</button>
-          {/*if there is a current cart, render it. otherwise...*/}
-          <h4>You don't have anything in your cart.</h4>
+          <Link to='/edit'>Edit info</Link>
+          <div className="current-order">
+            <h4>Items in your cart</h4>
+            <Cart />
+          </div>
         </div>
         <div className="order-history">
           <h3>Order History</h3>
@@ -39,14 +43,12 @@ export const UserHome = props => {
   )
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     user: state.user
   }
 }
+
 
 export default connect(mapState)(UserHome)
 

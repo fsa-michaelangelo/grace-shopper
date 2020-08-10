@@ -1,4 +1,3 @@
-const {green, red} = require('chalk')
 const {db, User, Bread, Order} = require('./server/db')
 const OrderDetails = require('./server/db/models/orderDetails')
 
@@ -41,6 +40,10 @@ const seed = async () => {
       userId: user1.id
     })
 
+    const orderFor2 = await Order.create({
+      userId: user2.id
+    })
+
     const orderDets1 = await OrderDetails.create({
       orderId: order1.id,
       breadId: sourdough.id,
@@ -55,14 +58,14 @@ const seed = async () => {
       quantity: 1
     })
 
-    // const orderDets12 = await OrderDetails.create({
-    //   orderId: order1.id,
-    //   breadId : [sourdough.id, french.id],
-    //   price: 3,
-    //   quantity: 1
-    // })
+    const orderDets2 = await OrderDetails.create({
+      orderId: orderFor2.id,
+      breadId: french.id,
+      price: 3,
+      quantity: 1
+    })
   } catch (err) {
-    console.log(red(err))
+    console.log(err)
   }
 }
 
@@ -73,11 +76,11 @@ module.exports = seed
 if (require.main === module) {
   seed()
     .then(() => {
-      console.log(green('Seeding success!'))
+      console.log('Seeding success!')
       db.close()
     })
     .catch(err => {
-      console.error(red('Oh noes! Something went wrong!'))
+      console.error('Oh noes! Something went wrong!')
       console.error(err)
       db.close()
     })
