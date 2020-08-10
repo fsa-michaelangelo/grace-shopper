@@ -14,7 +14,8 @@ const reducer = combineReducers({
   orders,
   breads,
   singleBread,
-  singleOrder
+  singleOrder,
+  cart
 })
 
 const middleware = composeWithDevTools(

@@ -1,11 +1,23 @@
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import React from 'react'
-import {fetchCart} from '../store/cart'
+import {fetchCart, removeCartItem} from '../store/cart'
+import SingleBread from './single-bread'
 
 class Cart extends React.Component {
-  ///possible use of useDispatch hook instead?
-  async componentDidMount() {
-    await this.props.fetchCart()
+  constructor() {
+    super()
+    this.state = {}
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  componentDidMount() {
+    this.props.fetchCart()
   }
 
   render() {
@@ -14,15 +26,40 @@ class Cart extends React.Component {
     return (
       <div>
         {cart.length ? (
-          cart.map(item => {
+          cart.map((item, index) => {
             return (
-              <div key={item.id}>
+              <div key={index}>
                 <div>
                   <div>{item.name}</div>
                   <img src={item.imageUrl} />
                   <p>{item.description}</p>
                 </div>
-                <div>Amount: {item.orderDetails.quantity}</div>
+                {item.orderDetails ? (
+                  <>
+                    <div onChange={this.handleChange}>
+                      <input
+                        type="number"
+                        name="quantity"
+                        placeholder={Number(item.orderDetails.quantity)}
+                      />
+                    </div>
+                    <div>
+                      <p> price: ${item.orderDetails.price}</p>
+                    </div>
+                  </>
+                ) : null}
+                <button
+                  onClick={() => {
+                    this.props.removeItem(item)
+                  }}
+                >
+                  Remove item from cart
+                </button>
+                <>
+                  <Link to={`/breads/${item.id}`} component={SingleBread}>
+                    Need to change the amount?
+                  </Link>
+                </>
               </div>
             )
           })
@@ -42,7 +79,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: () => dispatch(fetchCart())
+    fetchCart: () => dispatch(fetchCart()),
+    removeItem: bread => dispatch(removeCartItem(bread))
+    //addItemToCart: (bread, quantity, price) => dispatch(bread, quantity, price)
   }
 }
 

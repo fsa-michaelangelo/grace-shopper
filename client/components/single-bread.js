@@ -4,6 +4,13 @@ import {fetchSingleBread} from '../store/single-bread'
 import {addItemToCart} from '../store/cart'
 
 export class SingleBread extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      quantity: 0
+    }
+  }
+
   componentDidMount() {
     try {
       const id = this.props.match.params.id
@@ -11,6 +18,12 @@ export class SingleBread extends React.Component {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: Number(event.target.value)
+    })
   }
 
   render() {
@@ -22,11 +35,15 @@ export class SingleBread extends React.Component {
         <h6>{bread.description}</h6>
         <h5>Price: ${bread.price}</h5>
         {bread.quantity > 0 ? (
-          <div>
-            <input type="number" name="qty" placeholder="Qty" />
+          <div onChange={this.handleChange}>
+            <input type="number" name="quantity" placeholder="Qty" />
             <button
               onClick={() => {
-                this.props.addItemToCart(bread, event.target.value, bread.price)
+                this.props.addItemToCart(
+                  bread,
+                  this.state.quantity,
+                  bread.price
+                )
               }}
             >
               Add to cart
