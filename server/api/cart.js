@@ -5,7 +5,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      const order = await Order.findOne({
+      const [order] = await Order.findAll({
         where: {
           userId: req.user.id,
           status: 'active'
@@ -13,14 +13,11 @@ router.get('/', async (req, res, next) => {
         include: [Bread]
       })
 
-      console.log('ORDER', order.bread)
       const cart = await OrderDetails.findAll({
         where: {
           orderId: order.id
         }
       })
-
-      console.log('CART', cart)
 
       //console.log('BREAD', cart)
       res.json(order.bread)
@@ -58,39 +55,39 @@ router.put('/', async (req, res, next) => {
 
         res.status(200).json()
       } else {
-        console.log('ORDER', order)
-
-        const [cart] = await OrderDetails.findAll({
+        const cart = await OrderDetails.findAll({
           where: {
-            orderId: order.id
+            orderId: order.id,
+            breadId: req.body.bread.id
           }
         })
-        console.log('CART', cart)
 
-        console.log('    ', req.body.quantity)
-        //if(req.body.quantity > 0){
-        const updatedCart = await cart.update(
-          {
-            quantity: req.body.quantity
-          },
-          {
-            where: {
-              orderId: order.id,
-              breadId: req.body.bread.id
-            }
-          }
+        const breadArr = cart.filter(
+          order => order.breadId === req.body.bread.id
         )
 
-        console.log('updated', updatedCart)
+        if (!breadArr.length) {
+          const orderDetail = await OrderDetails.create({
+            orderId: order.id,
+            breadId: req.body.bread.id,
+            quantity: req.body.quantity,
+            price: req.body.price
+          })
+        } else {
+          const updatedCart = await OrderDetails.update(
+            {
+              quantity: req.body.quantity
+            },
+            {
+              where: {
+                orderId: order.id,
+                breadId: req.body.bread.id
+              }
+            }
+          )
+        }
 
-        res.sendStatus(200)
-
-        // await OrderDetails.destroy({
-        //     where: {
-        //       orderId: order.id,
-        //       breadId: req.body.bread.id
-        //     }
-        // })
+        //if(req.body.quantity > 0){
 
         res.status(200).end()
       }
@@ -119,6 +116,38 @@ router.put('/', async (req, res, next) => {
         res.json(newCart)
       }
     }
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/:breadId', async (req, res, next) => {
+  try {
+    if (req.user) {
+      const id = req.params.breadId
+
+      const [order] = await Order.findAll({
+        where: {
+          userId: req.user.id,
+          status: 'active'
+        }
+      })
+
+      await OrderDetails.destroy({
+        where: {
+          orderId: order.id,
+          breadId: id
+        }
+      })
+    } else {
+      const filteredCart = req.session.cart.filter(
+        bread => bread.id !== req.body.bread.id
+      )
+
+      req.session.cart = filteredCart
+    }
+
+    res.sendStatus(200)
   } catch (err) {
     next(err)
   }

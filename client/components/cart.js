@@ -16,8 +16,8 @@ class Cart extends React.Component {
     })
   }
 
-  async componentDidMount() {
-    await this.props.fetchCart()
+  componentDidMount() {
+    this.props.fetchCart()
   }
 
   render() {
@@ -50,7 +50,7 @@ class Cart extends React.Component {
                 ) : null}
                 <button
                   onClick={() => {
-                    this.props.removeItem(item, 0)
+                    this.props.removeItem(item)
                   }}
                 >
                   Remove item from cart
@@ -80,8 +80,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    removeItem: bread => dispatch(removeCartItem(bread)),
-    addItemToCart: (bread, quantity, price) => dispatch(bread, quantity, price)
+    removeItem: bread => dispatch(removeCartItem(bread))
+    //addItemToCart: (bread, quantity, price) => dispatch(bread, quantity, price)
   }
 }
 

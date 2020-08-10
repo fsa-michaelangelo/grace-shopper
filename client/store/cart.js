@@ -13,8 +13,9 @@ export const getCart = cart => ({
   cart
 })
 
-export const setCart = () => ({
-  type: ADD_TO_CART
+export const setCart = cart => ({
+  type: ADD_TO_CART,
+  cart
 })
 
 export const removeItemInCart = bread => ({
@@ -31,7 +32,6 @@ export const fetchCart = () => {
   return async function(dispatch) {
     try {
       const {data} = await Axios.get('/api/cart/')
-      console.log('DATA', data)
       dispatch(getCart(data))
     } catch (err) {
       console.log(err)
@@ -44,19 +44,18 @@ export const addItemToCart = (bread, quantity, price) => {
     try {
       const res = await Axios.put('/api/cart/', {bread, quantity, price})
       const {data} = await Axios.get('/api/cart/')
-      dispatch(getCart(data))
+      dispatch(setCart(data))
     } catch (err) {
       console.log(err)
     }
   }
 }
 
-export const removeCartItem = (bread, quantity) => {
+export const removeCartItem = bread => {
   return async function(dispatch) {
     try {
-      const res = await Axios.put('/api/cart/', {bread, quantity})
-      const {data} = await Axios.get('/api/cart/')
-      dispatch(getCart(data))
+      const {data} = await Axios.delete(`/api/cart/${bread.id}`)
+      dispatch(removeItemInCart(bread))
     } catch (err) {
       console.log(err)
     }
@@ -81,12 +80,9 @@ export default function(state = localState, action) {
     case GET_CART:
       return action.cart
     case ADD_TO_CART:
-      return [
-        ...state,
-        {bread: action.bread, quantity: action.quantity, price: action.price}
-      ]
+      return [...state, action.cart]
     case REMOVE_FROM_CART:
-      return state.filter(item => item.bread.id !== action.bread.id)
+      return state.filter(item => item.orderDetails.breadId !== action.bread.id)
     case EMPTY_CART:
       return localState
     default:
