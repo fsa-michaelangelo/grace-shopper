@@ -1,6 +1,8 @@
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import React from 'react'
-import {fetchCart, removeCartItem, addItemToCart} from '../store/cart'
+import {fetchCart, removeCartItem} from '../store/cart'
+import SingleBread from './single-bread'
 
 class Cart extends React.Component {
   constructor() {
@@ -14,14 +16,13 @@ class Cart extends React.Component {
     })
   }
 
-  ///possible use of useDispatch hook instead?
   async componentDidMount() {
     await this.props.fetchCart()
   }
 
   render() {
     const cart = this.props.cart
-    console.log('CART', cart)
+
     return (
       <div>
         {cart.length ? (
@@ -33,19 +34,32 @@ class Cart extends React.Component {
                   <img src={item.imageUrl} />
                   <p>{item.description}</p>
                 </div>
-                <div onChange={this.handleChange}>
-                  <input
-                    type="number"
-                    name="quantity"
-                    placeholder={Number(item.quantity)}
-                  />
-                </div>
-                {/* <button onClick={() => {
-                    this.state.quantity
-                    ? this.addItemToCart(item, this.state.quantity, item.bread.price)
-                    : this.removeItem(item)}}>
-                    Remove item from cart
-                  </button> */}
+                {item.orderDetails ? (
+                  <>
+                    <div onChange={this.handleChange}>
+                      <input
+                        type="number"
+                        name="quantity"
+                        placeholder={Number(item.orderDetails.quantity)}
+                      />
+                    </div>
+                    <div>
+                      <p> price: ${item.orderDetails.price}</p>
+                    </div>
+                  </>
+                ) : null}
+                <button
+                  onClick={() => {
+                    this.props.removeItem(item, 0)
+                  }}
+                >
+                  Remove item from cart
+                </button>
+                <>
+                  <Link to={`/breads/${item.id}`} component={SingleBread}>
+                    Need to change the amount?
+                  </Link>
+                </>
               </div>
             )
           })
