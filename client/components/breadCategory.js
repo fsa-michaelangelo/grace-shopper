@@ -12,7 +12,7 @@ export class BreadCategory extends Component {
   }
   render() {
     const breads = this.props.breads || []
-    console.log('breads ', breads)
+
     return (
     <div>
     {
@@ -29,7 +29,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToState = dispatch => { 
+const mapDispatchToState = dispatch => {
   return {
     fetchGroup: (name) => dispatch(breadGroup(name))
   }

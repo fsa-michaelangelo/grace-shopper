@@ -16,11 +16,13 @@ export class Breads extends Component {
 
     return (
       <>
-        <h1>Breads Page</h1>
+        <div className='header'>
+          <h1>Breads</h1>
+        </div>
         <Link to="/category/French">French</Link>
         <br />
         <Link to="/category/Sourdough">Sourdough</Link>
-        <div className="items">
+        <div className="all-breads">
           {breads.map(bread => <BreadIcon key={bread.id} bread={bread} />)}
         </div>
       </>
