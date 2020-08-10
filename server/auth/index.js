@@ -40,10 +40,8 @@ router.put('/:id', async (req, res, next) => {
     const updatedUser = User.findByPk(id)
       .then(user => user.update(req.body))
       .then(user => res.json(user))
-    console.log('in put api user ', updatedUser)
-    res.json(updatedUser)
   } catch (err) {
-    res.send('Please Enter Valid Account Settings')
+    next(err)
   }
 })
 

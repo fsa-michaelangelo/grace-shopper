@@ -17,12 +17,10 @@ export class account extends Component {
   }
   async handleSubmit(evt) {
     evt.preventDefault()
-    const updatedUser = await axios.put(
+     await axios.put(
       `/auth/${this.props.user.id}`,
       this.state
     )
-    console.log('in account back user ', updatedUser)
-    this.props.setUser(updatedUser)
   }
   handleChange(event) {
     this.setState({

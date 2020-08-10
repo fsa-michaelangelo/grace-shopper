@@ -281,7 +281,6 @@ function (_Component) {
       var _handleSubmit = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(evt) {
-        var updatedUser;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -291,11 +290,6 @@ function (_Component) {
                 return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put("/auth/".concat(this.props.user.id), this.state);
 
               case 3:
-                updatedUser = _context.sent;
-                console.log('in account back user ', updatedUser);
-                this.props.setUser(updatedUser);
-
-              case 6:
               case "end":
                 return _context.stop();
             }
@@ -45675,7 +45669,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
