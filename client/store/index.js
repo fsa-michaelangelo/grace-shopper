@@ -2,6 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
+import cart from './cart'
 import user from './user'
 import orders from './orders'
 import breads from './bread'
@@ -13,7 +14,8 @@ const reducer = combineReducers({
   orders,
   breads,
   singleBread,
-  singleOrder
+  singleOrder,
+  cart
 })
 
 const middleware = composeWithDevTools(
