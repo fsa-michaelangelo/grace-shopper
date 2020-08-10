@@ -117,6 +117,10 @@ h1 {
   width: 100vw;
 }
 
+#account-info {
+  margin-bottom: 20px;
+}
+
 a {
   text-decoration: none;
   color: $textColor;
@@ -132,9 +136,31 @@ form div {
 }
 
 button {
-  background: white;
-  padding: 3px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: whitesmoke;
+  &:hover {
+    background: rgb(214, 208, 208);
+  }
+  font-weight: bold;
+  color: $textColor;
+  padding: 5px;
   border-radius: 3px 3px 3px 3px;
   border-color: $textColor;
   border-width: 1px;
+}
+
+table,
+th,
+td {
+  padding: 5px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  th {
+    width: 8vw;
+  }
+}
+
+td {
+  align-self: center;
 }

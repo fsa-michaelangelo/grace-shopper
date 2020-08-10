@@ -17,7 +17,7 @@ class SingleOrderDetails extends React.Component {
 
     return (
       <>
-        <h3>Order #{order.id} Details</h3>
+        <h3>Order #{order.id}</h3>
         <div>Purchase date: {order.createdAt}</div>
         <h4>Purchased Items:</h4>
         <table>

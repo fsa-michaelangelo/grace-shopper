@@ -17,16 +17,18 @@ export const UserHome = props => {
       </div>
       <div id="user-home">
         <div id="account-details">
-          <h3>Account Details</h3>
-          <h4>Email</h4>
-          <div>{user.email}</div>
-          <h4>Address</h4>
-          <div>{user.address}</div>
-          <h4>Phone</h4>
-          <div>{user.phone}</div>
-          <button type="button">Edit account info</button>
+          <div id="account-info">
+            <h3>Account Details</h3>
+            <h4>Email</h4>
+            <div>{user.email}</div>
+            <h4>Address</h4>
+            <div>{user.address}</div>
+            <h4>Phone</h4>
+            <div>{user.phone}</div>
+          </div>
+          <button type="button">Edit info</button>
           {/*if there is a current cart, render it. otherwise...*/}
-          <h5>Nothing in your cart at this time</h5>
+          <h4>You don't have anything in your cart.</h4>
         </div>
         <div className="order-history">
           <h3>Order History</h3>
