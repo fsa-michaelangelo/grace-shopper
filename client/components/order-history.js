@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
@@ -27,7 +28,11 @@ export class OrderHistory extends React.Component {
                 return (
                   <tr className="past-order" key={order.id}>
                     <td>{order.id}</td>
-                    <td>{order.createdAt}</td>
+                    <td>
+                      {moment(order.createdAt)
+                        .subtract(10, 'days')
+                        .calendar()}
+                    </td>
                     <td>
                       <Link to={`/orders/${order.id}`}>
                         <button>View</button>

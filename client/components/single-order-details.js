@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 
@@ -17,28 +18,35 @@ class SingleOrderDetails extends React.Component {
 
     return (
       <>
-        <h3>Order {order.id} Details</h3>
-        <table>
-          <tbody>
-            <tr>
-              <th>Bread</th>
-              <th>Price</th>
-              <th>Quantity</th>
-            </tr>
-            {bread.map(bread => {
-              return (
-                <tr key={bread.id}>
-                  <td>{bread.name}</td>
-                  <td>{bread.orderDetails.price}</td>
-                  <td>{bread.orderDetails.quantity}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-        <Link to="/home">
-          <button>Back to my account</button>
-        </Link>
+        <div id="single-order-details">
+          <h3>Order #{order.id}</h3>
+          <h4>Purchase date:</h4>
+          <div>{moment(order.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</div>
+          <h4>Purchased Items:</h4>
+          <table>
+            <tbody>
+              <tr>
+                <th>Bread</th>
+                <th>Price</th>
+                <th>Quantity</th>
+              </tr>
+              {bread.map(bread => {
+                return (
+                  <tr key={bread.id}>
+                    <td>{bread.name}</td>
+                    <td>${bread.orderDetails.price}</td>
+                    <td>{bread.orderDetails.quantity}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <Link to="/home">
+            <button>Back to my account</button>
+          </Link>
+        </div>
       </>
     )
   }

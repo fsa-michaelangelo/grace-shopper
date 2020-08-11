@@ -13,9 +13,15 @@ import {
   SingleBread,
   Cart,
   Checkout
+  Account,
+  Category
 } from './components'
 
 import {me} from './store'
+
+// import UserHome from './components/user-home'
+
+// import {SingleBread} from './components'
 
 /**
  * COMPONENT
@@ -27,6 +33,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
+
 
     //REMEMBER TO ADD all components to ./components exports
     return (
@@ -41,6 +48,7 @@ class Routes extends Component {
         <Route exact path="/cart/checkout" component={Checkout} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/breads" component={Breads} />
+        <Route exact path="/category/:name" component={Category} />
         <Route exact path="/breads/:id" component={SingleBread} />
         {isLoggedIn && (
           <Switch>
@@ -48,6 +56,10 @@ class Routes extends Component {
             <Route exact path="/home" component={UserHome} />
             <Route exact path="/orders" component={OrderHistory} />
             <Route path="/orders/:orderId" component={SingleOrderDetails} />
+            <Route
+              exact
+              path="/edit"
+              component={Account} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

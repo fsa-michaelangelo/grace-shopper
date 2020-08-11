@@ -1,0 +1,172 @@
+@import './variables';
+
+@mixin flexCenter($direction) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: rgb(247, 237, 223);
+  color: $textColor;
+}
+
+nav {
+  @include flexCenter(row);
+  justify-content: space-between;
+  a {
+    display: inline-block;
+    margin: 1em;
+    color: $navLink;
+  }
+}
+
+.right-nav-container {
+  img {
+    width: 3vw;
+    height: 3vh;
+  }
+}
+
+.header {
+  @include flexCenter(row);
+}
+
+.homepage-header {
+  @include flexCenter(column);
+}
+
+.homepage-breads-container {
+  @include flexCenter(row);
+  margin: 25px;
+  img {
+    margin: 10px;
+    width: 30vw;
+    height: 40vh;
+  }
+}
+
+h1 {
+  color: $textColor;
+}
+
+.all-breads {
+  @include flexCenter(row);
+  flex-wrap: wrap;
+  div {
+    margin: 10px;
+  }
+  img {
+    width: 30vw;
+    height: 40vh;
+  }
+}
+
+.search {
+  @include flexCenter(row);
+  justify-content: flex-end;
+  margin: 10px;
+  form {
+    align-self: flex-end;
+  }
+}
+
+.search label {
+  display: inline;
+}
+
+.single-page {
+  @include flexCenter(column);
+  margin: 20px;
+  width: 80%;
+  h1 {
+    align-self: flex-start;
+  }
+  img {
+    align-self: flex-start;
+    width: 40vw;
+    height: 60vh;
+    padding-right: 10px;
+  }
+  p {
+    margin: 0px;
+  }
+}
+
+.single-page-row {
+  @include flexCenter(row);
+}
+
+.single-page-info {
+  @include flexCenter(column);
+  align-self: flex-start;
+  align-items: flex-start;
+  justify-content: space-between;
+  input {
+    width: 5vw;
+  }
+}
+
+#user-home {
+  @include flexCenter(row);
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100vw;
+}
+
+#account-info {
+  margin-bottom: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: $textColor;
+}
+
+label {
+  display: block;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: whitesmoke;
+  &:hover {
+    background: rgb(214, 208, 208);
+  }
+  font-weight: bold;
+  color: $textColor;
+  padding: 5px;
+  border-radius: 3px 3px 3px 3px;
+  border-color: $textColor;
+  border-width: 1px;
+}
+
+table,
+th,
+td {
+  padding: 5px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  th {
+    width: 8vw;
+  }
+}
+
+td {
+  text-align: center;
+}
+
+#single-order-details {
+  @include flexCenter(column);
+  align-items: flex-start;
+  margin-bottom: 15px;
+}

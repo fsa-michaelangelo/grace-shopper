@@ -13,11 +13,11 @@ router.get('/', async (req, res, next) => {
         include: [Bread]
       })
 
-      const cart = await OrderDetails.findAll({
-        where: {
-          orderId: order.id
-        }
-      })
+      // const cart = await OrderDetails.findAll({
+      //   where: {
+      //     orderId: order.id
+      //   }
+      // })
 
       //console.log('BREAD', cart)
       res.json(order.bread)
@@ -99,7 +99,7 @@ router.put('/', async (req, res, next) => {
       const oldCart = req.session.cart
 
       const newCart = req.session.cart.filter(
-        bread => bread.id !== req.body.bread.id
+        bread => bread.bread.id !== req.body.bread.id
       )
 
       if (oldCart.length === newCart.length) {
@@ -107,13 +107,13 @@ router.put('/', async (req, res, next) => {
 
         res.json(req.session.cart)
       } else {
-        newCart.forEach(bread => {
-          if (bread.id !== req.body.bread.id) {
+        oldCart.forEach(bread => {
+          if (bread.bread.id === req.body.bread.id) {
             bread.quantity = req.body.quantity
           }
         })
 
-        res.json(newCart)
+        res.json(oldCart)
       }
     }
   } catch (err) {
@@ -123,9 +123,8 @@ router.put('/', async (req, res, next) => {
 
 router.delete('/:breadId', async (req, res, next) => {
   try {
+    const id = req.params.breadId
     if (req.user) {
-      const id = req.params.breadId
-
       const [order] = await Order.findAll({
         where: {
           userId: req.user.id,
@@ -140,9 +139,7 @@ router.delete('/:breadId', async (req, res, next) => {
         }
       })
     } else {
-      const filteredCart = req.session.cart.filter(
-        bread => bread.id !== req.body.bread.id
-      )
+      let filteredCart = req.session.cart.filter(item => item.bread.id != id)
 
       req.session.cart = filteredCart
     }
