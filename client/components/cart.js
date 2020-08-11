@@ -6,16 +6,6 @@ import SingleBread from './single-bread'
 import GuestCart from './guestCart'
 
 class Cart extends React.Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
 
   componentDidMount() {
     this.props.fetchCart()
@@ -24,45 +14,43 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.cart
     return (
-      <div>
+      <>
+      {/* <div className='header'>
+        <h1>Cart</h1>
+        </div> */}
         {cart.length ? (
           cart[0].bread ? (
             <GuestCart cart={cart} />
           ) : (
             cart.map((item, index) => {
               return (
-                <div key={index}>
+                <div className='cart-item' key={index}>
                   <div>
-                    <div>{item.name}</div>
                     <img src={item.imageUrl} />
-                    <p>{item.description}</p>
                   </div>
-                  {item.orderDetails ? (
-                    <>
-                      <div onChange={this.handleChange}>
-                        <input
-                          type="number"
-                          name="quantity"
-                          placeholder={Number(item.orderDetails.quantity)}
-                        />
-                      </div>
-                      <div>
-                        <p> price: ${item.orderDetails.price}</p>
-                      </div>
-                    </>
-                  ) : null}
-                  <button
-                    onClick={() => {
-                      this.props.removeItem(item)
-                    }}
-                  >
-                    Remove item from cart
-                  </button>
-                  <>
-                    <Link to={`/breads/${item.id}`} component={SingleBread}>
-                      Need to change the amount?
-                    </Link>
-                  </>
+                  <div className='cart-details'>
+                    <h4>{item.name}</h4>
+                    <p>{item.description}</p>
+                    {
+                      item.orderDetails ? (
+                        <>
+                          <div>Price: ${item.orderDetails.price}</div>
+                          <div className='quantity'>
+                            Quantity: {Number(item.orderDetails.quantity)}
+                            <Link to={`/breads/${item.id}`} component={SingleBread}>
+                              <sub>Change amount?</sub>
+                            </Link>
+                          </div>
+                        </>
+                      ) : null
+                    }
+                    <button
+                      onClick={() => {
+                        this.props.removeItem(item)
+                      }}>
+                        Remove item
+                    </button>
+                  </div>
                 </div>
               )
             })
@@ -75,7 +63,7 @@ class Cart extends React.Component {
             <button type="submit">Checkout</button>
           </Link>
         ) : null}
-      </div>
+      </>
     )
   }
 }

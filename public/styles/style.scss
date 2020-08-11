@@ -120,11 +120,24 @@ h1 {
 
 #account-info {
   margin-bottom: 20px;
+  //width: 50vw;
 }
 
 #edit-account {
+  @include flexCenter(column);
   form {
-    @include flexCenter(column);
+    @include flexCenter(row);
+    div {
+      @include flexCenter(column);
+      justify-content: flex-start;
+    }
+  }
+}
+
+#current-order {
+  @include flexCenter(column);
+  h4 {
+    align-self: center;
   }
 }
 
@@ -132,6 +145,40 @@ h1 {
   @include flexCenter(column);
   align-items: flex-start;
   margin-bottom: 15px;
+}
+
+.cart-item {
+  @include flexCenter(row);
+  height: 40vh;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 25px;
+  h4 {
+    margin: 5px;
+    margin-bottom: 35px;
+  }
+  div {
+    @include flexCenter(column);
+    align-items: flex-start;
+    margin: 5px;
+    p {
+      margin: 5px;
+    }
+  }
+  img {
+    width: 25vw;
+    height: 40vh;
+  }
+}
+
+.cart-details {
+  width: 50vw;
+  height: 100%;
+}
+
+.quantity {
+  @include flexCenter(row);
+  flex-wrap: wrap;
 }
 
 a {
@@ -155,10 +202,9 @@ button {
   &:hover {
     background: rgb(214, 208, 208);
   }
-  font-weight: bold;
   color: $textColor;
   padding: 5px;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 5px 5px 5px 5px;
   border-color: $textColor;
   border-width: 1px;
 }

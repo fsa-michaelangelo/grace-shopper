@@ -324,8 +324,7 @@ function (_Component) {
       email: '',
       password: '',
       confirm: '',
-      err: false,
-      success: false
+      warning: false
     };
     return _this;
   }
@@ -334,52 +333,67 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getUser();
+      this.setState({
+        warning: true
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var user = this.props.user;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "edit-account"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "account-essentials"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Email"), !this.state.email && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "warning"
+      }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "email",
         type: "text",
         defaultValue: user.email,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "warning"
+      }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "password",
         type: "password",
         defaultValue: user.password,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "confirm"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Confirm Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Confirm Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "warning"
+      }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "confirm",
         type: "password",
         onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "account-nonessentials"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "address"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "address",
         type: "text",
         defaultValue: user.address,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "phone"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Phone")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Phone")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "phone",
         type: "text",
         defaultValue: user.phone,
         onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
-      }, "Submit")))));
+      }, "Submit"))));
     }
   }]);
 
@@ -560,15 +574,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -583,18 +595,9 @@ function (_React$Component) {
   _inherits(Cart, _React$Component);
 
   function Cart() {
-    var _this;
-
     _classCallCheck(this, Cart);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cart).call(this));
-
-    _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
-      _this.setState(_defineProperty({}, event.target.name, event.target.value));
-    });
-
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Cart).apply(this, arguments));
   }
 
   _createClass(Cart, [{
@@ -605,30 +608,29 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
       var cart = this.props.cart;
-      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, cart.length ? cart[0].bread ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_guestCart__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, cart.length ? cart[0].bread ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_guestCart__WEBPACK_IMPORTED_MODULE_5__["default"], {
         cart: cart
       }) : cart.map(function (item, index) {
         return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "cart-item",
           key: index
-        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, item.name), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
           src: item.imageUrl
-        }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, item.description)), item.orderDetails ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-          onChange: _this2.handleChange
-        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
-          type: "number",
-          name: "quantity",
-          placeholder: Number(item.orderDetails.quantity)
-        })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, " price: $", item.orderDetails.price))) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-          onClick: function onClick() {
-            _this2.props.removeItem(item);
-          }
-        }, "Remove item from cart"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "cart-details"
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h4", null, item.name), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, item.description), item.orderDetails ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, "Price: $", item.orderDetails.price), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "quantity"
+        }, "Quantity: ", Number(item.orderDetails.quantity), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/breads/".concat(item.id),
           component: _single_bread__WEBPACK_IMPORTED_MODULE_4__["default"]
-        }, "Need to change the amount?")));
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("sub", null, "Change amount?")))) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
+          onClick: function onClick() {
+            _this.props.removeItem(item);
+          }
+        }, "Remove item")));
       }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/cart/checkout"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
@@ -1505,8 +1507,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cart */ "./client/components/cart.js");
 /* harmony import */ var _order_history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./order-history */ "./client/components/order-history.js");
-/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store/user */ "./client/store/user.js");
-
 
 
 
@@ -1529,13 +1529,13 @@ var UserHome = function UserHome(props) {
     id: "account-info"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Account Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/edit"
-  }, "Edit info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "current-order"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_4__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Edit info")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "order-history"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Order History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_order_history__WEBPACK_IMPORTED_MODULE_5__["default"], {
     user: user
-  }))));
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "current-order"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 };
 
 var mapState = function mapState(state) {
