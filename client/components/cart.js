@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import React from 'react'
 import {fetchCart, removeCartItem} from '../store/cart'
 import SingleBread from './single-bread'
@@ -23,7 +23,6 @@ class Cart extends React.Component {
 
   render() {
     const cart = this.props.cart
-
     return (
       <div>
         {cart.length ? (
@@ -71,6 +70,11 @@ class Cart extends React.Component {
         ) : (
           <h3>Any way you slice it there's nothin here...</h3>
         )}
+        {cart.length ? (
+          <Link to="/cart/checkout">
+            <button type="submit">Checkout</button>
+          </Link>
+        ) : null}
       </div>
     )
   }
