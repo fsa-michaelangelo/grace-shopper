@@ -616,7 +616,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, cart.length ? cart[0].bread ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_guestCart__WEBPACK_IMPORTED_MODULE_5__["default"], {
         cart: cart
       }) : cart.map(function (item, index) {
-        cartTotal += item.quantity * item.price;
+        cartTotal += item.orderDetails.quantity * item.orderDetails.price;
         return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
           className: "cart-item",
           key: index
