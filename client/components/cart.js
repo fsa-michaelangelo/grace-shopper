@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import React from 'react'
 import {fetchCart, removeCartItem} from '../store/cart'
 import SingleBread from './single-bread'
+import GuestCart from './guestCart'
 
 class Cart extends React.Component {
   constructor() {
@@ -26,43 +27,47 @@ class Cart extends React.Component {
     return (
       <div>
         {cart.length ? (
-          cart.map((item, index) => {
-            return (
-              <div key={index}>
-                <div>
-                  <div>{item.name}</div>
-                  <img src={item.imageUrl} />
-                  <p>{item.description}</p>
-                </div>
-                {item.orderDetails ? (
+          cart[0].bread ? (
+            <GuestCart cart={cart} />
+          ) : (
+            cart.map((item, index) => {
+              return (
+                <div key={index}>
+                  <div>
+                    <div>{item.name}</div>
+                    <img src={item.imageUrl} />
+                    <p>{item.description}</p>
+                  </div>
+                  {item.orderDetails ? (
+                    <>
+                      <div onChange={this.handleChange}>
+                        <input
+                          type="number"
+                          name="quantity"
+                          placeholder={Number(item.orderDetails.quantity)}
+                        />
+                      </div>
+                      <div>
+                        <p> price: ${item.orderDetails.price}</p>
+                      </div>
+                    </>
+                  ) : null}
+                  <button
+                    onClick={() => {
+                      this.props.removeItem(item)
+                    }}
+                  >
+                    Remove item from cart
+                  </button>
                   <>
-                    <div onChange={this.handleChange}>
-                      <input
-                        type="number"
-                        name="quantity"
-                        placeholder={Number(item.orderDetails.quantity)}
-                      />
-                    </div>
-                    <div>
-                      <p> price: ${item.orderDetails.price}</p>
-                    </div>
+                    <Link to={`/breads/${item.id}`} component={SingleBread}>
+                      Need to change the amount?
+                    </Link>
                   </>
-                ) : null}
-                <button
-                  onClick={() => {
-                    this.props.removeItem(item)
-                  }}
-                >
-                  Remove item from cart
-                </button>
-                <>
-                  <Link to={`/breads/${item.id}`} component={SingleBread}>
-                    Need to change the amount?
-                  </Link>
-                </>
-              </div>
-            )
-          })
+                </div>
+              )
+            })
+          )
         ) : (
           <h1>Any way you slice it there's nothin here...</h1>
         )}
