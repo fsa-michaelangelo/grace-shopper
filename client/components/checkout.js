@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchCart, deleteItemsInCart} from '../store/cart'
 import {Link} from 'react-router-dom'
 import StripeCheckout from 'react-stripe-checkout'
+import Cart from './cart'
 
 export class Checkout extends React.Component {
   constructor(props) {
@@ -108,17 +109,7 @@ export class Checkout extends React.Component {
           <>
             <h3>My Cart</h3>
             <>
-              {cart.map(item => {
-                return (
-                  <div key={item.id}>
-                    <div>
-                      <div>{item.name}</div>
-                      <img src={item.imageUrl} />
-                    </div>
-                    <div>Qty: {item.orderDetails.quantity}</div>
-                  </div>
-                )
-              })}
+            <Cart/>
             </>
           </>
         </>

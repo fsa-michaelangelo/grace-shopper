@@ -15,6 +15,7 @@ class SingleOrderDetails extends React.Component {
   render() {
     const order = this.props.order
     const bread = order.bread || []
+    let cartTotal = 0
 
     return (
       <>
@@ -31,6 +32,7 @@ class SingleOrderDetails extends React.Component {
                 <th>Quantity</th>
               </tr>
               {bread.map(bread => {
+                cartTotal += (bread.quantity * bread.price)
                 return (
                   <tr key={bread.id}>
                     <td>{bread.name}</td>
@@ -41,6 +43,7 @@ class SingleOrderDetails extends React.Component {
               })}
             </tbody>
           </table>
+          <h3>Total: ${cartTotal}</h3>
         </div>
         <div>
           <Link to="/home">
