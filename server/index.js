@@ -73,6 +73,21 @@ const createApp = () => {
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
   console.log(__dirname)
+
+  //create a paymentintent for stripe
+  app.post('/save-stripe-token', async (req, res) => {
+    const {items} = req.body
+    // Create a PaymentIntent with the order amount and currency
+    const paymentIntent = await stripe.paymentIntents.create({
+      //UPDATE THIS SECTION TO ACCESS THE CART TOTAL
+      amount: 100,
+      currency: 'usd'
+    })
+    res.send({
+      clientSecret: paymentIntent.client_secret
+    })
+  })
+
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
@@ -87,20 +102,6 @@ const createApp = () => {
   // sends index.html
   app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public/index.html'))
-  })
-  //create a paymentintent for stripe
-  app.post('/create-payment-intent', async (req, res) => {
-    console.log('THIS IS THE ROUTE')
-    const {items} = req.body
-    // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripe.paymentIntents.create({
-      //UPDATE THIS SECTION TO ACCESS THE CART TOTAL
-      amount: 100,
-      currency: 'usd'
-    })
-    res.send({
-      clientSecret: paymentIntent.client_secret
-    })
   })
 
   // error handling endware
