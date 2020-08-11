@@ -12,6 +12,7 @@ class Cart extends React.Component {
   }
 
   render() {
+    let cartTotal = 0;
     const cart = this.props.cart
     return (
       <>
@@ -23,6 +24,7 @@ class Cart extends React.Component {
             <GuestCart cart={cart} />
           ) : (
             cart.map((item, index) => {
+              cartTotal += (item.quantity * item.price)
               return (
                 <div className='cart-item' key={index}>
                   <div>
@@ -51,6 +53,7 @@ class Cart extends React.Component {
                         Remove item
                     </button>
                   </div>
+                  <h3>Total: ${cartTotal}</h3>
                 </div>
               )
             })
