@@ -1,15 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import BreadIcon from './breadIcon'
-import {breadGroup} from '../store/bread'
+import {breadGroup, breadGetter} from '../store/bread'
 
 export class BreadCategory extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
   }
+
   componentDidMount() {
+    this.props.fetchBreads();
     this.props.fetchGroup(this.props.match.params.name)
   }
+
   render() {
     const breads = this.props.breads || []
 
@@ -31,7 +34,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToState = dispatch => {
   return {
-    fetchGroup: (name) => dispatch(breadGroup(name))
+    fetchGroup: (name) => dispatch(breadGroup(name)),
+    fetchBreads: () => dispatch(breadGetter())
   }
 }
 

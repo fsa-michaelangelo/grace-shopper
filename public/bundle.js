@@ -126,7 +126,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _breadIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./breadIcon */ "./client/components/breadIcon.js");
 /* harmony import */ var _store_bread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/bread */ "./client/store/bread.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -137,28 +136,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
+
+ //import {Link} from 'react-router-dom'
 
 var Breads =
 /*#__PURE__*/
 function (_Component) {
   _inherits(Breads, _Component);
 
-  function Breads(props) {
+  function Breads() {
+    var _this;
+
     _classCallCheck(this, Breads);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Breads).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Breads).call(this));
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function () {
+      _this.setState({
+        value: event.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (event) {
+      event.preventDefault();
+
+      _this.props.fetchGroup(_this.state.value);
+
+      console.log('state value inside of handlesubmit: ', _this.state.value); //this.props.history.push(`/category/${this.state.value}`)
+      // this.setState({
+      //   value: 'Category'
+      // })
+    });
+
+    _this.state = {
+      value: ''
+    };
+    return _this;
   }
 
   _createClass(Breads, [{
@@ -172,16 +198,20 @@ function (_Component) {
       var breads = this.props.breads || [];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "category-search"
-      }, breads.map(function (bread) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "category"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.value,
+        id: "category-search",
+        onChange: this.handleChange
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Category"), breads.map(function (bread) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
           key: bread.id,
-          to: "/category/".concat(bread.name)
-        }, bread.name));
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "category",
+          value: bread.name
+        }, bread.name);
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        onClick: this.handleSubmit
+      }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all-breads"
       }, breads.map(function (bread) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_breadIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -205,6 +235,9 @@ var mapDispatchToState = function mapDispatchToState(dispatch) {
   return {
     fetchBreads: function fetchBreads() {
       return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGetter"])());
+    },
+    fetchGroup: function fetchGroup(name) {
+      return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGroup"])(name));
     }
   };
 };
@@ -511,15 +544,16 @@ var BreadCategory =
 function (_Component) {
   _inherits(BreadCategory, _Component);
 
-  function BreadCategory(props) {
+  function BreadCategory() {
     _classCallCheck(this, BreadCategory);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BreadCategory).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(BreadCategory).call(this));
   }
 
   _createClass(BreadCategory, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.props.fetchBreads();
       this.props.fetchGroup(this.props.match.params.name);
     }
   }, {
@@ -548,6 +582,9 @@ var mapDispatchToState = function mapDispatchToState(dispatch) {
   return {
     fetchGroup: function fetchGroup(name) {
       return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGroup"])(name));
+    },
+    fetchBreads: function fetchBreads() {
+      return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGetter"])());
     }
   };
 };
@@ -1576,32 +1613,37 @@ socket.on('connect', function () {
 /*!*******************************!*\
   !*** ./client/store/bread.js ***!
   \*******************************/
-/*! exports provided: breadSetter, breadGetter, breadGroup, default */
+/*! exports provided: getBread, getGroup, breadGetter, breadGroup, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "breadSetter", function() { return breadSetter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBread", function() { return getBread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGroup", function() { return getGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "breadGetter", function() { return breadGetter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "breadGroup", function() { return breadGroup; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-
- //action creator
+ //import history from '../history'
 
 var GET_BREADS = 'GET_BREADS';
-var breadSetter = function breadSetter(breads) {
+var GET_GROUP = 'GET_GROUP';
+var getBread = function getBread(breads) {
   return {
     type: GET_BREADS,
     breads: breads
   };
-}; //thunk
-
+};
+var getGroup = function getGroup(group) {
+  return {
+    type: GET_GROUP,
+    group: group
+  };
+};
 var breadGetter = function breadGetter() {
   return (
     /*#__PURE__*/
@@ -1620,7 +1662,7 @@ var breadGetter = function breadGetter() {
 
               case 3:
                 res = _context.sent;
-                dispatch(breadSetter(res.data));
+                dispatch(getBread(res.data));
                 _context.next = 10;
                 break;
 
@@ -1663,14 +1705,14 @@ var breadGroup = function breadGroup(name) {
               case 3:
                 _ref3 = _context2.sent;
                 data = _ref3.data;
-                dispatch(breadSetter(data));
+                dispatch(getGroup(data));
                 _context2.next = 11;
                 break;
 
               case 8:
                 _context2.prev = 8;
                 _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
+                console.error(_context2.t0);
 
               case 11:
               case "end":
@@ -1685,8 +1727,7 @@ var breadGroup = function breadGroup(name) {
       };
     }()
   );
-}; //reducer
-
+};
 var initState = [];
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
@@ -1695,6 +1736,9 @@ var initState = [];
   switch (action.type) {
     case GET_BREADS:
       return action.breads;
+
+    case GET_GROUP:
+      return action.group;
 
     default:
       return state;
@@ -1979,7 +2023,7 @@ var localState = [];
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, update, auth, logout, SET_SINGLE_BREAD, setSingleBread, fetchSingleBread */
+/*! exports provided: default, me, update, auth, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2004,12 +2048,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return _user__WEBPACK_IMPORTED_MODULE_5__["logout"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SET_SINGLE_BREAD", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_8__["SET_SINGLE_BREAD"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_8__["setSingleBread"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fetchSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_8__["fetchSingleBread"]; });
-
 
 
 
@@ -2033,7 +2071,6 @@ var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["c
 })));
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, middleware);
 /* harmony default export */ __webpack_exports__["default"] = (store);
-
 
 
 /***/ }),
