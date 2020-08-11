@@ -6,12 +6,13 @@ import {removeCartItem} from '../store/cart'
 
 const GuestCart = props => {
   const cart = props.cart
-
+  let cartTotal = 0
   return (
     <>
       <div>
         {cart ? (
           cart.map((item, index) => {
+            cartTotal += (item.quantity * item.price)
             return (
               <div key={index}>
                 <div>
@@ -41,6 +42,7 @@ const GuestCart = props => {
                     Need to change the amount?
                   </Link>
                 </>
+                <h3>Total: ${cartTotal}</h3>
               </div>
             )
           })

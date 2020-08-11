@@ -12,9 +12,8 @@ import {
   Breads,
   SingleBread,
   Cart,
-  Checkout
-  Account,
-  Category
+  Checkout,
+  Account
 } from './components'
 
 import {me} from './store'
@@ -48,7 +47,6 @@ class Routes extends Component {
         <Route exact path="/cart/checkout" component={Checkout} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/breads" component={Breads} />
-        <Route exact path="/category/:name" component={Category} />
         <Route exact path="/breads/:id" component={SingleBread} />
         {isLoggedIn && (
           <Switch>

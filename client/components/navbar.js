@@ -34,7 +34,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link to="/breads">Breads</Link>
           </div>
           <div className="right-nav-container">
-            <img className="icon" src="cart.jpg" />
             <Link to="/cart">
                     <img className="icon" src='./cart.jpg' />
               </Link>
