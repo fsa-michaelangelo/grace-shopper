@@ -10,6 +10,8 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+//stripe enables credit card payments
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -70,6 +72,21 @@ const createApp = () => {
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
+  console.log(__dirname)
+
+  //create a paymentintent for stripe
+  app.post('/save-stripe-token', async (req, res) => {
+    const {items} = req.body
+    // Create a PaymentIntent with the order amount and currency
+    const paymentIntent = await stripe.paymentIntents.create({
+      //UPDATE THIS SECTION TO ACCESS THE CART TOTAL
+      amount: 100,
+      currency: 'usd'
+    })
+    res.send({
+      clientSecret: paymentIntent.client_secret
+    })
+  })
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
