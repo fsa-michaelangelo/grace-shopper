@@ -1,6 +1,4 @@
 import axios from 'axios'
-//import history from '../history'
-
 
 const GET_BREADS = 'GET_BREADS'
 const GET_GROUP = 'GET_GROUP'
@@ -27,6 +25,7 @@ export const breadGetter = () => async dispatch => {
     next(err)
   }
 }
+
 export const breadGroup = (name) => async dispatch => {
   try {
     const { data } = await axios.get(`/api/breads/group/${name}`)
@@ -35,7 +34,6 @@ export const breadGroup = (name) => async dispatch => {
     console.error(err)
   }
 }
-
 
 const initState = []
 

@@ -25,7 +25,11 @@ export class Breads extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.fetchGroup(this.state.value)
+    if (this.state.value === 'All') {
+      this.props.fetchBreads();
+    } else {
+      this.props.fetchGroup(this.state.value)
+    }
   }
 
   componentDidMount() {
@@ -43,7 +47,7 @@ export class Breads extends Component {
           value={this.state.value}
           id="category-search"
           onChange={this.handleChange}>
-            <option>Category</option>
+            <option>All</option>
           {
             breads.map(bread => (
               <option
