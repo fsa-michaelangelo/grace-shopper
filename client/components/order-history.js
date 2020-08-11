@@ -35,7 +35,7 @@ export class OrderHistory extends React.Component {
                     </td>
                     <td>
                       <Link to={`/orders/${order.id}`}>
-                        <button>View</button>
+                        View
                       </Link>
                     </td>
                   </tr>

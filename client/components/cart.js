@@ -64,7 +64,7 @@ class Cart extends React.Component {
             )
           })
         ) : (
-          <h1>Any way you slice it there's nothin here...</h1>
+          <h3>Any way you slice it there's nothin here...</h3>
         )}
       </div>
     )

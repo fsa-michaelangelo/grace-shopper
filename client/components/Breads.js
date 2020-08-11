@@ -19,9 +19,19 @@ export class Breads extends Component {
         <div className='header'>
           <h1>Breads</h1>
         </div>
-        <Link to="/category/French">French</Link>
-        <br />
-        <Link to="/category/Sourdough">Sourdough</Link>
+        <div id="category-search">
+          {
+            breads.map(bread => (
+              <div className="category">
+                <Link
+                  key={bread.id}
+                  to={`/category/${bread.name}`}>
+                    {bread.name}
+                </Link>
+              </div>)
+            )
+          }
+        </div>
         <div className="all-breads">
           {breads.map(bread => <BreadIcon key={bread.id} bread={bread} />)}
         </div>

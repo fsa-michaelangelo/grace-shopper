@@ -172,11 +172,16 @@ function (_Component) {
       var breads = this.props.breads || [];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        to: "/category/French"
-      }, "French"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        to: "/category/Sourdough"
-      }, "Sourdough"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "category-search"
+      }, breads.map(function (bread) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "category"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+          key: bread.id,
+          to: "/category/".concat(bread.name)
+        }, bread.name));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all-breads"
       }, breads.map(function (bread) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_breadIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -668,7 +673,7 @@ function (_React$Component) {
           to: "/breads/".concat(item.id),
           component: _single_bread__WEBPACK_IMPORTED_MODULE_4__["default"]
         }, "Need to change the amount?")));
-      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h1", null, "Any way you slice it there's nothin here..."));
+      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."));
     }
   }]);
 
@@ -1027,7 +1032,7 @@ function (_React$Component) {
           key: order.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, order.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, moment__WEBPACK_IMPORTED_MODULE_1___default()(order.createdAt).subtract(10, 'days').calendar()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: "/orders/".concat(order.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "View"))));
+        }, "View")));
       }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "No past orders to display"));
     }
   }]);
