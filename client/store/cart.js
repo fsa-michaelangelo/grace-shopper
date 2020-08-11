@@ -44,7 +44,7 @@ export const addItemToCart = (bread, quantity, price) => {
     try {
       const res = await Axios.put('/api/cart/', {bread, quantity, price})
       const {data} = await Axios.get('/api/cart/')
-      dispatch(setCart(data))
+      dispatch(getCart(data))
     } catch (err) {
       console.log(err)
     }
@@ -84,10 +84,10 @@ export default function(state = localState, action) {
     case REMOVE_FROM_CART:
       if (action.bread.orderDetails) {
         return state.filter(
-          item => item.orderDetails.breadId !== action.bread.id
+          item => item.orderDetails.breadId != action.bread.id
         )
       } else {
-        return state.filter(item => item.bread.id !== action.bread.id)
+        return state.filter(item => item.bread.id != action.bread.id)
       }
     case EMPTY_CART:
       return state
