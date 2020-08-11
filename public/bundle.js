@@ -633,10 +633,8 @@ function (_React$Component) {
           onClick: function onClick() {
             _this.props.removeItem(item);
           }
-        }, "Remove item")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Total: $", cartTotal));
-      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-        className: "checkout"
-      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, "Remove item")));
+      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, cart[0].id ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Total: $", cartTotal) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/cart/checkout"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
         type: "submit"
@@ -899,8 +897,8 @@ var GuestCart = function GuestCart(props) {
     }, "Remove item from cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       to: "/breads/".concat(item.bread.id),
       component: _single_bread__WEBPACK_IMPORTED_MODULE_3__["default"]
-    }, "Need to change the amount?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", cartTotal));
-  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Any way you slice it there's nothin here...")));
+    }, "Need to change the amount?")));
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Any way you slice it there's nothin here..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", cartTotal)));
 };
 
 var mapDispatch = function mapDispatch(dispatch) {

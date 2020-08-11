@@ -14,14 +14,12 @@ class Cart extends React.Component {
   render() {
     let cartTotal = 0;
     const cart = this.props.cart
+
     return (
       <>
-      {/* <div className='header'>
-        <h1>Cart</h1>
-        </div> */}
         {cart.length ? (
           cart[0].bread ? (
-            <GuestCart cart={cart} />
+            <GuestCart cart={cart}  />
           ) : (
             cart.map((item, index) => {
               cartTotal += (item.quantity * item.price)
@@ -53,7 +51,6 @@ class Cart extends React.Component {
                         Remove item
                     </button>
                   </div>
-                  <h3>Total: ${cartTotal}</h3>
                 </div>
               )
             })
@@ -61,12 +58,19 @@ class Cart extends React.Component {
         ) : (
           <h3>Any way you slice it there's nothin here...</h3>
         )}
+
         {cart.length ? (
-          <div className='checkout'>
+          <>
+            {
+              cart[0].id
+              ? <h3>Total: ${cartTotal}</h3>
+              : null
+            }
+
             <Link to="/cart/checkout">
               <button type="submit">Checkout</button>
             </Link>
-          </div>
+          </>
         ) : null}
       </>
     )
