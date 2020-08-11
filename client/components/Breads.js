@@ -13,6 +13,10 @@ export class Breads extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.fetchBreads()
+  }
+
   handleChange = () => {
     this.setState({
       value: event.target.value
@@ -22,13 +26,6 @@ export class Breads extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.fetchGroup(this.state.value)
-    console.log('state value inside of handlesubmit: ', this.state.value)
-
-    //this.props.history.push(`/category/${this.state.value}`)
-
-    // this.setState({
-    //   value: 'Category'
-    // })
   }
 
   componentDidMount() {
