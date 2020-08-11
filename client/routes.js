@@ -13,8 +13,7 @@ import {
   SingleBread,
   Cart,
   Checkout,
-  Account,
-  Cart
+  Account
 } from './components'
 
 import {me} from './store'
