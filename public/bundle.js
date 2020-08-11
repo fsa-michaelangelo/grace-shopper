@@ -549,6 +549,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _store_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/cart */ "./client/store/cart.js");
 /* harmony import */ var _single_bread__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./single-bread */ "./client/components/single-bread.js");
+/* harmony import */ var _guestCart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./guestCart */ "./client/components/guestCart.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -568,6 +569,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -606,7 +608,9 @@ function (_React$Component) {
       var _this2 = this;
 
       var cart = this.props.cart;
-      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, cart.length ? cart.map(function (item, index) {
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, cart.length ? cart[0].bread ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_guestCart__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        cart: cart
+      }) : cart.map(function (item, index) {
         return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
           key: index
         }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, item.name), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
@@ -651,6 +655,63 @@ var mapDispatch = function mapDispatch(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapState, mapDispatch)(Cart));
+
+/***/ }),
+
+/***/ "./client/components/guestCart.js":
+/*!****************************************!*\
+  !*** ./client/components/guestCart.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _single_bread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./single-bread */ "./client/components/single-bread.js");
+/* harmony import */ var _store_cart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/cart */ "./client/store/cart.js");
+
+
+
+
+
+
+var GuestCart = function GuestCart(props) {
+  var cart = props.cart;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, cart ? cart.map(function (item, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: index
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item.bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: item.bread.imageUrl
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.bread.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      onChange: props.handleChange
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "number",
+      name: "quantity",
+      placeholder: Number(item.quantity)
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " price: $", item.price)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: function onClick() {
+        props.removeItem(item.bread);
+      }
+    }, "Remove item from cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      to: "/breads/".concat(item.bread.id),
+      component: _single_bread__WEBPACK_IMPORTED_MODULE_3__["default"]
+    }, "Need to change the amount?")));
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Any way you slice it there's nothin here...")));
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    removeItem: function removeItem(bread) {
+      return dispatch(Object(_store_cart__WEBPACK_IMPORTED_MODULE_4__["removeCartItem"])(bread));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatch)(GuestCart));
 
 /***/ }),
 
@@ -1792,7 +1853,7 @@ var addItemToCart = function addItemToCart(bread, quantity, price) {
               case 6:
                 _ref4 = _context2.sent;
                 data = _ref4.data;
-                dispatch(setCart(data));
+                dispatch(getCart(data));
                 _context2.next = 14;
                 break;
 
@@ -1914,12 +1975,18 @@ var localState = [];
       return [].concat(_toConsumableArray(state), [action.cart]);
 
     case REMOVE_FROM_CART:
-      return state.filter(function (item) {
-        return item.orderDetails.breadId !== action.bread.id;
-      });
+      if (action.bread.orderDetails) {
+        return state.filter(function (item) {
+          return item.orderDetails.breadId != action.bread.id;
+        });
+      } else {
+        return state.filter(function (item) {
+          return item.bread.id != action.bread.id;
+        });
+      }
 
     case EMPTY_CART:
-      return localState;
+      return state;
 
     default:
       return state;
