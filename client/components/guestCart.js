@@ -42,13 +42,13 @@ const GuestCart = props => {
                     Need to change the amount?
                   </Link>
                 </>
-                <h3>Total: ${cartTotal}</h3>
               </div>
             )
           })
         ) : (
           <h1>Any way you slice it there's nothin here...</h1>
         )}
+         <h3>Total: ${cartTotal}</h3>
       </div>
     </>
   )

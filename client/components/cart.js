@@ -24,11 +24,12 @@ class Cart extends React.Component {
   render() {
     let cartTotal = 0;
     const cart = this.props.cart
+    console.log(cart)
     return (
       <div>
         {cart.length ? (
           cart[0].bread ? (
-            <GuestCart cart={cart} />
+            <GuestCart cart={cart}  />
           ) : (
             cart.map((item, index) => {
               cartTotal += (item.quantity * item.price)
@@ -65,18 +66,24 @@ class Cart extends React.Component {
                       Need to change the amount?
                     </Link>
                   </>
-                  <h3>Total: ${cartTotal}</h3>
-                </div>
+               </div>
               )
             })
+
           )
         ) : (
           <h1>Any way you slice it there's nothin here...</h1>
         )}
         {cart.length ? (
+          <>
+          {cart[0].id
+          ? <h3>Total: ${cartTotal}</h3>
+          : null}
+
           <Link to="/cart/checkout">
             <button type="submit">Checkout</button>
           </Link>
+          </>
         ) : null}
       </div>
     )
