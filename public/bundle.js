@@ -508,17 +508,6 @@ AuthForm.propTypes = {
 
 /***/ }),
 
-/***/ "./client/components/breadCategory.js":
-/*!********************************************!*\
-  !*** ./client/components/breadCategory.js ***!
-  \********************************************/
-/*! exports provided: BreadCategory, default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/maddiehiggins/Coding/grace-hopper/senior-phase/grace-shopper/client/components/breadCategory.js'");
-
-/***/ }),
-
 /***/ "./client/components/breadIcon.js":
 /*!****************************************!*\
   !*** ./client/components/breadIcon.js ***!
@@ -767,7 +756,7 @@ function (_React$Component) {
 /*!************************************!*\
   !*** ./client/components/index.js ***!
   \************************************/
-/*! exports provided: Navbar, Breads, UserHome, OrderHistory, SingleOrderDetails, Login, Signup, SingleBread, Homepage, Account, Category, Cart */
+/*! exports provided: Navbar, Breads, UserHome, OrderHistory, SingleOrderDetails, Login, Signup, SingleBread, Homepage, Account, Cart */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -801,11 +790,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _account__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./account */ "./client/components/account.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Account", function() { return _account__WEBPACK_IMPORTED_MODULE_8__["default"]; });
 
-/* harmony import */ var _breadCategory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./breadCategory */ "./client/components/breadCategory.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Category", function() { return _breadCategory__WEBPACK_IMPORTED_MODULE_9__["default"]; });
-
-/* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./cart */ "./client/components/cart.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cart", function() { return _cart__WEBPACK_IMPORTED_MODULE_10__["default"]; });
+/* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cart */ "./client/components/cart.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cart", function() { return _cart__WEBPACK_IMPORTED_MODULE_9__["default"]; });
 
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
@@ -821,11 +807,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // export {default as AllBreads} from './allbreads'
-// export {default as SingleBread} from './single-bread'
-
  // export {default as Checkout} from './checkout'
-// export {default as OrderHistory} from './order-history'
 
 /***/ }),
 
@@ -1073,8 +1055,15 @@ function (_React$Component) {
       _this.setState(_defineProperty({}, event.target.name, Number(event.target.value)));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "toggleAdded", function () {
+      _this.setState({
+        msg: true
+      });
+    });
+
     _this.state = {
-      quantity: 0
+      quantity: 0,
+      msg: false
     };
     return _this;
   }
@@ -1112,9 +1101,9 @@ function (_React$Component) {
         placeholder: "Qty"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          _this2.props.addItemToCart(bread, _this2.state.quantity, bread.price);
+          _this2.props.addItemToCart(bread, _this2.state.quantity, bread.price), _this2.toggleAdded();
         }
-      }, "Add to cart")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Sold out!"))));
+      }, "Add to cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.msg ? 'Added to cart!' : '')) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Sold out!"))));
     }
   }]);
 
