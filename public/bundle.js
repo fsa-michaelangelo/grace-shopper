@@ -202,9 +202,10 @@ function (_Component) {
       var breads = this.props.breads || [];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "category-search"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         value: this.state.value,
-        id: "category-search",
         onChange: this.handleChange
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "All"), breads.map(function (bread) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -215,7 +216,7 @@ function (_Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         onClick: this.handleSubmit
-      }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Search")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all-breads"
       }, breads.map(function (bread) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_breadIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -633,11 +634,13 @@ function (_React$Component) {
             _this.props.removeItem(item);
           }
         }, "Remove item")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Total: $", cartTotal));
-      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "checkout"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/cart/checkout"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
         type: "submit"
-      }, "Checkout")) : null);
+      }, "Checkout"))) : null);
     }
   }]);
 
@@ -1464,9 +1467,9 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: bread.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$", bread.orderDetails.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.orderDetails.quantity));
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", cartTotal)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", cartTotal), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/home"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Back to my account"))));
+      }, "Back to my account")));
     }
   }]);
 
@@ -1537,7 +1540,7 @@ var UserHome = function UserHome(props) {
     user: user
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "current-order"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 };
 
 var mapState = function mapState(state) {

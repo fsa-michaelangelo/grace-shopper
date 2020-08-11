@@ -66,17 +66,12 @@ h1 {
   }
 }
 
-.search {
+#category-search {
   @include flexCenter(row);
-  justify-content: flex-end;
   margin: 10px;
-  form {
-    align-self: flex-end;
+  select {
+    width: 8vw;
   }
-}
-
-.search label {
-  display: inline;
 }
 
 .single-page {
@@ -134,7 +129,7 @@ h1 {
   }
 }
 
-#current-order {
+.current-order {
   @include flexCenter(column);
   h4 {
     align-self: center;
@@ -145,6 +140,7 @@ h1 {
   @include flexCenter(column);
   align-items: flex-start;
   margin-bottom: 15px;
+  margin-left: 10px;
 }
 
 .cart-item {
@@ -181,6 +177,13 @@ h1 {
   flex-wrap: wrap;
 }
 
+.checkout {
+  @include flexCenter(column);
+  button {
+    width: 10vw;
+  }
+}
+
 a {
   text-decoration: none;
   color: $textColor;
@@ -203,7 +206,8 @@ button {
     background: rgb(214, 208, 208);
   }
   color: $textColor;
-  padding: 5px;
+  padding: 3px;
+  margin-left: 2px;
   border-radius: 5px 5px 5px 5px;
   border-color: $textColor;
   border-width: 1px;

@@ -44,10 +44,8 @@ class SingleOrderDetails extends React.Component {
             </tbody>
           </table>
           <h3>Total: ${cartTotal}</h3>
-        </div>
-        <div>
           <Link to="/home">
-            <button>Back to my account</button>
+            Back to my account
           </Link>
         </div>
       </>

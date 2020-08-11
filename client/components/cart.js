@@ -62,9 +62,11 @@ class Cart extends React.Component {
           <h3>Any way you slice it there's nothin here...</h3>
         )}
         {cart.length ? (
-          <Link to="/cart/checkout">
-            <button type="submit">Checkout</button>
-          </Link>
+          <div className='checkout'>
+            <Link to="/cart/checkout">
+              <button type="submit">Checkout</button>
+            </Link>
+          </div>
         ) : null}
       </>
     )

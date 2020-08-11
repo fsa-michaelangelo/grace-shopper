@@ -36,7 +36,7 @@ export const UserHome = props => {
         </div>
       </div>
       <div className="current-order">
-        <h4>Items in your cart</h4>
+        <h3>Items in your cart</h3>
         <Cart />
       </div>
     </>

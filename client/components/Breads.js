@@ -43,24 +43,25 @@ export class Breads extends Component {
         <div className='header'>
           <h1>Breads</h1>
         </div>
-        <select
-          value={this.state.value}
-          id="category-search"
-          onChange={this.handleChange}>
-            <option>All</option>
-          {
-            breads.map(bread => (
-              <option
-                key={bread.id}
-                className="category"
-                value={bread.name}
-                >
-                  {bread.name}
-              </option>)
-            )
-          }
-        </select>
-        <button type="submit" onClick={this.handleSubmit}>Search</button>
+        <div id='category-search'>
+          <select
+            value={this.state.value}
+            onChange={this.handleChange}>
+              <option>All</option>
+            {
+              breads.map(bread => (
+                <option
+                  key={bread.id}
+                  className="category"
+                  value={bread.name}
+                  >
+                    {bread.name}
+                </option>)
+              )
+            }
+          </select>
+          <button type="submit" onClick={this.handleSubmit}>Search</button>
+        </div>
         <div className="all-breads">
           {breads.map(bread => <BreadIcon key={bread.id} bread={bread} />)}
         </div>
