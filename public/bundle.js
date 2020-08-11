@@ -104,7 +104,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -335,7 +335,9 @@ function (_Component) {
     key: "render",
     value: function render() {
       var user = this.props.user;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "edit-account"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email"
@@ -352,6 +354,12 @@ function (_Component) {
         defaultValue: user.password,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "confirm"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Confirm Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "confirm",
+        type: "password",
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "address"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "address",
@@ -365,15 +373,9 @@ function (_Component) {
         type: "text",
         defaultValue: user.phone,
         onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "confirm"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Confirm Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "confirm",
-        type: "password",
-        onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
-      }, "Submit"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.err ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Passwords do not match") : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.success ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Account Updated!") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Not succeeding")))));
+      }, "Submit")))));
     }
   }]);
 
@@ -955,10 +957,7 @@ var Navbar = function Navbar(_ref) {
     to: "/breads"
   }, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "right-nav-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "icon",
-    src: "cart.jpg"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/cart"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "icon",
@@ -1475,8 +1474,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import UserHome from './components/user-home'
-// import {SingleBread} from './components'
 
 /**
  * COMPONENT
@@ -1507,6 +1504,10 @@ function (_Component) {
         exact: true,
         path: "/",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Homepage"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/cart",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["Cart"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/login",
@@ -67285,7 +67286,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

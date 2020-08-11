@@ -39,10 +39,9 @@ export class Account extends Component {
   render() {
     const user = this.props.user
     return (
-      <div>
+      <>
         <h2>Edit Account</h2>
-        <div>
-          <div>
+          <div id='edit-account'>
             <form onSubmit={this.handleSubmit}>
               <div>
                 <label htmlFor="email">
@@ -60,10 +59,19 @@ export class Account extends Component {
                   <small>Password</small>
                 </label>
                 <input
-                  
                   name="password"
                   type="password"
                   defaultValue={user.password}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor='confirm'>
+                  <small>Confirm Password</small>
+                </label>
+                <input
+                  name="confirm"
+                  type="password"
                   onChange={this.handleChange}
                 />
               </div>
@@ -90,28 +98,17 @@ export class Account extends Component {
                   />
               </div>
               <div>
-                <label htmlFor='confirm'>
-                  <small>Confirm Password</small>
-                </label>
-                <input 
-                  name="confirm"
-                  type="password"
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div>
                 <button type="submit">Submit</button>
               </div>
             </form>
-            <div>
+            {/* <div>
               {this.state.err ? <h3>Passwords do not match</h3> : null }
             </div>
             <div>
               {this.state.success ? <h4>Account Updated!</h4> : <h4>Not succeeding</h4>}
-            </div>
+            </div> */}
           </div>
-        </div>
-      </div> 
+      </>
     )
   }
 }
