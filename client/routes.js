@@ -12,7 +12,7 @@ import {
   Breads,
   SingleBread,
   Cart,
-  Checkout
+  Checkout,
   Account,
   Cart
 } from './components'
