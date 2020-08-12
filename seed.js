@@ -1,3 +1,4 @@
+const {green, red} = require('chalk')
 const {db, User, Bread, Order} = require('./server/db')
 const OrderDetails = require('./server/db/models/orderDetails')
 
@@ -139,7 +140,7 @@ const seed = async () => {
       quantity: 1
     })
   } catch (err) {
-    console.log(err)
+    console.log(red(err))
   }
 }
 
@@ -150,11 +151,11 @@ module.exports = seed
 if (require.main === module) {
   seed()
     .then(() => {
-      console.log('Seeding success!')
+      console.log(green('Seeding success!'))
       db.close()
     })
     .catch(err => {
-      console.error('Oh noes! Something went wrong!')
+      console.error(red('Oh noes! Something went wrong!'))
       console.error(err)
       db.close()
     })

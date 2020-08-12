@@ -24,6 +24,11 @@ nav {
   }
 }
 
+h1 {
+  color: $textColor;
+}
+
+// for the cart icon
 .right-nav-container {
   img {
     width: 3vw;
@@ -49,10 +54,6 @@ nav {
   }
 }
 
-h1 {
-  color: $textColor;
-}
-
 .all-breads {
   @include flexCenter(row);
   flex-wrap: wrap;
@@ -65,17 +66,12 @@ h1 {
   }
 }
 
-.search {
+#category-search {
   @include flexCenter(row);
-  justify-content: flex-end;
   margin: 10px;
-  form {
-    align-self: flex-end;
+  select {
+    width: 8vw;
   }
-}
-
-.search label {
-  display: inline;
 }
 
 .single-page {
@@ -119,6 +115,73 @@ h1 {
 
 #account-info {
   margin-bottom: 20px;
+  //width: 50vw;
+}
+
+#edit-account {
+  @include flexCenter(column);
+  form {
+    @include flexCenter(row);
+    div {
+      @include flexCenter(column);
+      justify-content: flex-start;
+    }
+  }
+}
+
+.current-order {
+  @include flexCenter(column);
+  h4 {
+    align-self: center;
+  }
+}
+
+#single-order-details {
+  @include flexCenter(column);
+  align-items: flex-start;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+.cart-item {
+  @include flexCenter(row);
+  height: 40vh;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 25px;
+  h4 {
+    margin: 5px;
+    margin-bottom: 35px;
+  }
+  div {
+    @include flexCenter(column);
+    align-items: flex-start;
+    margin: 5px;
+    p {
+      margin: 5px;
+    }
+  }
+  img {
+    width: 25vw;
+    height: 40vh;
+  }
+}
+
+.cart-details {
+  width: 50vw;
+  height: 100%;
+}
+
+.quantity {
+  @include flexCenter(row);
+  flex-wrap: wrap;
+}
+
+.checkout {
+  @include flexCenter(column);
+  button {
+    width: 10vw;
+  }
 }
 
 a {
@@ -142,10 +205,10 @@ button {
   &:hover {
     background: rgb(214, 208, 208);
   }
-  font-weight: bold;
   color: $textColor;
-  padding: 5px;
-  border-radius: 3px 3px 3px 3px;
+  padding: 3px;
+  margin-left: 2px;
+  border-radius: 5px 5px 5px 5px;
   border-color: $textColor;
   border-width: 1px;
 }
@@ -163,10 +226,4 @@ td {
 
 td {
   text-align: center;
-}
-
-#single-order-details {
-  @include flexCenter(column);
-  align-items: flex-start;
-  margin-bottom: 15px;
 }

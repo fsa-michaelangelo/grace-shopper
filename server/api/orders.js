@@ -32,8 +32,6 @@ router.get('/:orderId', usersOnly, async (req, res, next) => {
       where: {id},
       include: [Bread]
     })
-    //const details = await OrderDetails.findAll({where: { orderId: id}} );
-
     res.json(order)
   } catch (err) {
     next(err)

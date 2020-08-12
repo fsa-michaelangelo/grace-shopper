@@ -1,34 +1,39 @@
 import axios from 'axios'
-import history from '../history'
 
-//action creator
 const GET_BREADS = 'GET_BREADS'
+const GET_GROUP = 'GET_GROUP'
 
-export const breadSetter = breads => {
+export const getBread = breads => {
   return {
     type: GET_BREADS,
     breads
   }
 }
-//thunk
+
+export const getGroup = (group) => {
+  return {
+    type: GET_GROUP,
+    group
+  }
+}
+
 export const breadGetter = () => async dispatch => {
   try {
     const res = await axios.get('/api/breads')
-    dispatch(breadSetter(res.data))
+    dispatch(getBread(res.data))
   } catch (err) {
     next(err)
   }
 }
+
 export const breadGroup = (name) => async dispatch => {
-  console.log('thunk name is ', name)
   try {
     const { data } = await axios.get(`/api/breads/group/${name}`)
-    dispatch(breadSetter(data))
+    dispatch(getGroup(data))
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
-//reducer
 
 const initState = []
 
@@ -36,6 +41,8 @@ export default function(state = initState, action) {
   switch (action.type) {
     case GET_BREADS:
       return action.breads
+    case GET_GROUP:
+      return action.group
     default:
       return state
   }

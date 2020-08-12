@@ -12,14 +12,6 @@ router.get('/', async (req, res, next) => {
         },
         include: [Bread]
       })
-
-      // const cart = await OrderDetails.findAll({
-      //   where: {
-      //     orderId: order.id
-      //   }
-      // })
-
-      //console.log('BREAD', cart)
       res.json(order.bread)
     } else {
       if (!req.session.cart) {

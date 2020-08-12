@@ -104,7 +104,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -126,7 +126,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _breadIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./breadIcon */ "./client/components/breadIcon.js");
 /* harmony import */ var _store_bread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/bread */ "./client/store/bread.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -137,28 +136,54 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
 
+
+ //import {Link} from 'react-router-dom'
 
 var Breads =
 /*#__PURE__*/
 function (_Component) {
   _inherits(Breads, _Component);
 
-  function Breads(props) {
+  function Breads() {
+    var _this;
+
     _classCallCheck(this, Breads);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Breads).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Breads).call(this));
+
+    _defineProperty(_assertThisInitialized(_this), "handleChange", function () {
+      _this.setState({
+        value: event.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (event) {
+      event.preventDefault();
+
+      if (_this.state.value === 'All') {
+        _this.props.fetchBreads();
+      } else {
+        _this.props.fetchGroup(_this.state.value);
+      }
+    });
+
+    _this.state = {
+      value: ''
+    };
+    return _this;
   }
 
   _createClass(Breads, [{
@@ -167,15 +192,32 @@ function (_Component) {
       this.props.fetchBreads();
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBreads();
+    }
+  }, {
     key: "render",
     value: function render() {
       var breads = this.props.breads || [];
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        to: "/category/French"
-      }, "French"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        to: "/category/Sourdough"
-      }, "Sourdough"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "items"
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Breads")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "category-search"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.value,
+        onChange: this.handleChange
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "All"), breads.map(function (bread) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: bread.id,
+          className: "category",
+          value: bread.name
+        }, bread.name);
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        onClick: this.handleSubmit
+      }, "Search")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "all-breads"
       }, breads.map(function (bread) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_breadIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: bread.id,
@@ -198,6 +240,9 @@ var mapDispatchToState = function mapDispatchToState(dispatch) {
   return {
     fetchBreads: function fetchBreads() {
       return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGetter"])());
+    },
+    fetchGroup: function fetchGroup(name) {
+      return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGroup"])(name));
     }
   };
 };
@@ -280,8 +325,7 @@ function (_Component) {
       email: '',
       password: '',
       confirm: '',
-      err: false,
-      success: false
+      warning: false
     };
     return _this;
   }
@@ -290,50 +334,67 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getUser();
+      this.setState({
+        warning: true
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var user = this.props.user;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "edit-account"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "account-essentials"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Email")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Email"), !this.state.email && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "warning"
+      }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "email",
         type: "text",
         defaultValue: user.email,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "warning"
+      }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "password",
         type: "password",
         defaultValue: user.password,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "confirm"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Confirm Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "warning"
+      }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "confirm",
+        type: "password",
+        onChange: this.handleChange
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "account-nonessentials"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "address"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "address",
         type: "text",
         defaultValue: user.address,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "phone"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Phone")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Phone")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "phone",
         type: "text",
         defaultValue: user.phone,
         onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "confirm"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Confirm Password")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "confirm",
-        type: "password",
-        onChange: this.handleChange
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
-      }, "Submit"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.err ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Passwords do not match") : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.success ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Account Updated!") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Not succeeding")))));
+      }, "Submit"))));
     }
   }]);
 
@@ -462,94 +523,6 @@ AuthForm.propTypes = {
 
 /***/ }),
 
-/***/ "./client/components/breadCategory.js":
-/*!********************************************!*\
-  !*** ./client/components/breadCategory.js ***!
-  \********************************************/
-/*! exports provided: BreadCategory, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BreadCategory", function() { return BreadCategory; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _breadIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./breadIcon */ "./client/components/breadIcon.js");
-/* harmony import */ var _store_bread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/bread */ "./client/store/bread.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-var BreadCategory =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(BreadCategory, _Component);
-
-  function BreadCategory(props) {
-    _classCallCheck(this, BreadCategory);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(BreadCategory).call(this, props));
-  }
-
-  _createClass(BreadCategory, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchGroup(this.props.match.params.name);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var breads = this.props.breads || [];
-      console.log('breads ', breads);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, breads.map(function (bread) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_breadIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          key: bread.id,
-          bread: bread
-        });
-      }));
-    }
-  }]);
-
-  return BreadCategory;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    breads: state.breads
-  };
-};
-
-var mapDispatchToState = function mapDispatchToState(dispatch) {
-  return {
-    fetchGroup: function fetchGroup(name) {
-      return dispatch(Object(_store_bread__WEBPACK_IMPORTED_MODULE_3__["breadGroup"])(name));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToState)(BreadCategory));
-
-/***/ }),
-
 /***/ "./client/components/breadIcon.js":
 /*!****************************************!*\
   !*** ./client/components/breadIcon.js ***!
@@ -602,15 +575,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -625,18 +596,9 @@ function (_React$Component) {
   _inherits(Cart, _React$Component);
 
   function Cart() {
-    var _this;
-
     _classCallCheck(this, Cart);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Cart).call(this));
-
-    _defineProperty(_assertThisInitialized(_this), "handleChange", function (event) {
-      _this.setState(_defineProperty({}, event.target.name, event.target.value));
-    });
-
-    _this.state = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Cart).apply(this, arguments));
   }
 
   _createClass(Cart, [{
@@ -647,34 +609,32 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this = this;
 
       var cartTotal = 0;
       var cart = this.props.cart;
-      console.log(cart);
-      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, cart.length ? cart[0].bread ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_guestCart__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, cart.length ? cart[0].bread ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_guestCart__WEBPACK_IMPORTED_MODULE_5__["default"], {
         cart: cart
       }) : cart.map(function (item, index) {
-        cartTotal += item.quantity * item.price;
+        cartTotal += item.orderDetails.quantity * item.orderDetails.price;
         return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "cart-item",
           key: index
-        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, item.name), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("img", {
           src: item.imageUrl
-        }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, item.description)), item.orderDetails ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-          onChange: _this2.handleChange
-        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
-          type: "number",
-          name: "quantity",
-          placeholder: Number(item.orderDetails.quantity)
-        })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, " price: $", item.orderDetails.price))) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-          onClick: function onClick() {
-            _this2.props.removeItem(item);
-          }
-        }, "Remove item from cart"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "cart-details"
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h4", null, item.name), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", null, item.description), item.orderDetails ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, "Price: $", item.orderDetails.price), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "quantity"
+        }, "Quantity: ", Number(item.orderDetails.quantity), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/breads/".concat(item.id),
           component: _single_bread__WEBPACK_IMPORTED_MODULE_4__["default"]
-        }, "Need to change the amount?")));
-      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h1", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, cart[0].id ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Total: $", cartTotal) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("sub", null, "Change amount?")))) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
+          onClick: function onClick() {
+            _this.props.removeItem(item);
+          }
+        }, "Remove item")));
+      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, cart[0].id ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Total: $", cartTotal) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/cart/checkout"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
         type: "submit"
@@ -1055,7 +1015,7 @@ function (_React$Component) {
 /*!************************************!*\
   !*** ./client/components/index.js ***!
   \************************************/
-/*! exports provided: Navbar, Breads, UserHome, OrderHistory, SingleOrderDetails, Login, Signup, SingleBread, Homepage, Checkout, Account, Category, Cart */
+/*! exports provided: Navbar, Breads, UserHome, OrderHistory, SingleOrderDetails, Login, Signup, SingleBread, Homepage, Checkout, Account, Cart */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1092,11 +1052,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _account__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./account */ "./client/components/account.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Account", function() { return _account__WEBPACK_IMPORTED_MODULE_9__["default"]; });
 
-/* harmony import */ var _breadCategory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./breadCategory */ "./client/components/breadCategory.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Category", function() { return _breadCategory__WEBPACK_IMPORTED_MODULE_10__["default"]; });
-
-/* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cart */ "./client/components/cart.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cart", function() { return _cart__WEBPACK_IMPORTED_MODULE_11__["default"]; });
+/* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./cart */ "./client/components/cart.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Cart", function() { return _cart__WEBPACK_IMPORTED_MODULE_10__["default"]; });
 
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
@@ -1113,11 +1070,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // export {default as AllBreads} from './allbreads'
-// export {default as SingleBread} from './single-bread'
-
  // export {default as Checkout} from './checkout'
-// export {default as OrderHistory} from './order-history'
 
 /***/ }),
 
@@ -1284,7 +1237,7 @@ function (_React$Component) {
           key: order.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, order.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, moment__WEBPACK_IMPORTED_MODULE_1___default()(order.createdAt).subtract(10, 'days').calendar()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: "/orders/".concat(order.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "View"))));
+        }, "View")));
       }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "No past orders to display"));
     }
   }]);
@@ -1365,8 +1318,15 @@ function (_React$Component) {
       _this.setState(_defineProperty({}, event.target.name, Number(event.target.value)));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "toggleAdded", function () {
+      _this.setState({
+        msg: true
+      });
+    });
+
     _this.state = {
-      quantity: 0
+      quantity: 0,
+      msg: false
     };
     return _this;
   }
@@ -1404,9 +1364,9 @@ function (_React$Component) {
         placeholder: "Qty"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          _this2.props.addItemToCart(bread, _this2.state.quantity, bread.price);
+          _this2.props.addItemToCart(bread, _this2.state.quantity, bread.price), _this2.toggleAdded();
         }
-      }, "Add to cart")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Sold out!"))));
+      }, "Add to cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.msg ? 'Added to cart!' : '')) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Sold out!"))));
     }
   }]);
 
@@ -1497,17 +1457,17 @@ function (_React$Component) {
     value: function render() {
       var order = this.props.order;
       var bread = order.bread || [];
-      var cartTotal = 0;
+      var orderTotal = 0;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "single-order-details"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Order #", order.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Purchase date:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, moment__WEBPACK_IMPORTED_MODULE_1___default()(order.createdAt).format('MMMM Do YYYY, h:mm:ss a')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Purchased Items:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Bread"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Quantity")), bread.map(function (bread) {
-        cartTotal += bread.quantity * bread.price;
+        orderTotal += bread.orderDetails.quantity * bread.orderDetails.price;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: bread.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$", bread.orderDetails.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.orderDetails.quantity));
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", cartTotal)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", orderTotal), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/home"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Back to my account"))));
+      }, "Back to my account")));
     }
   }]);
 
@@ -1550,8 +1510,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cart */ "./client/components/cart.js");
 /* harmony import */ var _order_history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./order-history */ "./client/components/order-history.js");
-/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store/user */ "./client/store/user.js");
-
 
 
 
@@ -1574,13 +1532,13 @@ var UserHome = function UserHome(props) {
     id: "account-info"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Account Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/edit"
-  }, "Edit info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "current-order"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_4__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Edit info")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "order-history"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Order History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_order_history__WEBPACK_IMPORTED_MODULE_5__["default"], {
     user: user
-  }))));
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "current-order"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Items in your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 };
 
 var mapState = function mapState(state) {
@@ -1692,8 +1650,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import UserHome from './components/user-home'
-// import {SingleBread} from './components'
 
 /**
  * COMPONENT
@@ -1724,6 +1680,10 @@ function (_Component) {
         exact: true,
         path: "/",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["Homepage"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/cart",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["Cart"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/login",
@@ -1834,32 +1794,36 @@ socket.on('connect', function () {
 /*!*******************************!*\
   !*** ./client/store/bread.js ***!
   \*******************************/
-/*! exports provided: breadSetter, breadGetter, breadGroup, default */
+/*! exports provided: getBread, getGroup, breadGetter, breadGroup, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "breadSetter", function() { return breadSetter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBread", function() { return getBread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getGroup", function() { return getGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "breadGetter", function() { return breadGetter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "breadGroup", function() { return breadGroup; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../history */ "./client/history.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- //action creator
-
 var GET_BREADS = 'GET_BREADS';
-var breadSetter = function breadSetter(breads) {
+var GET_GROUP = 'GET_GROUP';
+var getBread = function getBread(breads) {
   return {
     type: GET_BREADS,
     breads: breads
   };
-}; //thunk
-
+};
+var getGroup = function getGroup(group) {
+  return {
+    type: GET_GROUP,
+    group: group
+  };
+};
 var breadGetter = function breadGetter() {
   return (
     /*#__PURE__*/
@@ -1878,7 +1842,7 @@ var breadGetter = function breadGetter() {
 
               case 3:
                 res = _context.sent;
-                dispatch(breadSetter(res.data));
+                dispatch(getBread(res.data));
                 _context.next = 10;
                 break;
 
@@ -1914,29 +1878,28 @@ var breadGroup = function breadGroup(name) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log('thunk name is ', name);
-                _context2.prev = 1;
-                _context2.next = 4;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/breads/group/".concat(name));
 
-              case 4:
+              case 3:
                 _ref3 = _context2.sent;
                 data = _ref3.data;
-                dispatch(breadSetter(data));
-                _context2.next = 12;
+                dispatch(getGroup(data));
+                _context2.next = 11;
                 break;
 
-              case 9:
-                _context2.prev = 9;
-                _context2.t0 = _context2["catch"](1);
-                console.log(_context2.t0);
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                console.error(_context2.t0);
 
-              case 12:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[1, 9]]);
+        }, _callee2, null, [[0, 8]]);
       }));
 
       return function (_x2) {
@@ -1944,8 +1907,7 @@ var breadGroup = function breadGroup(name) {
       };
     }()
   );
-}; //reducer
-
+};
 var initState = [];
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
@@ -1954,6 +1916,9 @@ var initState = [];
   switch (action.type) {
     case GET_BREADS:
       return action.breads;
+
+    case GET_GROUP:
+      return action.group;
 
     default:
       return state;
@@ -2244,7 +2209,7 @@ var localState = [];
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, update, auth, logout, SET_SINGLE_BREAD, setSingleBread, fetchSingleBread */
+/*! exports provided: default, me, update, auth, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2269,12 +2234,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return _user__WEBPACK_IMPORTED_MODULE_5__["logout"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SET_SINGLE_BREAD", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_8__["SET_SINGLE_BREAD"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "setSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_8__["setSingleBread"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fetchSingleBread", function() { return _single_bread__WEBPACK_IMPORTED_MODULE_8__["fetchSingleBread"]; });
-
 
 
 
@@ -2298,7 +2257,6 @@ var middleware = Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__["c
 })));
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducer, middleware);
 /* harmony default export */ __webpack_exports__["default"] = (store);
-
 
 
 /***/ }),

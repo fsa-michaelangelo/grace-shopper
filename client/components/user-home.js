@@ -1,11 +1,10 @@
-  
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Cart from './cart'
 import OrderHistory from './order-history'
-import {set} from '../store/user'
 
 /**
  * COMPONENT
@@ -30,15 +29,15 @@ export const UserHome = props => {
             <div>{user.phone}</div>
           </div>
           <Link to='/edit'>Edit info</Link>
-          <div className="current-order">
-            <h4>Items in your cart</h4>
-            <Cart />
-          </div>
         </div>
         <div className="order-history">
           <h3>Order History</h3>
           <OrderHistory user={user} />
         </div>
+      </div>
+      <div className="current-order">
+        <h3>Items in your cart</h3>
+        <Cart />
       </div>
     </>
   )

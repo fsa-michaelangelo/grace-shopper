@@ -7,7 +7,8 @@ export class SingleBread extends React.Component {
   constructor() {
     super()
     this.state = {
-      quantity: 0
+      quantity: 0,
+      msg: false
     }
   }
 
@@ -24,6 +25,10 @@ export class SingleBread extends React.Component {
     this.setState({
       [event.target.name]: Number(event.target.value)
     })
+  }
+
+  toggleAdded = () => {
+    this.setState({ msg: true })
   }
 
   render() {
@@ -45,11 +50,14 @@ export class SingleBread extends React.Component {
                       bread,
                       this.state.quantity,
                       bread.price
-                    )
+                    ), this.toggleAdded()
                   }}
                   >
                   Add to cart
                 </button>
+                <div>
+                  { this.state.msg ? 'Added to cart!' : '' }
+                </div>
               </div>
             ) : (
               <h5>Sold out!</h5>
