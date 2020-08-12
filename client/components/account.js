@@ -40,11 +40,10 @@ export class Account extends Component {
           <h2>Edit Account</h2>
         </div>
           <div id='edit-account'>
-            <form onSubmit={this.handleSubmit}>
-              <div className='account-essentials'>
+            <form>
                 <div>
                   <label htmlFor="email">
-                    <h5>Email</h5>
+                    <h5>Email </h5>
                     {!this.state.email && this.state.warning &&
                     <p className="warning"> (required)</p>}
                   </label>
@@ -57,7 +56,7 @@ export class Account extends Component {
                 </div>
                 <div>
                   <label htmlFor="password">
-                    <h5>Password</h5>
+                    <h5>Password </h5>
                     {!this.state.password && this.state.warning &&
                     <p className="warning"> (required)</p>}
                   </label>
@@ -70,7 +69,7 @@ export class Account extends Component {
                 </div>
                 <div>
                   <label htmlFor='confirm'>
-                    <h5>Confirm Password</h5>
+                    <h5>Confirm Password </h5>
                     {!this.state.password && this.state.warning &&
                     <p className="warning"> (required)</p>}
                   </label>
@@ -80,8 +79,6 @@ export class Account extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                </div>
-                <div id='account-nonessentials'>
                   <div>
                     <label htmlFor="address">
                       <h5>Address</h5>
@@ -104,11 +101,8 @@ export class Account extends Component {
                       onChange={this.handleChange}
                     />
                 </div>
-              </div>
             </form>
-            <div>
-                <button type="submit">Submit</button>
-              </div>
+            <button onClick={this.handleSubmit} type="submit">Confirm</button>
           </div>
       </>
     )

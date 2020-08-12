@@ -48,7 +48,7 @@ class Cart extends React.Component {
                       onClick={() => {
                         this.props.removeItem(item)
                       }}>
-                        Remove item
+                        Remove from cart
                     </button>
                   </div>
                 </div>
@@ -56,21 +56,22 @@ class Cart extends React.Component {
             })
           )
         ) : (
-          <h3>Any way you slice it there's nothin here...</h3>
+          <div className='header'>
+            <h3>Any way you slice it there's nothin here...</h3>
+          </div>
         )}
 
         {cart.length ? (
-          <>
+          <div className='checkout'>
             {
               cart[0].id
               ? <h3>Total: ${cartTotal}</h3>
               : null
             }
-
             <Link to="/cart/checkout">
               <button type="submit">Checkout</button>
             </Link>
-          </>
+          </div>
         ) : null}
       </>
     )

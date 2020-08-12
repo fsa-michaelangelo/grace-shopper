@@ -346,13 +346,9 @@ function (_Component) {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "edit-account"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "account-essentials"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Email"), !this.state.email && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Email "), !this.state.email && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "warning"
       }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "email",
@@ -361,7 +357,7 @@ function (_Component) {
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Password "), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "warning"
       }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "password",
@@ -370,15 +366,13 @@ function (_Component) {
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "confirm"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Confirm Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Confirm Password "), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "warning"
       }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "confirm",
         type: "password",
         onChange: this.handleChange
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "account-nonessentials"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "address"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "address",
@@ -392,9 +386,10 @@ function (_Component) {
         type: "text",
         defaultValue: user.phone,
         onChange: this.handleChange
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit,
         type: "submit"
-      }, "Submit"))));
+      }, "Confirm")));
     }
   }]);
 
@@ -633,8 +628,12 @@ function (_React$Component) {
           onClick: function onClick() {
             _this.props.removeItem(item);
           }
-        }, "Remove item")));
-      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here..."), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_2___default.a.Fragment, null, cart[0].id ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Total: $", cartTotal) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, "Remove from cart")));
+      }) : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Any way you slice it there's nothin here...")), cart.length ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "checkout"
+      }, cart[0].id ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h3", null, "Total: $", cartTotal) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/cart/checkout"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
         type: "submit"
@@ -771,19 +770,24 @@ function (_React$Component) {
       var _this2 = this;
 
       var cart = this.props.cart;
+      console.log(cart);
 
       if (this.state.orderPlaced === true) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Order complete!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your order is processing. Forgot something? Click", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           to: "/breads"
-        }, "here"), " to view our breads."));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "here")), " to view our breads."));
       } else return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
         src: "https://js.stripe.com/v3/"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Checkout")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "checkout-form",
         onSubmit: function onSubmit(event) {
           return _this2.handleSubmit(event);
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Checkout"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Shipping Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "shipping-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Shipping Information"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "name",
         placeholder: "Name",
@@ -823,10 +827,12 @@ function (_React$Component) {
             email: evt.target.value
           });
         }
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stripe_checkout__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_stripe_checkout__WEBPACK_IMPORTED_MODULE_4___default.a, {
         token: this.onToken,
         stripeKey: "pk_test_TYooMQauvdEDq54NiTphI7jx"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "My Cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_5__["default"], null))));
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Current Cart")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cart__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
     }
   }]);
 
@@ -881,24 +887,27 @@ var GuestCart = function GuestCart(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, cart ? cart.map(function (item, index) {
     cartTotal += item.quantity * item.price;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "cart-item",
       key: index
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item.bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: item.bread.imageUrl
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.bread.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      onChange: props.handleChange
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      type: "number",
-      name: "quantity",
-      placeholder: Number(item.quantity)
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " price: $", item.price)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "cart-details"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, item.bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, item.bread.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Price: $", item.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "quantity"
+    }, "Quantity: ", Number(item.quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      to: "/breads/".concat(item.bread.id),
+      component: _single_bread__WEBPACK_IMPORTED_MODULE_3__["default"]
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, "Change amount?"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: function onClick() {
         props.removeItem(item.bread);
       }
-    }, "Remove item from cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      to: "/breads/".concat(item.bread.id),
-      component: _single_bread__WEBPACK_IMPORTED_MODULE_3__["default"]
-    }, "Need to change the amount?")));
-  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Any way you slice it there's nothin here..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", cartTotal)));
+    }, "Remove from cart")));
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Any way you slice it there's nothin here...")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "checkout"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", cartTotal))));
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
@@ -1467,7 +1476,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$", bread.orderDetails.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.orderDetails.quantity));
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", orderTotal), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/home"
-      }, "Back to my account")));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Back to my account"))));
     }
   }]);
 
@@ -1532,7 +1541,7 @@ var UserHome = function UserHome(props) {
     id: "account-info"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Account Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, user.phone)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/edit"
-  }, "Edit info")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit info"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "order-history"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Order History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_order_history__WEBPACK_IMPORTED_MODULE_5__["default"], {
     user: user
