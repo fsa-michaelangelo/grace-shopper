@@ -45,7 +45,7 @@ class SingleOrderDetails extends React.Component {
           </table>
           <h3>Total: ${orderTotal}</h3>
           <Link to="/home">
-            Back to my account
+            <strong>Back to my account</strong>
           </Link>
         </div>
       </>

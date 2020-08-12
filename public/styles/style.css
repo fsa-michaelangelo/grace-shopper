@@ -35,7 +35,7 @@ h1 {
 
 .right-nav-container img {
   width: 3vw;
-  height: 3vh;
+  height: 3.5vh;
 }
 
 .header {
@@ -263,22 +263,6 @@ h1 {
           justify-content: center;
 }
 
-#edit-account form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 #edit-account form div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -293,9 +277,9 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .current-order {
@@ -474,9 +458,12 @@ form div {
 
 button {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: whitesmoke;
+  font-size: 2vh;
+  background: white;
   color: #3f0606;
   padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
   margin-left: 2px;
   border-radius: 5px 5px 5px 5px;
   border-color: #3f0606;

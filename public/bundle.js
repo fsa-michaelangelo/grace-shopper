@@ -346,13 +346,9 @@ function (_Component) {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit Account")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "edit-account"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "account-essentials"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Email"), !this.state.email && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Email "), !this.state.email && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "warning"
       }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "email",
@@ -361,7 +357,7 @@ function (_Component) {
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Password "), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "warning"
       }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "password",
@@ -370,15 +366,13 @@ function (_Component) {
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "confirm"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Confirm Password"), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Confirm Password "), !this.state.password && this.state.warning && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "warning"
       }, " (required)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "confirm",
         type: "password",
         onChange: this.handleChange
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "account-nonessentials"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "address"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "address",
@@ -392,9 +386,10 @@ function (_Component) {
         type: "text",
         defaultValue: user.phone,
         onChange: this.handleChange
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit,
         type: "submit"
-      }, "Submit"))));
+      }, "Confirm")));
     }
   }]);
 
@@ -1481,7 +1476,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$", bread.orderDetails.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, bread.orderDetails.quantity));
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Total: $", orderTotal), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/home"
-      }, "Back to my account")));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Back to my account"))));
     }
   }]);
 
