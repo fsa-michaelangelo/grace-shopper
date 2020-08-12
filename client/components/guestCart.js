@@ -14,41 +14,38 @@ const GuestCart = props => {
           cart.map((item, index) => {
             cartTotal += (item.quantity * item.price)
             return (
-              <div key={index}>
+              <div className='cart-item' key={index}>
                 <div>
-                  <div>{item.bread.name}</div>
                   <img src={item.bread.imageUrl} />
+                </div>
+                <div className='cart-details'>
+                  <h4>{item.bread.name}</h4>
                   <p>{item.bread.description}</p>
-                </div>
-                <div onChange={props.handleChange}>
-                  <input
-                    type="number"
-                    name="quantity"
-                    placeholder={Number(item.quantity)}
-                  />
-                </div>
-                <div>
-                  <p> price: ${item.price}</p>
+                  <p>Price: ${item.price}</p>
+                <div className='quantity'>
+                  Quantity: {Number(item.quantity)}
+                  <Link to={`/breads/${item.bread.id}`} component={SingleBread}>
+                    <sub>Change amount?</sub>
+                  </Link>
                 </div>
                 <button
                   onClick={() => {
                     props.removeItem(item.bread)
-                  }}
-                >
-                  Remove item from cart
+                  }}>
+                  Remove from cart
                 </button>
-                <>
-                  <Link to={`/breads/${item.bread.id}`} component={SingleBread}>
-                    Need to change the amount?
-                  </Link>
-                </>
+                </div>
               </div>
             )
           })
         ) : (
-          <h1>Any way you slice it there's nothin here...</h1>
+          <div className='header'>
+            <h3>Any way you slice it there's nothin here...</h3>
+          </div>
         )}
-         <h3>Total: ${cartTotal}</h3>
+          <div className='checkout'>
+            <h3>Total: ${cartTotal}</h3>
+          </div>
       </div>
     </>
   )

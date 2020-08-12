@@ -44,7 +44,8 @@ export class Checkout extends React.Component {
   }
 
   render() {
-    const cart = this.props.cart
+    const cart = this.props.cart;
+    console.log(cart)
 
     if (this.state.orderPlaced === true) {
       return (
@@ -52,7 +53,7 @@ export class Checkout extends React.Component {
           <h1>Order complete!</h1>
           <h3>
             Your order is processing. Forgot something? Click{' '}
-            <Link to="/breads">here</Link> to view our breads.
+            <Link to="/breads"><strong>here</strong></Link> to view our breads.
           </h3>
         </>
       )
@@ -60,58 +61,60 @@ export class Checkout extends React.Component {
       return (
         <>
           <script src="https://js.stripe.com/v3/" />
-          <form id="checkout-form" onSubmit={event => this.handleSubmit(event)}>
-            <div>
+          <div className='header'>
               <h1>Checkout</h1>
-              <h3>Shipping Information</h3>
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={this.state.shipName}
-                onChange={evt => {
-                  this.setState({shipName: evt.target.value})
-                }}
-              />
-              <input
-                type="text"
-                name="address"
-                placeholder="Address"
-                value={this.state.shipAddress}
-                onChange={evt => {
-                  this.setState({shipAddress: evt.target.value})
-                }}
-              />
-              <input
-                type="number"
-                name="phone"
-                placeholder="Phone"
-                value={this.state.shipPhone}
-                onChange={evt => {
-                  this.setState({shipPhone: evt.target.value})
-                }}
-              />
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={evt => {
-                  this.setState({email: evt.target.value})
-                }}
-              />
-            </div>
-            <StripeCheckout
-              token={this.onToken}
-              stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
-            />
-          </form>
-          <>
-            <h3>My Cart</h3>
-            <>
-            <Cart/>
-            </>
-          </>
+          </div>
+          <div>
+            <form id="checkout-form" onSubmit={event => this.handleSubmit(event)}>
+              <div id='shipping-info'>
+                <h3>Shipping Information</h3>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={this.state.shipName}
+                  onChange={evt => {
+                    this.setState({shipName: evt.target.value})
+                  }}
+                />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  value={this.state.shipAddress}
+                  onChange={evt => {
+                    this.setState({shipAddress: evt.target.value})
+                  }}
+                />
+                <input
+                  type="number"
+                  name="phone"
+                  placeholder="Phone"
+                  value={this.state.shipPhone}
+                  onChange={evt => {
+                    this.setState({shipPhone: evt.target.value})
+                  }}
+                />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={evt => {
+                    this.setState({email: evt.target.value})
+                  }}
+                />
+                <StripeCheckout
+                  token={this.onToken}
+                  stripeKey="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                />
+              </div>
+            </form>
+            <div className='header'>
+              <h3>Current Cart</h3>
+              </div>
+              <Cart/>
+          </div>
         </>
       )
   }

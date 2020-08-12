@@ -27,8 +27,6 @@ nav {
 h1 {
   color: $textColor;
 }
-
-// for the cart icon
 .right-nav-container {
   img {
     width: 3vw;
@@ -181,6 +179,13 @@ h1 {
   @include flexCenter(column);
   button {
     width: 10vw;
+  }
+}
+
+#shipping-info {
+  @include flexCenter(column);
+  input {
+    margin-bottom: 10px;
   }
 }
 

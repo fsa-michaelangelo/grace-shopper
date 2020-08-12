@@ -28,7 +28,7 @@ export const UserHome = props => {
             <h4>Phone</h4>
             <div>{user.phone}</div>
           </div>
-          <Link to='/edit'>Edit info</Link>
+          <Link to='/edit'><button>Edit info</button></Link>
         </div>
         <div className="order-history">
           <h3>Order History</h3>
