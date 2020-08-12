@@ -384,6 +384,10 @@ h1 {
   height: 100%;
 }
 
+.cart-details h4 {
+  margin-top: 1px;
+}
+
 .quantity {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -400,6 +404,7 @@ h1 {
           justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .checkout {

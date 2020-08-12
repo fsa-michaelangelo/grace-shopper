@@ -172,11 +172,15 @@ h1 {
 .cart-details {
   width: 50vw;
   height: 100%;
+  h4 {
+    margin-top: 1px;
+  }
 }
 
 .quantity {
   @include flexCenter(row);
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .checkout {
